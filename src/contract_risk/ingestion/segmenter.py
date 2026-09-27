@@ -54,6 +54,13 @@ _REQUISITES_RE = re.compile(
     r"(реквизит|юридическ\w*\s+адрес|адреса\s+(?:и|сторон)|подписи\s+сторон|мекенжай|деректеме|қолдары)",
     re.IGNORECASE,
 )
+# Строка, после которой число в начале следующей строки — ссылка, а не номер:
+# «…в порядке, предусмотренном п.» + «5.3 настоящего Договора».
+_REFERENCE_TAIL_RE = re.compile(
+    r"(?:\bп\.|\bпп\.|\bпункт\w*|\bподпункт\w*|\bст\.|\bстать\w*|\bраздел\w*|№"
+    r"|\bтармақ\w*|\bбап\w*)\s*$",
+    re.IGNORECASE,
+)
 _TITLE_RE = re.compile(r"(?:^|\s)(договор|контракт|шарт|келісімшарт)", re.IGNORECASE)
 
 MAX_SKIP = 2
@@ -205,6 +212,7 @@ def segment(text: str) -> SegmentResult:
     prefix = ""
     mode = "preamble"
     counter = 0
+    prev_line = ""
 
     offset = 0
     for raw in text.split("\n"):
@@ -213,6 +221,8 @@ def segment(text: str) -> SegmentResult:
         line = raw.strip()
         if not line:
             continue
+        after_reference = bool(_REFERENCE_TAIL_RE.search(prev_line))
+        prev_line = line
 
         appendix = _APPENDIX_RE.match(line) if mode != "preamble" else None
         if appendix and len(line) <= 120:
@@ -227,7 +237,7 @@ def segment(text: str) -> SegmentResult:
             current.add(line, end)
             continue
 
-        matched = _match_number(line, path, article)
+        matched = None if after_reference else _match_number(line, path, article)
         if matched is not None:
             cand, number, body, is_section = matched
             path = cand

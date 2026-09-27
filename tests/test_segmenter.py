@@ -215,3 +215,13 @@ def test_language_detection(text, expected):
 )
 def test_contract_type(title, expected):
     assert detect_contract_type("", title) == expected
+
+
+def test_reference_to_clause_after_line_break_is_not_a_new_clause():
+    doc = parse_text(
+        "ДОГОВОР\n1. Общие положения\n1.1. Субаренда допускается в порядке, предусмотренном п.\n"
+        "1.2 настоящего Договора, с согласия Арендодателя.\n1.2. Согласие дается письменно.\n",
+        "r",
+    )
+    assert ids(doc) == ["1.1", "1.2"]
+    assert doc.clause("1.1").text.endswith("с согласия Арендодателя.")
