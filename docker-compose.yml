@@ -1,0 +1,25 @@
+# pgvector для эталонного корпуса.
+#
+# Порт по умолчанию 5433, а не 5432: на той же машине часто уже крутится
+# Postgres другого проекта, и конфликт портов выглядит как «база не отвечает».
+
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-kzcr}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-kzcr}
+      POSTGRES_DB: ${POSTGRES_DB:-kzcr}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    ports:
+      - "${KZCR_PG_PORT:-5433}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-kzcr} -d ${POSTGRES_DB:-kzcr}"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  pgdata:

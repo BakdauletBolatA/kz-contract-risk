@@ -1,0 +1,31 @@
+# --- секреты ---
+.env
+.env.*
+!.env.example
+
+# --- загруженные пользователем договоры: могут содержать персональные данные ---
+uploads/
+data/private/
+
+# --- кэши моделей, LLM-ответов и эмбеддингов ---
+.cache/
+models/
+*.joblib
+
+# --- python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# --- ос и редакторы ---
+.DS_Store
+.idea/
+.vscode/
+*.swp
