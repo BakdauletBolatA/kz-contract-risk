@@ -1,0 +1,7 @@
+[server]
+# Тот же лимит, что у API (KZCR_MAX_UPLOAD_MB): договор больше 10 МБ — почти
+# всегда скан с картинками, а не текст.
+maxUploadSize = 10
+
+[browser]
+gatherUsageStats = false
