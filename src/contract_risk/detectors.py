@@ -36,3 +36,12 @@ class NullDetector:
 
     def config(self) -> dict[str, Any]:
         return {}
+
+
+DETECTORS = ("null",)
+
+
+def build_detector(name: str) -> Detector:
+    if name == "null":
+        return NullDetector()
+    raise ValueError(f"неизвестный детектор {name!r}; доступны: {', '.join(DETECTORS)}")
