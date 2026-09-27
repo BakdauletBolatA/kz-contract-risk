@@ -528,10 +528,12 @@ _NO_NOTICE = re.compile(
     re.IGNORECASE,
 )
 _BREACH_CONDITION = re.compile(
-    r"(?:\bесли\b|в\s+случае|при\s+(?:нарушени|просрочк|неуплат|невнесени|неисполнени|повторн|существенн)"
-    r"|более\s+двух\s+раз|\bегер\b)",
+    r"(?:\bесли\b|в\s+случае|\bпри\b|\bегер\b)[^.;]{0,80}?"
+    r"(?:нарушени|неуплат|невнесени|просрочк|неисполнени|не\s+внес|не\s+оплат|более\s+двух\s+раз"
+    r"|бұзған|төлемеген)",
     re.IGNORECASE,
 )
+_VAGUE_BREACH = re.compile(r"(?:при\s+любом\s+нарушени|в\s+случае\s+любого\s+нарушени)", re.I)
 _PAYS_FOR_WORK = re.compile(
     r"(?:уплатив|оплатив|возместив|с\s+оплатой\s+(?:фактически\s+)?выполненн)", re.IGNORECASE
 )
@@ -548,13 +550,15 @@ def termination_unilateral(ctx: RuleContext) -> list[Hit]:
     if no_notice:
         level, spans = HIGH, _span(no_notice)
         why = "Контрагент может выйти из договора в любой момент, без предупреждения."
+    elif _BREACH_CONDITION.search(ctx.text) and not _VAGUE_BREACH.search(ctx.text):
+        return []  # отказ в ответ на нарушение пользователя — средство защиты (руководство 1.2)
     elif shortest is not None and shortest.value < 30:
         level, spans = MEDIUM, [(shortest.start, shortest.end)]
         why = (
             f"Контрагент может выйти из договора, предупредив всего за "
             f"{int(shortest.value)} дней — меньше месяца, который даёт закон по общему правилу."
         )
-    elif shortest is None and not _BREACH_CONDITION.search(ctx.text):
+    elif shortest is None:
         if _PAYS_FOR_WORK.search(ctx.text):
             return []
         level, spans = MEDIUM, []
@@ -982,6 +986,8 @@ RULES: list[Rule] = [
         E("Каждая из Сторон вправе отказаться от Договора, предупредив другую Сторону за 30 дней.", "lease", "tenant", None),
         E("Арендатор вправе в любое время отказаться от исполнения Договора без уведомления.", "lease", "tenant", None),
         E("Арендодатель вправе отказаться от Договора, если Арендатор более двух раз не внес плату, предупредив за один месяц.", "lease", "tenant", None),
+        E("Арендодатель вправе отказаться от Договора в случае неуплаты арендной платы более двух месяцев подряд, предупредив Арендатора за 10 дней.", "lease", "tenant", None),
+        E("Арендодатель вправе отказаться от Договора при любом нарушении Арендатором его условий, уведомив за 5 дней.", "lease", "tenant", "medium"),
         E("Жалға беруші кез келген уақытта Шартты біржақты тәртіппен бұзуға құқылы.", "lease", "tenant", "high", "kk"),
     ]),
     Rule("termination.cannot_exit", C.TERMINATION, termination_user_cannot_exit, [
