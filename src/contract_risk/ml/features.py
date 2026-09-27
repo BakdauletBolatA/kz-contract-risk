@@ -32,7 +32,7 @@ def relative_text(text: str, contract_type: ContractType, lang: Language, user: 
     rel = "".join(parts)
     pattern = lx.MUTUAL_KK if lang == Language.KK else lx.MUTUAL_RU
     rel = pattern.sub(" BOTH ", rel)
-    return f"{rel} {' '.join(feature_tokens(text))}".strip()
+    return " ".join(f"{rel} {' '.join(feature_tokens(text))}".split())
 
 
 def feature_tokens(text: str) -> list[str]:

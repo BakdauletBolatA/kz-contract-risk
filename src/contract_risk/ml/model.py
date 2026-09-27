@@ -55,7 +55,9 @@ from contract_risk.schemas import (
     contract_type_of,
 )
 
-MODEL_VERSION = "1.0"
+# Версия меняется при любой правке признаков: сохранённая модель старой версии
+# не загружается, а переобучается (load_or_train).
+MODEL_VERSION = "1.1"
 MIN_PRECISION = 0.9
 ROUTE_MISS_RATE = 0.05
 Parser = Callable[[str, str], ContractDocument]
