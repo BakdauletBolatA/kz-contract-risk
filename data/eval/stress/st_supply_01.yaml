@@ -1,0 +1,27 @@
+doc_id: st_supply_01
+contract_type: supply
+language: ru
+party_role: buyer
+origin: handwritten
+findings:
+- clause: '1.2'
+  category: payment
+  level: medium
+  trap_id: full_prepayment
+- clause: '1.3'
+  category: unilateral_change
+  level: high
+  trap_id: price_unilateral
+- clause: '2.1'
+  category: acceptance
+  level: medium
+  trap_id: short_claim_period
+  note: "претензии только в момент приемки — включая скрытые недостатки"
+- clause: '3.1'
+  category: penalty
+  level: high
+  trap_id: penalty_daily_high
+- clause: null
+  category: force_majeure
+  level: medium
+  trap_id: fm_missing

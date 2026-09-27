@@ -1,0 +1,18 @@
+doc_id: st_lease_kk_01
+contract_type: lease
+language: kk
+party_role: tenant
+origin: handwritten
+findings:
+- clause: '1.2'
+  category: auto_renewal
+  level: low
+  trap_id: renewal_silent
+- clause: '2.2'
+  category: unilateral_change
+  level: high
+  trap_id: price_unilateral
+- clause: '2.3'
+  category: penalty
+  level: high
+  trap_id: penalty_daily_high

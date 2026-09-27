@@ -1,0 +1,33 @@
+doc_id: st_lease_01
+contract_type: lease
+language: ru
+party_role: tenant
+origin: handwritten
+findings:
+- clause: '1.3'
+  category: auto_renewal
+  level: medium
+  trap_id: renewal_long_notice
+- clause: '2.2'
+  category: penalty
+  level: low
+  trap_id: penalty_uncapped
+  note: "1/300 базовой ставки ≈ 0,05% в день при ставке 15% — ниже 0,1%, но без потолка"
+- clause: '2.3'
+  category: penalty
+  level: medium
+  trap_id: penalty_daily_medium
+  note: "73% годовых = 0,2% в день"
+- clause: '2.4'
+  category: unilateral_change
+  level: high
+  trap_id: price_unilateral
+- clause: '3.1'
+  category: termination
+  level: medium
+  trap_id: termination_short_notice
+- clause: null
+  category: liability
+  level: medium
+  trap_id: liability_one_sided
+  note: "неустойки только у арендатора, взаимной ответственности нет"

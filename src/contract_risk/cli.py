@@ -144,7 +144,7 @@ def build_parser() -> argparse.ArgumentParser:
     ev = sub.add_parser("eval", help="оценка качества").add_subparsers(dest="action", required=True)
     run = ev.add_parser("run", help="прогнать детектор по срезу")
     run.add_argument("--detector", default="rules")
-    run.add_argument("--split", default="dev", choices=["dev", "test", "handwritten"])
+    run.add_argument("--split", default="dev", choices=["dev", "test", "handwritten", "stress"])
     run.add_argument("--out", default=str(RESULTS))
     run.set_defaults(func=_eval_run)
     table = ev.add_parser("table", help="таблица прогонов")

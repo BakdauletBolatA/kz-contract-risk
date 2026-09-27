@@ -1,0 +1,25 @@
+doc_id: st_services_01
+contract_type: works
+language: ru
+party_role: contractor
+origin: handwritten
+findings:
+- clause: '1.3'
+  category: payment
+  level: medium
+  trap_id: payment_deferral_medium
+  note: "90 рабочих дней ≈ 4 месяца, но в днях — 90; порог medium по руководству"
+- clause: '2.1'
+  category: liability
+  level: medium
+  trap_id: damages_lost_profit
+- clause: '2.2'
+  category: penalty
+  level: medium
+  trap_id: fine_medium
+  note: "500 000 тенге при цене договора 2 000 000 — 25%"
+- clause: '3.1'
+  category: termination
+  level: high
+  trap_id: termination_no_notice
+  note: "«в любое время» — по руководству high даже при символическом уведомлении"

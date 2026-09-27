@@ -29,7 +29,7 @@ from contract_risk.schemas import (
     contract_type_of,
 )
 
-SPLITS = ("dev", "test", "handwritten")
+SPLITS = ("dev", "test", "handwritten", "stress")
 Origin = Literal["synthetic", "handwritten", "public"]
 
 

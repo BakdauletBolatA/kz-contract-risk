@@ -1,0 +1,6 @@
+doc_id: st_lease_02_clean
+contract_type: lease
+language: ru
+party_role: tenant
+origin: handwritten
+findings: []

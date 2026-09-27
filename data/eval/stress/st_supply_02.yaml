@@ -1,0 +1,15 @@
+doc_id: st_supply_02
+contract_type: supply
+language: ru
+party_role: supplier
+origin: handwritten
+findings:
+- clause: '2.1'
+  category: payment
+  level: high
+  trap_id: pay_when_paid
+  note: "оплата по мере реализации — вариант pay-when-paid; «раз в квартал» до 90 дней"
+- clause: '3.1'
+  category: penalty
+  level: medium
+  trap_id: penalty_daily_medium

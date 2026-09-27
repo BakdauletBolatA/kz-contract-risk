@@ -82,7 +82,7 @@ eval: ## прогнать eval: make eval DETECTOR=hybrid SPLIT=test
 .PHONY: eval-all
 eval-all: ## все офлайн-детекторы на dev и test — строки для EVALUATION.md
 	for d in null rules ml hybrid; do \
-		for s in dev test handwritten; do \
+		for s in dev test handwritten stress; do \
 			$(KZCR) eval run --detector $$d --split $$s || exit 1; \
 		done; \
 	done
