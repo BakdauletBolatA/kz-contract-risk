@@ -38,10 +38,14 @@ class NullDetector:
         return {}
 
 
-DETECTORS = ("null",)
+DETECTORS = ("null", "rules")
 
 
 def build_detector(name: str) -> Detector:
     if name == "null":
         return NullDetector()
+    if name == "rules":
+        from contract_risk.rules.engine import RulesDetector
+
+        return RulesDetector()
     raise ValueError(f"неизвестный детектор {name!r}; доступны: {', '.join(DETECTORS)}")
