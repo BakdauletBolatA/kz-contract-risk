@@ -1,0 +1,515 @@
+{
+  "run_id": "20260927-105624_handwritten_rules",
+  "created_at": "2026-09-27T10:56:24+00:00",
+  "detector": {
+    "name": "rules",
+    "config": {
+      "rules_version": "1.0",
+      "rules": [
+        "penalty.daily_rate",
+        "penalty.fine",
+        "auto_renewal",
+        "liability.lost_profit",
+        "liability.exclusion",
+        "force_majeure.one_sided",
+        "jurisdiction",
+        "termination.unilateral",
+        "termination.cannot_exit",
+        "termination.early_fee",
+        "termination.deposit_forfeit",
+        "unilateral_change",
+        "payment",
+        "acceptance"
+      ]
+    }
+  },
+  "split": "handwritten",
+  "dataset_hash": "bbe8ca363373c23f",
+  "metrics_version": "1.0",
+  "pipeline_version": "0.1.0",
+  "git_commit": "75380ab",
+  "git_dirty": false,
+  "metrics": {
+    "n_docs": 6,
+    "n_clean_docs": 1,
+    "n_gold_clause_findings": 23,
+    "n_pred_clause_findings": 23,
+    "detection": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 23,
+      "fp": 0,
+      "fn": 0
+    },
+    "strict": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 23,
+      "fp": 0,
+      "fn": 0
+    },
+    "high_recall": 1.0,
+    "high_support": 10,
+    "level": {
+      "n": 23,
+      "accuracy": 1.0,
+      "underestimated": 0.0,
+      "overestimated": 0.0
+    },
+    "document": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 2,
+      "fp": 0,
+      "fn": 0
+    },
+    "clean_docs": {
+      "n": 1,
+      "false_alarms_per_doc": 0.0,
+      "docs_with_false_alarm": 0.0
+    },
+    "segmentation_coverage": 1.0,
+    "per_category": {
+      "penalty": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 5,
+        "fp": 0,
+        "fn": 0,
+        "support": 5
+      },
+      "auto_renewal": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "support": 2
+      },
+      "liability": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "support": 2
+      },
+      "jurisdiction": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0,
+        "support": 3
+      },
+      "termination": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0,
+        "support": 3
+      },
+      "unilateral_change": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0,
+        "support": 3
+      },
+      "payment": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0,
+        "support": 3
+      },
+      "acceptance": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "support": 2
+      }
+    }
+  },
+  "ci95": {
+    "detection_precision": [
+      1.0,
+      1.0
+    ],
+    "detection_recall": [
+      1.0,
+      1.0
+    ],
+    "detection_f1": [
+      1.0,
+      1.0
+    ],
+    "strict_f1": [
+      1.0,
+      1.0
+    ]
+  },
+  "slices": {
+    "language": {
+      "ru": {
+        "n_docs": 5,
+        "detection": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 20,
+          "fp": 0,
+          "fn": 0
+        },
+        "strict_f1": 1.0,
+        "high_recall": 1.0,
+        "clean_docs": {
+          "n": 1,
+          "false_alarms_per_doc": 0.0,
+          "docs_with_false_alarm": 0.0
+        }
+      },
+      "kk": {
+        "n_docs": 1,
+        "detection": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 3,
+          "fp": 0,
+          "fn": 0
+        },
+        "strict_f1": 1.0,
+        "high_recall": 1.0,
+        "clean_docs": {
+          "n": 0,
+          "false_alarms_per_doc": null,
+          "docs_with_false_alarm": null
+        }
+      }
+    },
+    "contract_type": {
+      "lease": {
+        "n_docs": 2,
+        "detection": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 10,
+          "fp": 0,
+          "fn": 0
+        },
+        "strict_f1": 1.0,
+        "high_recall": 1.0,
+        "clean_docs": {
+          "n": 0,
+          "false_alarms_per_doc": null,
+          "docs_with_false_alarm": null
+        }
+      },
+      "works": {
+        "n_docs": 2,
+        "detection": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 5,
+          "fp": 0,
+          "fn": 0
+        },
+        "strict_f1": 1.0,
+        "high_recall": 1.0,
+        "clean_docs": {
+          "n": 1,
+          "false_alarms_per_doc": 0.0,
+          "docs_with_false_alarm": 0.0
+        }
+      },
+      "supply": {
+        "n_docs": 2,
+        "detection": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 8,
+          "fp": 0,
+          "fn": 0
+        },
+        "strict_f1": 1.0,
+        "high_recall": 1.0,
+        "clean_docs": {
+          "n": 0,
+          "false_alarms_per_doc": null,
+          "docs_with_false_alarm": null
+        }
+      }
+    },
+    "origin": {
+      "handwritten": {
+        "n_docs": 6,
+        "detection": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 23,
+          "fp": 0,
+          "fn": 0
+        },
+        "strict_f1": 1.0,
+        "high_recall": 1.0,
+        "clean_docs": {
+          "n": 1,
+          "false_alarms_per_doc": 0.0,
+          "docs_with_false_alarm": 0.0
+        }
+      }
+    }
+  },
+  "timing": {
+    "seconds": 0.025,
+    "ms_per_doc": 4.2
+  },
+  "predictions": [
+    {
+      "doc_id": "hw_lease_01",
+      "clause_id": "2.3",
+      "category": "termination",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "termination.deposit_forfeit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "hw_lease_01",
+      "clause_id": "2.4",
+      "category": "unilateral_change",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "unilateral_change.price",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "hw_lease_01",
+      "clause_id": "3.3",
+      "category": "liability",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "liability.exclusion",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "hw_lease_01",
+      "clause_id": "4.1",
+      "category": "penalty",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "penalty.daily_rate",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "hw_lease_01",
+      "clause_id": "5.2",
+      "category": "termination",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "hw_lease_01",
+      "clause_id": "5.4",
+      "category": "auto_renewal",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "auto_renewal.silent",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "hw_lease_01",
+      "clause_id": "6.1",
+      "category": "jurisdiction",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "jurisdiction.counterparty_location",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "hw_lease_01",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "hw_lease_kk_01",
+      "clause_id": "2.2",
+      "category": "unilateral_change",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "unilateral_change.price",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "hw_lease_kk_01",
+      "clause_id": "3.1",
+      "category": "penalty",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "penalty.daily_rate",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "hw_lease_kk_01",
+      "clause_id": "4.1",
+      "category": "auto_renewal",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "auto_renewal.silent",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "hw_lease_kk_01",
+      "clause_id": NaN,
+      "category": "liability",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.liability_one_sided",
+      "confidence": 0.8
+    },
+    {
+      "doc_id": "hw_services_01",
+      "clause_id": "2.2",
+      "category": "payment",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "payment.pay_when_paid",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "hw_services_01",
+      "clause_id": "3.2",
+      "category": "acceptance",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "acceptance.arbitrary_refusal",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "hw_services_01",
+      "clause_id": "4.1",
+      "category": "penalty",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "penalty.daily_rate",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "hw_services_01",
+      "clause_id": "4.2",
+      "category": "liability",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "liability.lost_profit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "hw_services_01",
+      "clause_id": "7.1",
+      "category": "jurisdiction",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "jurisdiction.aifc",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "hw_supply_01",
+      "clause_id": "2.1",
+      "category": "unilateral_change",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "unilateral_change.price",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "hw_supply_01",
+      "clause_id": "2.2",
+      "category": "payment",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "payment.full_prepayment",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "hw_supply_01",
+      "clause_id": "3.2",
+      "category": "acceptance",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "acceptance.short_deadline",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "hw_supply_01",
+      "clause_id": "4.1",
+      "category": "penalty",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "penalty.daily_rate",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "hw_supply_02",
+      "clause_id": "3.2",
+      "category": "payment",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "payment.deferral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "hw_supply_02",
+      "clause_id": "4.1",
+      "category": "penalty",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "penalty.daily_rate",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "hw_supply_02",
+      "clause_id": "5.2",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "hw_supply_02",
+      "clause_id": "5.3",
+      "category": "jurisdiction",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "jurisdiction.counterparty_location",
+      "confidence": 0.95
+    }
+  ]
+}

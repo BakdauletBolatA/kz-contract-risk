@@ -1,0 +1,2612 @@
+{
+  "run_id": "20260927-105623_test_rules",
+  "created_at": "2026-09-27T10:56:23+00:00",
+  "detector": {
+    "name": "rules",
+    "config": {
+      "rules_version": "1.0",
+      "rules": [
+        "penalty.daily_rate",
+        "penalty.fine",
+        "auto_renewal",
+        "liability.lost_profit",
+        "liability.exclusion",
+        "force_majeure.one_sided",
+        "jurisdiction",
+        "termination.unilateral",
+        "termination.cannot_exit",
+        "termination.early_fee",
+        "termination.deposit_forfeit",
+        "unilateral_change",
+        "payment",
+        "acceptance"
+      ]
+    }
+  },
+  "split": "test",
+  "dataset_hash": "65fddee9e182e84f",
+  "metrics_version": "1.0",
+  "pipeline_version": "0.1.0",
+  "git_commit": "75380ab",
+  "git_dirty": false,
+  "metrics": {
+    "n_docs": 135,
+    "n_clean_docs": 38,
+    "n_gold_clause_findings": 215,
+    "n_pred_clause_findings": 215,
+    "detection": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 215,
+      "fp": 0,
+      "fn": 0
+    },
+    "strict": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 215,
+      "fp": 0,
+      "fn": 0
+    },
+    "high_recall": 1.0,
+    "high_support": 110,
+    "level": {
+      "n": 215,
+      "accuracy": 1.0,
+      "underestimated": 0.0,
+      "overestimated": 0.0
+    },
+    "document": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 42,
+      "fp": 0,
+      "fn": 0
+    },
+    "clean_docs": {
+      "n": 38,
+      "false_alarms_per_doc": 0.0,
+      "docs_with_false_alarm": 0.0
+    },
+    "segmentation_coverage": 1.0,
+    "per_category": {
+      "penalty": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 31,
+        "fp": 0,
+        "fn": 0,
+        "support": 31
+      },
+      "auto_renewal": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 22,
+        "fp": 0,
+        "fn": 0,
+        "support": 22
+      },
+      "liability": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 35,
+        "fp": 0,
+        "fn": 0,
+        "support": 35
+      },
+      "force_majeure": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 13,
+        "fp": 0,
+        "fn": 0,
+        "support": 13
+      },
+      "jurisdiction": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 21,
+        "fp": 0,
+        "fn": 0,
+        "support": 21
+      },
+      "termination": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 53,
+        "fp": 0,
+        "fn": 0,
+        "support": 53
+      },
+      "unilateral_change": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 20,
+        "fp": 0,
+        "fn": 0,
+        "support": 20
+      },
+      "payment": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 8,
+        "fp": 0,
+        "fn": 0,
+        "support": 8
+      },
+      "acceptance": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 12,
+        "fp": 0,
+        "fn": 0,
+        "support": 12
+      }
+    }
+  },
+  "ci95": {
+    "detection_precision": [
+      1.0,
+      1.0
+    ],
+    "detection_recall": [
+      1.0,
+      1.0
+    ],
+    "detection_f1": [
+      1.0,
+      1.0
+    ],
+    "strict_f1": [
+      1.0,
+      1.0
+    ]
+  },
+  "slices": {
+    "language": {
+      "kk": {
+        "n_docs": 15,
+        "detection": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 15,
+          "fp": 0,
+          "fn": 0
+        },
+        "strict_f1": 1.0,
+        "high_recall": 1.0,
+        "clean_docs": {
+          "n": 4,
+          "false_alarms_per_doc": 0.0,
+          "docs_with_false_alarm": 0.0
+        }
+      },
+      "ru": {
+        "n_docs": 120,
+        "detection": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 200,
+          "fp": 0,
+          "fn": 0
+        },
+        "strict_f1": 1.0,
+        "high_recall": 1.0,
+        "clean_docs": {
+          "n": 34,
+          "false_alarms_per_doc": 0.0,
+          "docs_with_false_alarm": 0.0
+        }
+      }
+    },
+    "contract_type": {
+      "lease": {
+        "n_docs": 55,
+        "detection": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 120,
+          "fp": 0,
+          "fn": 0
+        },
+        "strict_f1": 1.0,
+        "high_recall": 1.0,
+        "clean_docs": {
+          "n": 13,
+          "false_alarms_per_doc": 0.0,
+          "docs_with_false_alarm": 0.0
+        }
+      },
+      "supply": {
+        "n_docs": 40,
+        "detection": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 48,
+          "fp": 0,
+          "fn": 0
+        },
+        "strict_f1": 1.0,
+        "high_recall": 1.0,
+        "clean_docs": {
+          "n": 11,
+          "false_alarms_per_doc": 0.0,
+          "docs_with_false_alarm": 0.0
+        }
+      },
+      "works": {
+        "n_docs": 40,
+        "detection": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 47,
+          "fp": 0,
+          "fn": 0
+        },
+        "strict_f1": 1.0,
+        "high_recall": 1.0,
+        "clean_docs": {
+          "n": 14,
+          "false_alarms_per_doc": 0.0,
+          "docs_with_false_alarm": 0.0
+        }
+      }
+    },
+    "origin": {
+      "synthetic": {
+        "n_docs": 135,
+        "detection": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 215,
+          "fp": 0,
+          "fn": 0
+        },
+        "strict_f1": 1.0,
+        "high_recall": 1.0,
+        "clean_docs": {
+          "n": 38,
+          "false_alarms_per_doc": 0.0,
+          "docs_with_false_alarm": 0.0
+        }
+      }
+    }
+  },
+  "timing": {
+    "seconds": 0.657,
+    "ms_per_doc": 4.9
+  },
+  "predictions": [
+    {
+      "doc_id": "lease_kk_test_001",
+      "clause_id": "5.1",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_kk_test_001",
+      "clause_id": "6.1",
+      "category": "jurisdiction",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "jurisdiction.foreign",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_kk_test_001",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "lease_kk_test_003",
+      "clause_id": "3.4",
+      "category": "termination",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "termination.deposit_forfeit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_kk_test_003",
+      "clause_id": "4.1",
+      "category": "penalty",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "penalty.daily_rate",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_kk_test_003",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "lease_kk_test_004",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "lease_kk_test_005",
+      "clause_id": "2.2",
+      "category": "auto_renewal",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "auto_renewal.price_on_renewal",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_kk_test_005",
+      "clause_id": "5.1",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_kk_test_005",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "lease_kk_test_006",
+      "clause_id": "3.4",
+      "category": "termination",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "termination.deposit_forfeit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_kk_test_006",
+      "clause_id": "4.3",
+      "category": "liability",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "liability.lost_profit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_kk_test_006",
+      "clause_id": "5.1",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_kk_test_007",
+      "clause_id": "4.2",
+      "category": "liability",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "liability.lost_profit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_kk_test_007",
+      "clause_id": "5.1",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_kk_test_007",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "lease_kk_test_007",
+      "clause_id": NaN,
+      "category": "liability",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.liability_one_sided",
+      "confidence": 0.8
+    },
+    {
+      "doc_id": "lease_kk_test_009",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "lease_kk_test_010",
+      "clause_id": "7.1",
+      "category": "jurisdiction",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "jurisdiction.foreign",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_kk_test_013",
+      "clause_id": "5.1",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_kk_test_014",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "lease_kk_test_015",
+      "clause_id": "4.3",
+      "category": "liability",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "liability.lost_profit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_kk_test_015",
+      "clause_id": "5.1",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_001",
+      "clause_id": "2.2",
+      "category": "auto_renewal",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "auto_renewal.price_on_renewal",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_001",
+      "clause_id": "3.4",
+      "category": "unilateral_change",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "unilateral_change.price",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_001",
+      "clause_id": "3.5",
+      "category": "termination",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "termination.deposit_forfeit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_001",
+      "clause_id": "5.1",
+      "category": "penalty",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "penalty.daily_rate",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_001",
+      "clause_id": "5.3",
+      "category": "liability",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "liability.exclusion",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_001",
+      "clause_id": "6.3",
+      "category": "termination",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "termination.early_fee",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_001",
+      "clause_id": "8.1",
+      "category": "jurisdiction",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "jurisdiction.counterparty_location",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_002",
+      "clause_id": "2.2",
+      "category": "auto_renewal",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "auto_renewal.silent",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_002",
+      "clause_id": "3.4",
+      "category": "unilateral_change",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "unilateral_change.price",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_002",
+      "clause_id": "6.2",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_002",
+      "clause_id": "6.3",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.cannot_exit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_003",
+      "clause_id": "2.2",
+      "category": "auto_renewal",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "auto_renewal.silent",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_003",
+      "clause_id": "3.4",
+      "category": "unilateral_change",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "unilateral_change.price",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_003",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "lease_ru_test_005",
+      "clause_id": "2.2",
+      "category": "auto_renewal",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "auto_renewal.silent",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_005",
+      "clause_id": "5.4",
+      "category": "liability",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "liability.lost_profit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_005",
+      "clause_id": "6.2",
+      "category": "termination",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_005",
+      "clause_id": "7.1",
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "force_majeure.one_sided",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_005",
+      "clause_id": "8.1",
+      "category": "jurisdiction",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "jurisdiction.counterparty_location",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_006",
+      "clause_id": "5.1",
+      "category": "penalty",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "penalty.daily_rate",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_006",
+      "clause_id": "6.3",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.cannot_exit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_006",
+      "clause_id": "7.1",
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "force_majeure.one_sided",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_007",
+      "clause_id": "3.4",
+      "category": "unilateral_change",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "unilateral_change.price",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_007",
+      "clause_id": "5.2",
+      "category": "penalty",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "penalty.fine",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_007",
+      "clause_id": "6.2",
+      "category": "termination",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_007",
+      "clause_id": "6.3",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.cannot_exit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_007",
+      "clause_id": "6.4",
+      "category": "termination",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "termination.early_fee",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_007",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "lease_ru_test_008",
+      "clause_id": "2.2",
+      "category": "auto_renewal",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "auto_renewal.price_on_renewal",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_008",
+      "clause_id": "3.4",
+      "category": "unilateral_change",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "unilateral_change.price",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_008",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "lease_ru_test_009",
+      "clause_id": "5.1",
+      "category": "penalty",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "penalty.daily_rate",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_009",
+      "clause_id": "7.1",
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "force_majeure.one_sided",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_010",
+      "clause_id": "2.2",
+      "category": "auto_renewal",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "auto_renewal.silent",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_010",
+      "clause_id": "6.2",
+      "category": "termination",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_013",
+      "clause_id": "5.4",
+      "category": "liability",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "liability.exclusion",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_013",
+      "clause_id": "8.1",
+      "category": "jurisdiction",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "jurisdiction.foreign",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_014",
+      "clause_id": "5.4",
+      "category": "liability",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "liability.lost_profit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_014",
+      "clause_id": "5.5",
+      "category": "liability",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "liability.exclusion",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_014",
+      "clause_id": "6.3",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.cannot_exit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_015",
+      "clause_id": "2.2",
+      "category": "auto_renewal",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "auto_renewal.price_on_renewal",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_015",
+      "clause_id": "3.4",
+      "category": "unilateral_change",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "unilateral_change.price",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_015",
+      "clause_id": "3.5",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.deposit_forfeit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_015",
+      "clause_id": "5.1",
+      "category": "penalty",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "penalty.daily_rate",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_015",
+      "clause_id": "6.2",
+      "category": "termination",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_016",
+      "clause_id": "2.2",
+      "category": "auto_renewal",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "auto_renewal.silent",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_017",
+      "clause_id": "3.4",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.deposit_forfeit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_017",
+      "clause_id": "6.3",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.early_fee",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_017",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "lease_ru_test_018",
+      "clause_id": "5.2",
+      "category": "penalty",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "penalty.fine",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_018",
+      "clause_id": "7.1",
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "force_majeure.one_sided",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_018",
+      "clause_id": "8.1",
+      "category": "jurisdiction",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "jurisdiction.aifc",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_019",
+      "clause_id": "3.4",
+      "category": "unilateral_change",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "unilateral_change.price",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_019",
+      "clause_id": "6.3",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.cannot_exit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_019",
+      "clause_id": "7.1",
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "force_majeure.one_sided",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_021",
+      "clause_id": "2.2",
+      "category": "auto_renewal",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "auto_renewal.silent",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_021",
+      "clause_id": "3.4",
+      "category": "unilateral_change",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "unilateral_change.price",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_021",
+      "clause_id": "3.5",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.deposit_forfeit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_021",
+      "clause_id": "5.1",
+      "category": "penalty",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "penalty.daily_rate",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_021",
+      "clause_id": "5.2",
+      "category": "penalty",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "penalty.fine",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_021",
+      "clause_id": "6.3",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.early_fee",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_021",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "lease_ru_test_022",
+      "clause_id": "3.5",
+      "category": "termination",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "termination.deposit_forfeit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_022",
+      "clause_id": "5.4",
+      "category": "liability",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "liability.exclusion",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_022",
+      "clause_id": "6.2",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_022",
+      "clause_id": "7.1",
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "force_majeure.one_sided",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_023",
+      "clause_id": "2.2",
+      "category": "auto_renewal",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "auto_renewal.price_on_renewal",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_023",
+      "clause_id": "5.2",
+      "category": "liability",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "liability.lost_profit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_023",
+      "clause_id": "7.1",
+      "category": "jurisdiction",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "jurisdiction.counterparty_location",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_023",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "lease_ru_test_023",
+      "clause_id": NaN,
+      "category": "liability",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.liability_one_sided",
+      "confidence": 0.8
+    },
+    {
+      "doc_id": "lease_ru_test_024",
+      "clause_id": "3.4",
+      "category": "unilateral_change",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "unilateral_change.price",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_024",
+      "clause_id": "5.2",
+      "category": "penalty",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "penalty.fine",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_024",
+      "clause_id": "5.3",
+      "category": "liability",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "liability.lost_profit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_024",
+      "clause_id": "6.2",
+      "category": "termination",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_024",
+      "clause_id": NaN,
+      "category": "liability",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.liability_one_sided",
+      "confidence": 0.8
+    },
+    {
+      "doc_id": "lease_ru_test_025",
+      "clause_id": "5.3",
+      "category": "penalty",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "penalty.daily_rate",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_026",
+      "clause_id": "2.2",
+      "category": "auto_renewal",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "auto_renewal.price_on_renewal",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_026",
+      "clause_id": "3.5",
+      "category": "termination",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "termination.deposit_forfeit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_026",
+      "clause_id": "6.3",
+      "category": "termination",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "termination.early_fee",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_029",
+      "clause_id": "2.2",
+      "category": "auto_renewal",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "auto_renewal.silent",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_029",
+      "clause_id": "3.5",
+      "category": "termination",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "termination.deposit_forfeit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_029",
+      "clause_id": "5.1",
+      "category": "penalty",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "penalty.daily_rate",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_029",
+      "clause_id": "5.4",
+      "category": "liability",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "liability.lost_profit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_029",
+      "clause_id": "6.2",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_029",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "lease_ru_test_031",
+      "clause_id": "2.2",
+      "category": "auto_renewal",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "auto_renewal.price_on_renewal",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_031",
+      "clause_id": "5.2",
+      "category": "penalty",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "penalty.fine",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_031",
+      "clause_id": "5.4",
+      "category": "liability",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "liability.lost_profit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_031",
+      "clause_id": "6.2",
+      "category": "termination",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_031",
+      "clause_id": "7.1",
+      "category": "jurisdiction",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "jurisdiction.aifc",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_031",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "lease_ru_test_034",
+      "clause_id": "5.4",
+      "category": "liability",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "liability.exclusion",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_034",
+      "clause_id": "6.2",
+      "category": "termination",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_035",
+      "clause_id": "2.2",
+      "category": "auto_renewal",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "auto_renewal.long_notice",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_035",
+      "clause_id": "3.3",
+      "category": "unilateral_change",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "unilateral_change.price",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_035",
+      "clause_id": "5.1",
+      "category": "penalty",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "penalty.daily_rate",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_035",
+      "clause_id": "5.4",
+      "category": "liability",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "liability.lost_profit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_036",
+      "clause_id": "6.2",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_036",
+      "clause_id": "6.3",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.cannot_exit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_036",
+      "clause_id": "7.1",
+      "category": "jurisdiction",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "jurisdiction.aifc",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_036",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "lease_ru_test_037",
+      "clause_id": "2.2",
+      "category": "auto_renewal",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "auto_renewal.silent",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_037",
+      "clause_id": "3.3",
+      "category": "unilateral_change",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "unilateral_change.price",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_037",
+      "clause_id": "3.4",
+      "category": "termination",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "termination.deposit_forfeit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_037",
+      "clause_id": "5.2",
+      "category": "penalty",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "penalty.fine",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_037",
+      "clause_id": "6.2",
+      "category": "termination",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_037",
+      "clause_id": "6.3",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.cannot_exit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_038",
+      "clause_id": "5.1",
+      "category": "penalty",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "penalty.daily_rate",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_038",
+      "clause_id": "5.3",
+      "category": "liability",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "liability.lost_profit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_038",
+      "clause_id": "6.3",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.cannot_exit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_038",
+      "clause_id": "6.4",
+      "category": "termination",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "termination.early_fee",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_038",
+      "clause_id": "7.1",
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "force_majeure.one_sided",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_038",
+      "clause_id": NaN,
+      "category": "liability",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.liability_one_sided",
+      "confidence": 0.8
+    },
+    {
+      "doc_id": "lease_ru_test_039",
+      "clause_id": "6.3",
+      "category": "termination",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "termination.early_fee",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_040",
+      "clause_id": "3.5",
+      "category": "termination",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "termination.deposit_forfeit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "lease_ru_test_040",
+      "clause_id": "8.1",
+      "category": "jurisdiction",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "jurisdiction.aifc",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_001",
+      "clause_id": "4.3",
+      "category": "liability",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "liability.lost_profit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_001",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "supply_ru_test_003",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "supply_ru_test_005",
+      "clause_id": "2.3",
+      "category": "payment",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "payment.full_prepayment",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_006",
+      "clause_id": "2.3",
+      "category": "payment",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "payment.deferral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_007",
+      "clause_id": "2.2",
+      "category": "unilateral_change",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "unilateral_change.price",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_007",
+      "clause_id": "4.2",
+      "category": "penalty",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "penalty.daily_rate",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_008",
+      "clause_id": "3.2",
+      "category": "acceptance",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "acceptance.short_deadline",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_008",
+      "clause_id": "5.1",
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "force_majeure.one_sided",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_008",
+      "clause_id": "6.1",
+      "category": "auto_renewal",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "auto_renewal.price_on_renewal",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_009",
+      "clause_id": "4.3",
+      "category": "liability",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "liability.lost_profit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_010",
+      "clause_id": "5.1",
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "force_majeure.one_sided",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_010",
+      "clause_id": "6.1",
+      "category": "auto_renewal",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "auto_renewal.price_on_renewal",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_012",
+      "clause_id": "4.2",
+      "category": "liability",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "liability.lost_profit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_013",
+      "clause_id": "3.2",
+      "category": "acceptance",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "acceptance.arbitrary_refusal",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_013",
+      "clause_id": "4.1",
+      "category": "penalty",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "penalty.fine",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_013",
+      "clause_id": "6.2",
+      "category": "termination",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_016",
+      "clause_id": "2.2",
+      "category": "unilateral_change",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "unilateral_change.price",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_016",
+      "clause_id": "4.3",
+      "category": "liability",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "liability.exclusion",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_016",
+      "clause_id": "7.1",
+      "category": "jurisdiction",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "jurisdiction.foreign",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_017",
+      "clause_id": "6.1",
+      "category": "auto_renewal",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "auto_renewal.price_on_renewal",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_017",
+      "clause_id": "7.1",
+      "category": "jurisdiction",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "jurisdiction.foreign",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_018",
+      "clause_id": "5.1",
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "force_majeure.one_sided",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_019",
+      "clause_id": "6.1",
+      "category": "auto_renewal",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "auto_renewal.silent",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_020",
+      "clause_id": "4.2",
+      "category": "penalty",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "penalty.daily_rate",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_020",
+      "clause_id": "4.4",
+      "category": "liability",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "liability.exclusion",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_022",
+      "clause_id": "3.2",
+      "category": "acceptance",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "acceptance.short_deadline",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_022",
+      "clause_id": "4.3",
+      "category": "liability",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "liability.lost_profit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_023",
+      "clause_id": "2.3",
+      "category": "payment",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "payment.deferral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_023",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "supply_ru_test_024",
+      "clause_id": "2.3",
+      "category": "payment",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "payment.pay_when_paid",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_024",
+      "clause_id": "4.1",
+      "category": "penalty",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "penalty.fine",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_024",
+      "clause_id": "6.1",
+      "category": "auto_renewal",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "auto_renewal.silent",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_025",
+      "clause_id": "4.3",
+      "category": "liability",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "liability.exclusion",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_025",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "supply_ru_test_026",
+      "clause_id": "2.2",
+      "category": "unilateral_change",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "unilateral_change.price",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_026",
+      "clause_id": "4.3",
+      "category": "liability",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "liability.lost_profit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_027",
+      "clause_id": "6.2",
+      "category": "termination",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_027",
+      "clause_id": "7.1",
+      "category": "jurisdiction",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "jurisdiction.counterparty_location",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_028",
+      "clause_id": "2.3",
+      "category": "payment",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "payment.deferral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_032",
+      "clause_id": "5.1",
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "force_majeure.one_sided",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_034",
+      "clause_id": "3.2",
+      "category": "acceptance",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "acceptance.arbitrary_refusal",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_034",
+      "clause_id": "4.1",
+      "category": "penalty",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "penalty.fine",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_034",
+      "clause_id": "6.2",
+      "category": "termination",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_036",
+      "clause_id": "2.2",
+      "category": "unilateral_change",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "unilateral_change.price",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_036",
+      "clause_id": "3.2",
+      "category": "acceptance",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "acceptance.short_deadline",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_037",
+      "clause_id": "7.1",
+      "category": "jurisdiction",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "jurisdiction.foreign",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_038",
+      "clause_id": "3.2",
+      "category": "acceptance",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "acceptance.arbitrary_refusal",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_038",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "supply_ru_test_039",
+      "clause_id": "4.3",
+      "category": "liability",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "liability.lost_profit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_039",
+      "clause_id": "6.1",
+      "category": "auto_renewal",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "auto_renewal.silent",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_040",
+      "clause_id": "4.1",
+      "category": "penalty",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "penalty.fine",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "supply_ru_test_040",
+      "clause_id": "7.1",
+      "category": "jurisdiction",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "jurisdiction.counterparty_location",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_001",
+      "clause_id": "5.3",
+      "category": "liability",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "liability.lost_profit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_001",
+      "clause_id": "6.1",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_001",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "works_ru_test_003",
+      "clause_id": "5.2",
+      "category": "penalty",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "penalty.daily_rate",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_003",
+      "clause_id": "7.1",
+      "category": "termination",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_004",
+      "clause_id": "4.1",
+      "category": "acceptance",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "acceptance.short_deadline",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_004",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "works_ru_test_006",
+      "clause_id": "5.1",
+      "category": "penalty",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "penalty.daily_rate",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_006",
+      "clause_id": "6.1",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_006",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "works_ru_test_007",
+      "clause_id": "5.3",
+      "category": "liability",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "liability.lost_profit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_007",
+      "clause_id": "7.1",
+      "category": "jurisdiction",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "jurisdiction.foreign",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_007",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "works_ru_test_009",
+      "clause_id": "3.2",
+      "category": "unilateral_change",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "unilateral_change.price",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_009",
+      "clause_id": "7.1",
+      "category": "jurisdiction",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "jurisdiction.foreign",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_009",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "works_ru_test_012",
+      "clause_id": "3.3",
+      "category": "payment",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "payment.deferral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_012",
+      "clause_id": "7.1",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_013",
+      "clause_id": "3.2",
+      "category": "unilateral_change",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "unilateral_change.price",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_016",
+      "clause_id": "4.1",
+      "category": "acceptance",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "acceptance.arbitrary_refusal",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_016",
+      "clause_id": "7.1",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_017",
+      "clause_id": "5.3",
+      "category": "liability",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "liability.lost_profit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_017",
+      "clause_id": "8.1",
+      "category": "jurisdiction",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "jurisdiction.foreign",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_018",
+      "clause_id": "5.3",
+      "category": "liability",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "liability.lost_profit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_018",
+      "clause_id": "7.1",
+      "category": "jurisdiction",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "jurisdiction.foreign",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_018",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "works_ru_test_019",
+      "clause_id": "3.3",
+      "category": "payment",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "payment.pay_when_paid",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_019",
+      "clause_id": "7.1",
+      "category": "termination",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "termination.unilateral",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_019",
+      "clause_id": "8.1",
+      "category": "jurisdiction",
+      "level": "low",
+      "source": "rule",
+      "rule_id": "jurisdiction.counterparty_location",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_021",
+      "clause_id": "3.2",
+      "category": "unilateral_change",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "unilateral_change.price",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_022",
+      "clause_id": "3.3",
+      "category": "payment",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "payment.pay_when_paid",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_022",
+      "clause_id": "5.1",
+      "category": "penalty",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "penalty.daily_rate",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_022",
+      "clause_id": "5.3",
+      "category": "liability",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "liability.lost_profit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_022",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "works_ru_test_023",
+      "clause_id": "5.4",
+      "category": "liability",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "liability.exclusion",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_023",
+      "clause_id": "6.1",
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "force_majeure.one_sided",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_025",
+      "clause_id": "4.1",
+      "category": "acceptance",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "acceptance.short_deadline",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_025",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "works_ru_test_026",
+      "clause_id": "5.1",
+      "category": "penalty",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "penalty.daily_rate",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_026",
+      "clause_id": "5.4",
+      "category": "liability",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "liability.exclusion",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_026",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "works_ru_test_028",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "works_ru_test_029",
+      "clause_id": "5.1",
+      "category": "penalty",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "penalty.daily_rate",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_029",
+      "clause_id": "5.2",
+      "category": "liability",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "liability.lost_profit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_029",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "works_ru_test_029",
+      "clause_id": NaN,
+      "category": "liability",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.liability_one_sided",
+      "confidence": 0.8
+    },
+    {
+      "doc_id": "works_ru_test_030",
+      "clause_id": "5.1",
+      "category": "penalty",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "penalty.daily_rate",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_033",
+      "clause_id": "3.2",
+      "category": "unilateral_change",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "unilateral_change.price",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_033",
+      "clause_id": "4.1",
+      "category": "acceptance",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "acceptance.short_deadline",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_034",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "works_ru_test_035",
+      "clause_id": "3.2",
+      "category": "unilateral_change",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "unilateral_change.price",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_035",
+      "clause_id": "4.1",
+      "category": "acceptance",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "acceptance.short_deadline",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_035",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "works_ru_test_036",
+      "clause_id": "5.1",
+      "category": "penalty",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "penalty.fine",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_036",
+      "clause_id": "5.3",
+      "category": "liability",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "liability.lost_profit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_036",
+      "clause_id": "7.1",
+      "category": "jurisdiction",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "jurisdiction.foreign",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_036",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    },
+    {
+      "doc_id": "works_ru_test_039",
+      "clause_id": "4.1",
+      "category": "acceptance",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "acceptance.arbitrary_refusal",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_039",
+      "clause_id": "5.1",
+      "category": "penalty",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "penalty.daily_rate",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_039",
+      "clause_id": "5.2",
+      "category": "liability",
+      "level": "high",
+      "source": "rule",
+      "rule_id": "liability.lost_profit",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_039",
+      "clause_id": "6.1",
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "force_majeure.one_sided",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_039",
+      "clause_id": NaN,
+      "category": "liability",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.liability_one_sided",
+      "confidence": 0.8
+    },
+    {
+      "doc_id": "works_ru_test_040",
+      "clause_id": "5.1",
+      "category": "penalty",
+      "level": "medium",
+      "source": "rule",
+      "rule_id": "penalty.fine",
+      "confidence": 0.95
+    },
+    {
+      "doc_id": "works_ru_test_040",
+      "clause_id": NaN,
+      "category": "force_majeure",
+      "level": "medium",
+      "source": "document_rule",
+      "rule_id": "document.force_majeure_missing",
+      "confidence": 0.9
+    }
+  ]
+}
