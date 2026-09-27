@@ -132,6 +132,55 @@ def _corpus_search(args: argparse.Namespace) -> int:
     return 0
 
 
+def _train(_: argparse.Namespace) -> int:
+    from contract_risk.config import get_settings
+    from contract_risk.evaluation.dataset import load_split
+    from contract_risk.ingestion import parse_text
+    from contract_risk.ml.model import ClauseRiskModel
+
+    settings = get_settings()
+    model = ClauseRiskModel.train(load_split(settings.data_dir / "eval", "dev"), parse_text)
+    model.save(settings.models_dir / "clause_risk.joblib")
+    print(f"out-of-fold: {model.oof}")
+    print(
+        f"порог ML {model.threshold}, выдача в гибриде {model.emit_threshold}, "
+        f"маршрутизация в LLM {model.route_threshold}"
+    )
+    return 0
+
+
+def _analyze(args: argparse.Namespace) -> int:
+    from contract_risk.pipeline import Analyzer
+    from contract_risk.report.render import render_html, render_pdf
+    from contract_risk.schemas import Language, PartyRole
+
+    path = Path(args.path)
+    report = Analyzer.from_settings().analyze_bytes(
+        path.read_bytes(), path.name, PartyRole(args.role), Language(args.lang)
+    )
+    if args.format == "pdf":
+        payload: bytes | str = render_pdf(report)
+    elif args.format == "html":
+        payload = render_html(report)
+    else:
+        payload = report.model_dump_json(indent=2)
+    if args.out:
+        out = Path(args.out)
+        if isinstance(payload, bytes):
+            out.write_bytes(payload)
+        else:
+            out.write_text(payload, encoding="utf-8")
+        counts = report.count_by_level()
+        print(
+            f"{out}: высокий {counts['high']}, средний {counts['medium']}, низкий {counts['low']}"
+        )
+    elif isinstance(payload, bytes):
+        sys.stdout.buffer.write(payload)
+    else:
+        print(payload)
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="kzcr", description=__doc__.split("\n")[0])
     sub = parser.add_subparsers(dest="command", required=True)
@@ -165,6 +214,20 @@ def build_parser() -> argparse.ArgumentParser:
     search.add_argument("--lang", default=None)
     search.add_argument("-k", type=int, default=5)
     search.set_defaults(func=_corpus_search)
+
+    sub.add_parser("train", help="обучить ML на dev-срезе").set_defaults(func=_train)
+
+    analyze = sub.add_parser("analyze", help="проверить договор и выдать отчёт")
+    analyze.add_argument("path")
+    analyze.add_argument(
+        "--role",
+        required=True,
+        choices=["landlord", "tenant", "supplier", "buyer", "contractor", "customer"],
+    )
+    analyze.add_argument("--format", default="html", choices=["json", "html", "pdf"])
+    analyze.add_argument("--lang", default="ru", choices=["ru", "kk"])
+    analyze.add_argument("--out", default=None)
+    analyze.set_defaults(func=_analyze)
     return parser
 
 
