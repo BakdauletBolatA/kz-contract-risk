@@ -19,7 +19,8 @@ from __future__ import annotations
 import re
 
 _PATTERNS: list[tuple[re.Pattern, str]] = [
-    (re.compile(r"\bKZ\d{2}[A-Z0-9]{13}\b"), "[IBAN]"),
+    # IBAN РК — 20 символов: KZ, 2 контрольные цифры, 16 знаков; бывает группами по 4.
+    (re.compile(r"\bKZ\d{2}(?:\s?[A-Z0-9]{4}){4}\b"), "[IBAN]"),
     (re.compile(r"(?<!\d)\d{12}(?!\d)"), "[ИИН/БИН]"),
     (re.compile(r"[\w.+-]+@[\w-]+\.[\w.-]+"), "[EMAIL]"),
     (
