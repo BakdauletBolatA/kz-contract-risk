@@ -1,0 +1,70 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      # Хранилище тестируется против настоящего pgvector: фильтры, порядок
+      # выдачи и защиту от смены эмбеддера нечем замокать.
+      db:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: kzcr
+          POSTGRES_PASSWORD: kzcr
+          POSTGRES_DB: kzcr
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U kzcr -d kzcr"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+    env:
+      KZCR_TEST_DSN: postgresql://kzcr:kzcr@localhost:5432/kzcr
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Системные библиотеки для PDF-отчёта и OCR
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            libpango-1.0-0 libpangoft2-1.0-0 fonts-dejavu-core \
+            tesseract-ocr tesseract-ocr-rus tesseract-ocr-kaz
+
+      - name: Установить зависимости
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e '.[dev,pdf,ocr,ui]'
+
+      - name: Линтер
+        run: |
+          ruff check src/ scripts/ tests/
+          ruff format --check src/ scripts/ tests/
+
+      # Сгенерированный датасет должен побайтно совпадать с тем, что лежит в
+      # репозитории: ручная «подгонка» разметки ломает замер.
+      - name: Датасет не правился руками
+        run: |
+          python scripts/generate_eval_dataset.py
+          git diff --exit-code data/eval
+
+      - name: Целостность датасета, лицензии и баланс корпуса
+        run: |
+          kzcr dataset check
+          kzcr corpus audit
+
+      - name: Тесты
+        run: pytest -q
