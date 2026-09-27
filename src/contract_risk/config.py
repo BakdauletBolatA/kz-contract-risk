@@ -23,7 +23,10 @@ class Settings(BaseSettings):
     embedder: str = "hashing"
 
     detector: str = "hybrid"
-    llm_model: str = "claude-sonnet-5"
+    llm_model: str = "claude-opus-5"
+    llm_backend: str = "langchain"
+    llm_effort: str = "medium"
+    llm_workers: int = 4
     llm_enabled: bool = True
     anthropic_api_key: str | None = Field(default=None, validation_alias="ANTHROPIC_API_KEY")
 
