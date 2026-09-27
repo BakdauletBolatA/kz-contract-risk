@@ -70,6 +70,7 @@ select = ["E", "F", "I", "UP", "B"]
 [tool.ruff.lint.per-file-ignores]
 # Тексты договоров и эталонные формулировки — это данные: перенос строки
 # внутри юридической фразы делает её нечитаемой и ломает сверку с разметкой.
+"src/contract_risk/taxonomy.py" = ["E501"]
 "src/contract_risk/rules/catalog.py" = ["E501"]
 "src/contract_risk/rules/lexicon.py" = ["E501"]
 "tests/*" = ["E501"]
