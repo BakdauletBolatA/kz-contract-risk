@@ -1,0 +1,14 @@
+doc_id: supply_ru_test_026
+contract_type: supply
+language: ru
+party_role: buyer
+origin: synthetic
+findings:
+- clause: '2.2'
+  category: unilateral_change
+  level: high
+  trap_id: price_unilateral
+- clause: '4.3'
+  category: liability
+  level: medium
+  trap_id: damages_lost_profit

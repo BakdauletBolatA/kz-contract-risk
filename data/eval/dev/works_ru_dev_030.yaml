@@ -1,0 +1,18 @@
+doc_id: works_ru_dev_030
+contract_type: works
+language: ru
+party_role: customer
+origin: synthetic
+findings:
+- clause: '4.1'
+  category: acceptance
+  level: medium
+  trap_id: silent_acceptance
+- clause: '5.4'
+  category: liability
+  level: high
+  trap_id: exclusion_broad
+- clause: '6.1'
+  category: force_majeure
+  level: medium
+  trap_id: fm_one_sided

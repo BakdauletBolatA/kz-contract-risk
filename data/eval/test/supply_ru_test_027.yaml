@@ -1,0 +1,14 @@
+doc_id: supply_ru_test_027
+contract_type: supply
+language: ru
+party_role: supplier
+origin: synthetic
+findings:
+- clause: '6.2'
+  category: termination
+  level: medium
+  trap_id: termination_short_notice
+- clause: '7.1'
+  category: jurisdiction
+  level: low
+  trap_id: forum_counterparty

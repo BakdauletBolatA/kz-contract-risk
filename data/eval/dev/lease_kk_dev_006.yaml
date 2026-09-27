@@ -1,0 +1,26 @@
+doc_id: lease_kk_dev_006
+contract_type: lease
+language: kk
+party_role: tenant
+origin: synthetic
+findings:
+- clause: '3.3'
+  category: unilateral_change
+  level: high
+  trap_id: price_unilateral
+- clause: '4.2'
+  category: liability
+  level: medium
+  trap_id: damages_lost_profit
+- clause: '4.3'
+  category: liability
+  level: high
+  trap_id: exclusion_broad
+- clause: '5.1'
+  category: termination
+  level: high
+  trap_id: termination_no_notice
+- clause: null
+  category: liability
+  level: medium
+  trap_id: liability_one_sided

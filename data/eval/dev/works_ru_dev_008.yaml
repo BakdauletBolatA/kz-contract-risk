@@ -1,0 +1,14 @@
+doc_id: works_ru_dev_008
+contract_type: works
+language: ru
+party_role: customer
+origin: synthetic
+findings:
+- clause: '6.1'
+  category: force_majeure
+  level: medium
+  trap_id: fm_one_sided
+- clause: '8.1'
+  category: jurisdiction
+  level: medium
+  trap_id: forum_aifc

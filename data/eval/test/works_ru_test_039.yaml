@@ -1,0 +1,26 @@
+doc_id: works_ru_test_039
+contract_type: works
+language: ru
+party_role: contractor
+origin: synthetic
+findings:
+- clause: '4.1'
+  category: acceptance
+  level: high
+  trap_id: acceptance_refusal_any
+- clause: '5.1'
+  category: penalty
+  level: high
+  trap_id: penalty_daily_high
+- clause: '5.2'
+  category: liability
+  level: high
+  trap_id: damages_over_penalty
+- clause: '6.1'
+  category: force_majeure
+  level: medium
+  trap_id: fm_one_sided
+- clause: null
+  category: liability
+  level: medium
+  trap_id: liability_one_sided

@@ -1,0 +1,10 @@
+doc_id: supply_ru_dev_019
+contract_type: supply
+language: ru
+party_role: supplier
+origin: synthetic
+findings:
+- clause: null
+  category: force_majeure
+  level: medium
+  trap_id: fm_missing

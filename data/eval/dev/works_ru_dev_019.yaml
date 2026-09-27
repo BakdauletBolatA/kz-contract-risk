@@ -1,0 +1,18 @@
+doc_id: works_ru_dev_019
+contract_type: works
+language: ru
+party_role: customer
+origin: synthetic
+findings:
+- clause: '3.3'
+  category: payment
+  level: medium
+  trap_id: full_prepayment
+- clause: '4.1'
+  category: acceptance
+  level: medium
+  trap_id: silent_acceptance
+- clause: '5.2'
+  category: penalty
+  level: high
+  trap_id: penalty_daily_high

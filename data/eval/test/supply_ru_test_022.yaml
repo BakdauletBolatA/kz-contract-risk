@@ -1,0 +1,14 @@
+doc_id: supply_ru_test_022
+contract_type: supply
+language: ru
+party_role: buyer
+origin: synthetic
+findings:
+- clause: '3.2'
+  category: acceptance
+  level: medium
+  trap_id: short_claim_period
+- clause: '4.3'
+  category: liability
+  level: medium
+  trap_id: damages_lost_profit

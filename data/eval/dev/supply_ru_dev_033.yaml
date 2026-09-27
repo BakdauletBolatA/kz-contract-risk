@@ -1,0 +1,22 @@
+doc_id: supply_ru_dev_033
+contract_type: supply
+language: ru
+party_role: buyer
+origin: synthetic
+findings:
+- clause: '2.2'
+  category: unilateral_change
+  level: low
+  trap_id: price_unilateral_capped
+- clause: '4.3'
+  category: liability
+  level: high
+  trap_id: exclusion_broad
+- clause: '5.1'
+  category: force_majeure
+  level: medium
+  trap_id: fm_one_sided
+- clause: '6.1'
+  category: auto_renewal
+  level: low
+  trap_id: renewal_silent

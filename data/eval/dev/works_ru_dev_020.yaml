@@ -1,0 +1,14 @@
+doc_id: works_ru_dev_020
+contract_type: works
+language: ru
+party_role: contractor
+origin: synthetic
+findings:
+- clause: '4.1'
+  category: acceptance
+  level: high
+  trap_id: acceptance_refusal_any
+- clause: '5.1'
+  category: penalty
+  level: high
+  trap_id: penalty_daily_high

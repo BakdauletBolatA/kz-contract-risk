@@ -1,0 +1,14 @@
+doc_id: works_ru_dev_006
+contract_type: works
+language: ru
+party_role: contractor
+origin: synthetic
+findings:
+- clause: '7.1'
+  category: jurisdiction
+  level: medium
+  trap_id: forum_aifc
+- clause: null
+  category: force_majeure
+  level: medium
+  trap_id: fm_missing

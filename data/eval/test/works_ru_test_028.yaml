@@ -1,0 +1,10 @@
+doc_id: works_ru_test_028
+contract_type: works
+language: ru
+party_role: customer
+origin: synthetic
+findings:
+- clause: null
+  category: force_majeure
+  level: medium
+  trap_id: fm_missing

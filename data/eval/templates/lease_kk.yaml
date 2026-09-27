@@ -1,0 +1,254 @@
+# Шаблон синтетического договора аренды на казахском (kk). Формат — см. lease_ru.yaml.
+#
+# Ограничение: формулировки написаны автором проекта и не проходили вычитку
+# носителем языка с юридической практикой. Срез kk считается отдельной
+# строкой EVALUATION.md и не смешивается с русским.
+contract_type: lease
+language: kk
+user_roles: {tenant: 0.8, landlord: 0.2}
+styles: [classic, classic, titlecase, article, wrapped]
+params:
+  city: [Алматы, Астана, Шымкент, Қарағанды, Ақтөбе]
+  date: ["2026 жылғы 1 наурыз", "2026 жылғы 15 мамыр", "2026 жылғы 3 қыркүйек"]
+  landlord_org: [«Алтын Сарай» ЖШС, «Номад Девелопмент» ЖШС, «Бизнес Орталық» ЖШС]
+  tenant_org: [«Сейтқали» ЖК, «Кофе Нүкте» ЖШС, «Дәріхана Денсаулық» ЖШС]
+  amount: ["350 000", "450 000", "600 000"]
+  address: ["Абай даңғылы, 150", "Республика даңғылы, 24", "Байтұрсынов көшесі, 7"]
+titles:
+  - "ТҰРҒЫН ЕМЕС ҮЙ-ЖАЙДЫ ЖАЛҒА АЛУ ШАРТЫ № {num}"
+  - "МҮЛІКТІК ЖАЛДАУ (ЖАЛҒА АЛУ) ШАРТЫ № {num}"
+preambles:
+  - |-
+    {city} қ., {date}
+    Бұдан әрі «Жалға беруші» деп аталатын {landlord_org} бір тараптан және бұдан әрі «Жалға алушы» деп аталатын {tenant_org} екінші тараптан, бірлесіп «Тараптар» деп аталып, осы Шартты төмендегілер туралы жасасты:
+requisites_title: [ТАРАПТАРДЫҢ МЕКЕНЖАЙЛАРЫ МЕН ДЕРЕКТЕМЕЛЕРІ, ТАРАПТАРДЫҢ ДЕРЕКТЕМЕЛЕРІ ЖӘНЕ ҚОЛДАРЫ]
+requisites:
+  - "Жалға беруші: {landlord_org}, БСН {bin1}, {city} қ."
+  - "Жалға алушы: {tenant_org}, БСН {bin2}"
+  - "Тараптардың қолдары: ______________ / ______________"
+
+sections:
+  - key: subject
+    titles: [ШАРТТЫҢ МӘНІ]
+    slots:
+      - key: object
+        topic: other
+        variants:
+          - split: dev
+            text: "Жалға беруші Жалға алушыға {city} қ., {address} мекенжайында орналасқан тұрғын емес үй-жайды уақытша иеленуге және пайдалануға береді."
+          - split: test
+            text: "Жалға беруші {city} қ., {address} мекенжайы бойынша орналасқан жалпы ауданы 60 шаршы метр үй-жайды Жалға алушының уақытша пайдалануына береді."
+      - key: purpose
+        topic: other
+        variants:
+          - split: dev
+            text: "Үй-жай Жалға алушының кеңсесін орналастыру үшін беріледі."
+          - split: test
+            text: "Үй-жай бөлшек сауда дүкенін орналастыру мақсатында пайдаланылады."
+
+  - key: term
+    titles: [ШАРТТЫҢ ҚОЛДАНЫЛУ МЕРЗІМІ]
+    slots:
+      - key: duration
+        topic: other
+        variants:
+          - split: dev
+            text: "Шарт қол қойылған күннен бастап 11 (он бір) ай бойы әрекет етеді."
+          - split: test
+            text: "Жалдау мерзімі қабылдау-тапсыру актісіне қол қойылған күннен бастап 11 айды құрайды."
+      - key: renewal
+        topic: auto_renewal
+        variants:
+          - split: dev
+            text: "Мерзім аяқталғаннан кейін Шарт Тараптардың жазбаша келісімі бойынша ұзартылуы мүмкін."
+          - split: test
+            text: "Жалдау мерзімін ұзарту екі Тарап қол қойған қосымша келісіммен ресімделеді."
+          - split: dev
+            text: "Тараптардың ешқайсысы мерзім аяқталғанға дейін 30 күн бұрын Шартты тоқтату туралы мәлімдемесе, Шарт сол мерзімге сол шарттармен ұзартылды деп есептеледі."
+            risk: {category: auto_renewal, level: low, against: both, trap: renewal_silent}
+          - split: test
+            text: "Мерзім аяқталғаннан кейін Шарт автоматты түрде ұзартылады, бұл ретте жаңа мерзімге жалдау ақысының мөлшерін Жалға беруші өз бетінше белгілейді."
+            risk: {category: auto_renewal, level: high, against: tenant, trap: renewal_price_change}
+
+  - key: rent
+    titles: [ЖАЛДАУ АҚЫСЫ ЖӘНЕ ЕСЕП АЙЫРЫСУ ТӘРТІБІ]
+    slots:
+      - key: amount
+        topic: other
+        variants:
+          - split: dev
+            text: "Жалдау ақысы айына {amount} теңгені құрайды."
+          - split: test
+            text: "Айлық жалдау ақысының мөлшері ҚҚС-ты қоса алғанда {amount} теңге."
+      - key: timing
+        topic: other
+        variants:
+          - split: dev
+            text: "Жалдау ақысы ай сайын ағымдағы айдың 10-күнінен кешіктірілмей Жалға берушінің банктік шотына аударылады."
+          - split: test
+            text: "Жалға алушы жалдау ақысын ай сайын, ағымдағы айдың 5-күнінен кешіктірмей төлейді."
+      - key: rent_change
+        topic: unilateral_change
+        variants:
+          - split: dev
+            text: "Жалдау ақысының мөлшері Тараптардың жазбаша келісімі бойынша ғана өзгертіледі."
+          - split: test
+            text: "Жалдау ақысын өзгерту Тараптар қосымша келісімге қол қойған жағдайда ғана жүзеге асырылады."
+          - split: dev
+            text: "Жалға беруші жалдау ақысының мөлшерін біржақты тәртіппен өзгертуге құқылы."
+            risk: {category: unilateral_change, level: high, against: tenant, trap: price_unilateral}
+          - split: test
+            text: "Жалға беруші Жалға алушының келісімінсіз жалдау ақысын кез келген уақытта арттыра алады."
+            risk: {category: unilateral_change, level: high, against: tenant, trap: price_unilateral}
+      - key: deposit
+        topic: termination
+        optional: true
+        variants:
+          - split: dev
+            text: "Кепілдік жарна Шарт тоқтатылғаннан кейін 10 банктік күн ішінде берешек сомасын шегергенде Жалға алушыға қайтарылады."
+          - split: test
+            text: "Шарт Жалға алушының бастамасы бойынша мерзімінен бұрын бұзылған жағдайда кепілдік жарна қайтарылмайды."
+            risk: {category: termination, level: medium, against: tenant, trap: deposit_forfeit_user_exit}
+
+  - key: liability
+    titles: [ТАРАПТАРДЫҢ ЖАУАПКЕРШІЛІГІ]
+    slots:
+      - key: tenant_penalty
+        topic: penalty
+        variants:
+          - split: dev
+            text: "Жалдау ақысын төлеу мерзімін кешіктіргені үшін Жалға алушы Жалға берушіге кешіктірілген әрбір күн үшін берешек сомасының 0,1% мөлшерінде өсімпұл төлейді, бірақ берешек сомасының 10%-ынан аспайды."
+            burdens: tenant
+          - split: test
+            text: "Төлемді кешіктірген жағдайда Жалға алушы кешіктірілген әрбір күн үшін төленбеген соманың 0,05% мөлшерінде тұрақсыздық айыбын төлейді, бұл ретте айыптың жалпы сомасы берешектің 10%-ынан аспауға тиіс."
+            burdens: tenant
+          - split: dev
+            text: "Жалдау ақысын төлеу мерзімін кешіктіргені үшін Жалға алушы Жалға берушіге кешіктірілген әрбір күн үшін берешек сомасының {rate}% мөлшерінде өсімпұл төлейді."
+            params: {rate: ["0,5", "1"]}
+            burdens: tenant
+            risk: {category: penalty, level: high, against: tenant, trap: penalty_daily_high}
+          - split: dev
+            text: "Жалдау ақысын төлеу мерзімін кешіктіргені үшін Жалға алушы Жалға берушіге кешіктірілген әрбір күн үшін берешек сомасының 0,3% мөлшерінде өсімпұл төлейді."
+            burdens: tenant
+            risk: {category: penalty, level: medium, against: tenant, trap: penalty_daily_medium}
+          - split: test
+            text: "Кешіктірілген әрбір күн үшін Жалға беруші Жалға алушыдан төленбеген соманың {rate} пайызы мөлшерінде тұрақсыздық айыбын өндіріп алуға құқылы."
+            params: {rate: ["1", "2"]}
+            burdens: tenant
+            risk: {category: penalty, level: high, against: tenant, trap: penalty_daily_high}
+      - key: landlord_penalty
+        topic: penalty
+        optional: true
+        variants:
+          - split: dev
+            text: "Үй-жайды беру мерзімін кешіктіргені үшін Жалға беруші Жалға алушыға кешіктірілген әрбір күн үшін айлық жалдау ақысының 0,1% мөлшерінде өсімпұл төлейді, бірақ айлық жалдау ақысының 10%-ынан аспайды."
+            burdens: landlord
+          - split: test
+            text: "Үй-жайды беру мерзімі бұзылған жағдайда Жалға беруші Жалға алушыға әрбір күн үшін айлық ақының 0,1 пайызы мөлшерінде тұрақсыздық айыбын төлейді, бірақ 10 пайыздан аспайды."
+            burdens: landlord
+      - key: damages
+        topic: liability
+        variants:
+          - split: dev
+            text: "Тараптар осы Шарт бойынша міндеттемелерді орындамағаны немесе тиісінше орындамағаны үшін Қазақстан Республикасының заңнамасына сәйкес жауапты болады."
+            burdens: both
+          - split: test
+            text: "Осы Шартты бұзғаны үшін Тараптар Қазақстан Республикасының қолданыстағы заңнамасында белгіленген тәртіппен жауап береді."
+            burdens: both
+          - split: dev
+            text: "Жалға алушы Жалға берушіге келтірілген барлық залалды, оның ішінде жіберілген пайданы өтейді."
+            burdens: tenant
+            risk: {category: liability, level: medium, against: tenant, trap: damages_lost_profit}
+          - split: test
+            text: "Жалға алушы тұрақсыздық айыбынан бөлек Жалға берушіге келтірілген тікелей және жанама залалдарды толық көлемде өтейді."
+            burdens: tenant
+            risk: {category: liability, level: high, against: tenant, trap: damages_over_penalty}
+      - key: exclusion
+        topic: liability
+        optional: true
+        variants:
+          - split: dev
+            text: "Жалға беруші Жалға алушының кез келген залалы үшін жауапты болмайды."
+            burdens: none
+            risk: {category: liability, level: high, against: tenant, trap: exclusion_broad}
+          - split: test
+            text: "Жалға беруші Жалға алушының үй-жайдағы мүлкінің сақталуы үшін жауапкершілік атқармайды."
+            burdens: none
+            risk: {category: liability, level: medium, against: tenant, trap: exclusion_narrow}
+
+  - key: termination
+    titles: [ШАРТТЫ БҰЗУ]
+    slots:
+      - key: unilateral
+        topic: termination
+        variants:
+          - split: dev
+            text: "Тараптардың әрқайсысы екінші Тарапты кемінде 30 күнтізбелік күн бұрын жазбаша ескерте отырып, Шартты орындаудан бас тартуға құқылы."
+          - split: test
+            text: "Кез келген Тарап екінші Тарапқа бір ай бұрын хабарлама жіберіп, Шартты біржақты тәртіппен бұза алады."
+          - split: dev
+            text: "Жалға беруші Жалға алушыны алдын ала ескертпей, кез келген уақытта Шартты біржақты тәртіппен бұзуға құқылы."
+            risk: {category: termination, level: high, against: tenant, trap: termination_no_notice}
+          - split: test
+            text: "Жалға беруші себебін түсіндірмей Шартты соттан тыс тәртіппен бұза алады."
+            risk: {category: termination, level: high, against: tenant, trap: termination_no_notice}
+      - key: early_fee
+        topic: termination
+        optional: true
+        variants:
+          - split: dev
+            text: "Шарт Жалға алушының бастамасы бойынша мерзімінен бұрын бұзылған жағдайда, Жалға алушы Жалға берушіге жалға алудың қалған бүкіл мерзімі үшін жалдау ақысын төлейді."
+            risk: {category: termination, level: high, against: tenant, trap: early_fee_high}
+          - split: test
+            text: "Жалға алушы Шартты мерзімінен бұрын бұзған кезде Жалға берушіге бір айлық жалдау ақысы мөлшерінде өтемақы төлейді."
+            risk: {category: termination, level: medium, against: tenant, trap: early_fee_medium}
+
+  - key: force_majeure
+    titles: [ЕҢСЕРІЛМЕЙТІН КҮШ МӘН-ЖАЙЛАРЫ, ФОРС-МАЖОР]
+    force_majeure: true
+    slots:
+      - key: fm_main
+        topic: force_majeure
+        variants:
+          - split: dev
+            text: "Тараптар еңсерілмейтін күш мән-жайлары (дүлей зілзалалар, әскери іс-қимылдар, мемлекеттік органдардың актілері) салдарынан міндеттемелерді орындамағаны үшін жауапкершіліктен босатылады."
+          - split: test
+            text: "Форс-мажорлық мән-жайлар туындаған жағдайда Тараптар осы мән-жайлар әрекет ететін уақытқа міндеттемелерді орындаудан босатылады, бұл туралы екінші Тарапты 5 жұмыс күні ішінде хабардар етеді."
+          - split: dev
+            text: "Еңсерілмейтін күш мән-жайлары туындаған кезде Жалға беруші өз міндеттемелерін орындамағаны үшін жауапкершіліктен босатылады."
+            risk: {category: force_majeure, level: medium, against: tenant, trap: fm_one_sided}
+
+  - key: disputes
+    titles: [ДАУЛАРДЫ ШЕШУ ТӘРТІБІ]
+    slots:
+      - key: forum
+        topic: jurisdiction
+        variants:
+          - split: dev
+            text: "Даулар келіссөздер арқылы, ал келісімге қол жеткізілмеген жағдайда Қазақстан Республикасының заңнамасына сәйкес сот тәртібімен шешіледі."
+          - split: test
+            text: "Тараптар арасындағы келіспеушіліктер келіссөздер жолымен реттеледі, реттелмеген даулар Қазақстан Республикасының заңнамасына сәйкес сотта қаралады."
+          - split: dev
+            text: "Даулар Жалға берушінің орналасқан жері бойынша сотта қаралады."
+            risk: {category: jurisdiction, level: low, against: tenant, trap: forum_counterparty}
+          - split: test
+            text: "Барлық даулар Лондон халықаралық төрелік сотында қаралады, қолданылатын құқық — Англия құқығы."
+            risk: {category: jurisdiction, level: high, against: both, trap: forum_foreign}
+
+  - key: final
+    titles: [ҚОРЫТЫНДЫ ЕРЕЖЕЛЕР]
+    slots:
+      - key: amendments
+        topic: other
+        variants:
+          - split: dev
+            text: "Шартқа өзгерістер мен толықтырулар жазбаша нысанда жасалып, екі Тарап қол қойған жағдайда жарамды."
+          - split: test
+            text: "Осы Шарттың талаптарын өзгерту Тараптардың қосымша келісімімен ресімделеді."
+      - key: copies
+        topic: other
+        variants:
+          - split: dev
+            text: "Шарт бірдей заңды күші бар екі данада, әр Тарапқа бір данадан жасалды."
+          - split: test
+            text: "Шарт мемлекеттік және орыс тілдерінде екі данада жасалды."

@@ -1,0 +1,14 @@
+doc_id: supply_ru_test_040
+contract_type: supply
+language: ru
+party_role: supplier
+origin: synthetic
+findings:
+- clause: '4.1'
+  category: penalty
+  level: medium
+  trap_id: fine_medium
+- clause: '7.1'
+  category: jurisdiction
+  level: low
+  trap_id: forum_counterparty

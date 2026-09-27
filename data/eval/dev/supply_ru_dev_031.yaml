@@ -1,0 +1,22 @@
+doc_id: supply_ru_dev_031
+contract_type: supply
+language: ru
+party_role: buyer
+origin: synthetic
+findings:
+- clause: '4.2'
+  category: penalty
+  level: high
+  trap_id: penalty_daily_high
+- clause: '4.4'
+  category: liability
+  level: high
+  trap_id: exclusion_broad
+- clause: '6.1'
+  category: auto_renewal
+  level: low
+  trap_id: renewal_silent
+- clause: '6.2'
+  category: termination
+  level: high
+  trap_id: termination_no_notice

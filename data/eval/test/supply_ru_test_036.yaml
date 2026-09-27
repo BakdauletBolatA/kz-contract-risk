@@ -1,0 +1,14 @@
+doc_id: supply_ru_test_036
+contract_type: supply
+language: ru
+party_role: buyer
+origin: synthetic
+findings:
+- clause: '2.2'
+  category: unilateral_change
+  level: high
+  trap_id: price_unilateral
+- clause: '3.2'
+  category: acceptance
+  level: medium
+  trap_id: short_claim_period

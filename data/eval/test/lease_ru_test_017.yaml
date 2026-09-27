@@ -1,0 +1,18 @@
+doc_id: lease_ru_test_017
+contract_type: lease
+language: ru
+party_role: tenant
+origin: synthetic
+findings:
+- clause: '3.4'
+  category: termination
+  level: high
+  trap_id: deposit_forfeit_any
+- clause: '6.3'
+  category: termination
+  level: high
+  trap_id: early_fee_high
+- clause: null
+  category: force_majeure
+  level: medium
+  trap_id: fm_missing

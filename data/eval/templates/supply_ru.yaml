@@ -1,0 +1,321 @@
+# Шаблон синтетического договора поставки (ru). Формат — см. lease_ru.yaml.
+contract_type: supply
+language: ru
+user_roles: {buyer: 0.6, supplier: 0.4}
+styles: [classic, classic, titlecase, article, wrapped]
+params:
+  city: [Алматы, Астана, Павлодар, Усть-Каменогорск, Костанай]
+  day: ["2", "9", "14", "21", "30"]
+  month: [февраля, апреля, июня, августа, октября, декабря]
+  supplier_org: [ТОО «Дала Агро», ТОО «Каспий Снаб», ТОО «ТехноПоставка KZ», ТОО «Евразия Трейд»]
+  buyer_org: [ИП «Жумабаев», ТОО «Мини-маркет Береке», ТОО «Строй Сервис Юг», ИП «Оразбекова»]
+  person1: [Нурланова А.Б., Смагулова Д.Е., Петренко О.В.]
+  person2: [Касымова Р.Ж., Бекова А.Т., Утепова Н.С.]
+  goods: [строительные материалы, продукты питания, упаковочные материалы, бытовую химию]
+titles:
+  - "ДОГОВОР ПОСТАВКИ № {num}"
+  - "ДОГОВОР ПОСТАВКИ ТОВАРА № {num}"
+preambles:
+  - |-
+    г. {city} «{day}» {month} 2026 г.
+    {supplier_org}, именуемое в дальнейшем «Поставщик», в лице директора {person1}, действующего на основании Устава, с одной стороны, и {buyer_org}, именуемое в дальнейшем «Покупатель», в лице {person2}, с другой стороны, заключили настоящий Договор о нижеследующем:
+  - |-
+    г. {city}, {day} {month} 2026 года
+    {supplier_org} (далее — «Поставщик») и {buyer_org} (далее — «Покупатель») заключили настоящий Договор о следующем:
+requisites_title: [РЕКВИЗИТЫ И ПОДПИСИ СТОРОН, ЮРИДИЧЕСКИЕ АДРЕСА И РЕКВИЗИТЫ СТОРОН]
+requisites:
+  - "Поставщик: {supplier_org}, БИН {bin1}, г. {city}"
+  - "Покупатель: {buyer_org}, БИН {bin2}"
+  - "Подписи: ______________ / ______________"
+
+sections:
+  - key: subject
+    titles: [ПРЕДМЕТ ДОГОВОРА]
+    slots:
+      - key: object
+        topic: other
+        variants:
+          - split: dev
+            text: "Поставщик обязуется поставить, а Покупатель принять и оплатить {goods} (далее — «Товар») в количестве и ассортименте, указанных в Спецификациях."
+          - split: test
+            text: "По настоящему Договору Поставщик передает в собственность Покупателя {goods}, а Покупатель принимает Товар и уплачивает за него цену, согласованную в Спецификации."
+      - key: quality
+        topic: other
+        variants:
+          - split: dev
+            text: "Качество Товара должно соответствовать требованиям технических регламентов и подтверждаться сертификатами соответствия."
+          - split: test
+            text: "Поставщик гарантирует, что Товар соответствует обязательным требованиям к качеству и безопасности, действующим в Республике Казахстан."
+
+  - key: price
+    titles: [ЦЕНА И ПОРЯДОК РАСЧЕТОВ]
+    slots:
+      - key: price
+        topic: other
+        variants:
+          - split: dev
+            text: "Цена Товара указывается в Спецификациях, являющихся неотъемлемой частью Договора, и включает стоимость доставки и НДС."
+          - split: test
+            text: "Стоимость каждой партии Товара определяется в Спецификации в тенге с учетом НДС и расходов на доставку."
+      - key: price_change
+        topic: unilateral_change
+        variants:
+          - split: dev
+            text: "Цена Товара, согласованная в Спецификации, изменению в течение срока ее действия не подлежит."
+          - split: test
+            text: "Цена согласованной партии Товара является твердой и может быть изменена только дополнительным соглашением Сторон."
+          - split: dev
+            text: "Поставщик вправе в одностороннем порядке изменять цену Товара, уведомив об этом Покупателя."
+            risk: {category: unilateral_change, level: high, against: buyer, trap: price_unilateral}
+          - split: test
+            text: "Цена Товара может быть пересмотрена Поставщиком без согласования с Покупателем в случае роста курса иностранных валют."
+            risk: {category: unilateral_change, level: high, against: buyer, trap: price_unilateral}
+          - split: dev
+            text: "Поставщик вправе в одностороннем порядке изменить цену Товара не более чем на 5% в течение календарного года, уведомив Покупателя за 30 дней."
+            risk: {category: unilateral_change, level: low, against: buyer, trap: price_unilateral_capped}
+      - key: payment
+        topic: payment
+        variants:
+          - split: dev
+            text: "Покупатель оплачивает Товар в течение 30 (тридцати) календарных дней с даты поставки на основании счета-фактуры."
+          - split: test
+            text: "Оплата производится Покупателем в течение 20 банковских дней после подписания накладной."
+          - split: dev
+            text: "Покупатель производит 100% предварительную оплату стоимости партии Товара в течение 3 банковских дней с даты выставления счета."
+            risk: {category: payment, level: medium, against: buyer, trap: full_prepayment}
+          - split: test
+            text: "Отгрузка Товара осуществляется только после поступления на счет Поставщика полной предоплаты за партию."
+            risk: {category: payment, level: medium, against: buyer, trap: full_prepayment}
+          - split: dev
+            text: "Покупатель оплачивает поставленный Товар в течение 90 (девяноста) календарных дней с даты поставки."
+            risk: {category: payment, level: medium, against: supplier, trap: payment_deferral_medium}
+          - split: dev
+            text: "Оплата Товара производится Покупателем в течение 180 календарных дней с даты подписания накладной."
+            risk: {category: payment, level: high, against: supplier, trap: payment_deferral_high}
+          - split: test
+            text: "Расчеты за поставленный Товар производятся Покупателем не позднее 75 дней после получения Товара."
+            risk: {category: payment, level: medium, against: supplier, trap: payment_deferral_medium}
+          - split: test
+            text: "Покупатель перечисляет оплату за Товар по истечении 120 банковских дней с момента поставки."
+            risk: {category: payment, level: high, against: supplier, trap: payment_deferral_high}
+          - split: dev
+            text: "Покупатель оплачивает Товар в течение 10 дней после поступления денежных средств от его заказчика по основному договору."
+            risk: {category: payment, level: high, against: supplier, trap: pay_when_paid}
+          - split: test
+            text: "Оплата Товара производится Покупателем после получения Покупателем оплаты от конечного покупателя."
+            risk: {category: payment, level: high, against: supplier, trap: pay_when_paid}
+
+  - key: delivery
+    titles: [ПОСТАВКА И ПРИЕМКА ТОВАРА]
+    slots:
+      - key: delivery
+        topic: other
+        variants:
+          - split: dev
+            text: "Поставка осуществляется транспортом Поставщика на склад Покупателя в сроки, указанные в Спецификации."
+          - split: test
+            text: "Товар доставляется Поставщиком до склада Покупателя в течение 10 рабочих дней с даты согласования заявки."
+      - key: acceptance
+        topic: acceptance
+        variants:
+          - split: dev
+            text: "Приемка Товара по количеству производится при получении, по качеству — в течение 10 рабочих дней с даты поставки; о скрытых недостатках Покупатель вправе заявить в пределах гарантийного срока."
+          - split: test
+            text: "Покупатель проверяет Товар по количеству и ассортименту в день поставки, а по качеству — в течение 14 дней; претензии по скрытым дефектам принимаются в течение гарантийного срока."
+          - split: dev
+            text: "Претензии по качеству Товара, включая скрытые недостатки, принимаются Поставщиком в течение 2 (двух) дней с даты поставки."
+            risk: {category: acceptance, level: medium, against: buyer, trap: short_claim_period}
+          - split: test
+            text: "По истечении 1 рабочего дня после получения Товара претензии Покупателя по качеству, в том числе по скрытым дефектам, не принимаются."
+            risk: {category: acceptance, level: medium, against: buyer, trap: short_claim_period}
+          - split: dev
+            text: "Покупатель вправе отказаться от приемки Товара по своему усмотрению без объяснения причин."
+            risk: {category: acceptance, level: high, against: supplier, trap: acceptance_refusal_any}
+          - split: test
+            text: "Покупатель может не принимать Товар без указания мотивов отказа, при этом расходы по вывозу Товара несет Поставщик."
+            risk: {category: acceptance, level: high, against: supplier, trap: acceptance_refusal_any}
+
+  - key: liability
+    titles: [ОТВЕТСТВЕННОСТЬ СТОРОН]
+    slots:
+      - key: supplier_penalty
+        topic: penalty
+        variants:
+          - split: dev
+            text: "За просрочку поставки Поставщик уплачивает Покупателю пеню в размере 0,1% от стоимости непоставленного Товара за каждый день просрочки, но не более 10% от стоимости партии."
+            burdens: supplier
+          - split: test
+            text: "При нарушении сроков поставки Поставщик выплачивает Покупателю неустойку из расчета 0,05% от стоимости недопоставленного Товара за каждый день, однако не более 10% от стоимости такого Товара."
+            burdens: supplier
+          - split: dev
+            text: "За просрочку поставки Поставщик уплачивает Покупателю пеню в размере {rate}% от стоимости партии за каждый день просрочки."
+            params: {rate: ["0,5", "1"]}
+            burdens: supplier
+            risk: {category: penalty, level: high, against: supplier, trap: penalty_daily_high}
+          - split: dev
+            text: "За просрочку поставки Поставщик уплачивает Покупателю пеню в размере {rate}% от стоимости партии за каждый день просрочки."
+            params: {rate: ["0,2", "0,3"]}
+            burdens: supplier
+            risk: {category: penalty, level: medium, against: supplier, trap: penalty_daily_medium}
+          - split: test
+            text: "Каждый день задержки отгрузки влечет для Поставщика неустойку в размере {rate} процента от стоимости всего Договора."
+            params: {rate: ["1", "2"]}
+            burdens: supplier
+            risk: {category: penalty, level: high, against: supplier, trap: penalty_daily_high}
+          - split: test
+            text: "За поставку некачественного Товара Поставщик выплачивает Покупателю штраф в размере 20% от стоимости такого Товара."
+            burdens: supplier
+            risk: {category: penalty, level: medium, against: supplier, trap: fine_medium}
+      - key: buyer_penalty
+        topic: penalty
+        optional: true
+        variants:
+          - split: dev
+            text: "За просрочку оплаты Покупатель уплачивает Поставщику пеню в размере 0,1% от неоплаченной суммы за каждый день просрочки, но не более 10% от неоплаченной суммы."
+            burdens: buyer
+          - split: test
+            text: "В случае задержки платежа Покупатель уплачивает неустойку 0,05 процента от суммы долга за каждый день задержки, но в общей сложности не более 10 процентов от этой суммы."
+            burdens: buyer
+          - split: dev
+            text: "За просрочку оплаты Покупатель уплачивает Поставщику пеню в размере {rate}% от неоплаченной суммы за каждый день просрочки."
+            params: {rate: ["0,5", "1"]}
+            burdens: buyer
+            risk: {category: penalty, level: high, against: buyer, trap: penalty_daily_high}
+          - split: dev
+            text: "За просрочку оплаты Покупатель уплачивает Поставщику пеню в размере 0,2% от неоплаченной суммы за каждый день просрочки."
+            burdens: buyer
+            risk: {category: penalty, level: medium, against: buyer, trap: penalty_daily_medium}
+          - split: test
+            text: "За каждый день задержки платежа с Покупателя взыскивается неустойка {rate}% от суммы задолженности."
+            params: {rate: ["0,5", "1"]}
+            burdens: buyer
+            risk: {category: penalty, level: high, against: buyer, trap: penalty_daily_high}
+          - split: test
+            text: "Покупатель уплачивает пеню 0,1% от суммы просроченного платежа за каждый день просрочки."
+            burdens: buyer
+            risk: {category: penalty, level: low, against: buyer, trap: penalty_uncapped}
+      - key: damages
+        topic: liability
+        variants:
+          - split: dev
+            text: "За неисполнение или ненадлежащее исполнение обязательств Стороны несут ответственность в соответствии с законодательством Республики Казахстан."
+            burdens: both
+          - split: test
+            text: "Стороны отвечают за нарушение условий настоящего Договора в порядке, предусмотренном действующим законодательством Республики Казахстан."
+            burdens: both
+          - split: dev
+            text: "Поставщик возмещает Покупателю все убытки, включая упущенную выгоду, причиненные поставкой некачественного Товара."
+            burdens: supplier
+            risk: {category: liability, level: medium, against: supplier, trap: damages_lost_profit}
+          - split: test
+            text: "Помимо неустойки Поставщик возмещает Покупателю в полном объеме прямые и косвенные убытки, включая упущенную выгоду."
+            burdens: supplier
+            risk: {category: liability, level: high, against: supplier, trap: damages_over_penalty}
+          - split: test
+            text: "Покупатель возмещает Поставщику неполученные доходы, возникшие из-за необоснованного отказа от Товара."
+            burdens: buyer
+            risk: {category: liability, level: medium, against: buyer, trap: damages_lost_profit}
+      - key: exclusion
+        topic: liability
+        optional: true
+        variants:
+          - split: dev
+            text: "Поставщик не несет ответственности за какие-либо убытки Покупателя, связанные с использованием Товара."
+            burdens: none
+            risk: {category: liability, level: high, against: buyer, trap: exclusion_broad}
+          - split: test
+            text: "Поставщик не отвечает за задержку поставки, вызванную действиями перевозчика."
+            burdens: none
+            risk: {category: liability, level: medium, against: buyer, trap: exclusion_narrow}
+
+  - key: force_majeure
+    titles: [ФОРС-МАЖОР, ОБСТОЯТЕЛЬСТВА НЕПРЕОДОЛИМОЙ СИЛЫ]
+    force_majeure: true
+    slots:
+      - key: fm_main
+        topic: force_majeure
+        variants:
+          - split: dev
+            text: "Стороны освобождаются от ответственности за частичное или полное неисполнение обязательств, если оно явилось следствием обстоятельств непреодолимой силы, возникших после заключения Договора."
+          - split: test
+            text: "Сторона, для которой исполнение обязательств стало невозможным вследствие форс-мажора, освобождается от ответственности при условии письменного уведомления другой Стороны в течение 5 рабочих дней."
+          - split: dev
+            text: "Поставщик освобождается от ответственности за неисполнение обязательств, вызванное обстоятельствами непреодолимой силы."
+            risk: {category: force_majeure, level: medium, against: buyer, trap: fm_one_sided}
+          - split: test
+            text: "При наступлении форс-мажора от исполнения обязательств на время его действия освобождается только Поставщик."
+            risk: {category: force_majeure, level: medium, against: buyer, trap: fm_one_sided}
+
+  - key: term
+    titles: [СРОК ДЕЙСТВИЯ И РАСТОРЖЕНИЕ ДОГОВОРА]
+    slots:
+      - key: duration
+        topic: auto_renewal
+        variants:
+          - split: dev
+            text: "Договор вступает в силу с даты подписания и действует до 31 декабря 2026 года, а в части расчетов — до полного исполнения обязательств."
+          - split: test
+            text: "Настоящий Договор действует до 31.12.2026, а в части взаиморасчетов — до их полного завершения."
+          - split: dev
+            text: "Если ни одна из Сторон за 30 дней до окончания срока не заявит о его прекращении, Договор считается продленным на следующий календарный год."
+            risk: {category: auto_renewal, level: low, against: both, trap: renewal_silent}
+          - split: test
+            text: "Договор ежегодно пролонгируется автоматически, при этом Поставщик вправе установить новые цены на следующий период по своему усмотрению."
+            risk: {category: auto_renewal, level: high, against: buyer, trap: renewal_price_change}
+          - split: test
+            text: "Действие Договора автоматически продлевается на каждый следующий год, если ни одна из Сторон не уведомит другую о его прекращении не позднее чем за 15 дней до окончания года."
+            risk: {category: auto_renewal, level: low, against: both, trap: renewal_silent}
+      - key: unilateral
+        topic: termination
+        variants:
+          - split: dev
+            text: "Каждая из Сторон вправе в одностороннем порядке отказаться от исполнения Договора, письменно уведомив другую Сторону не менее чем за 30 календарных дней."
+          - split: test
+            text: "Односторонний отказ от исполнения Договора допускается для любой из Сторон с предупреждением другой Стороны не позднее чем за один месяц."
+          - split: dev
+            text: "Поставщик вправе в любое время отказаться от исполнения Договора без предварительного уведомления Покупателя."
+            risk: {category: termination, level: high, against: buyer, trap: termination_no_notice}
+          - split: test
+            text: "Покупатель вправе в одностороннем порядке отказаться от Договора, уведомив Поставщика за 5 рабочих дней."
+            risk: {category: termination, level: medium, against: supplier, trap: termination_short_notice}
+
+  - key: disputes
+    titles: [РАЗРЕШЕНИЕ СПОРОВ]
+    slots:
+      - key: forum
+        topic: jurisdiction
+        variants:
+          - split: dev
+            text: "Споры и разногласия разрешаются путем переговоров, а при недостижении согласия — в судебном порядке в соответствии с законодательством Республики Казахстан."
+          - split: test
+            text: "Все споры, связанные с Договором, подлежат разрешению в судах Республики Казахстан по правилам подсудности, установленным законодательством."
+          - split: dev
+            text: "Споры рассматриваются в суде по месту нахождения Поставщика."
+            risk: {category: jurisdiction, level: low, against: buyer, trap: forum_counterparty}
+          - split: test
+            text: "Все споры подлежат рассмотрению в экономическом суде по месту нахождения Покупателя."
+            risk: {category: jurisdiction, level: low, against: supplier, trap: forum_counterparty}
+          - split: dev
+            text: "Споры разрешаются в Арбитражном институте Торговой палаты Стокгольма; применимое право — право Швеции."
+            risk: {category: jurisdiction, level: high, against: both, trap: forum_foreign}
+          - split: test
+            text: "Любой спор передается на окончательное разрешение в Лондонский международный арбитражный суд (LCIA), применимым правом признается английское право."
+            risk: {category: jurisdiction, level: high, against: both, trap: forum_foreign}
+
+  - key: final
+    titles: [ЗАКЛЮЧИТЕЛЬНЫЕ ПОЛОЖЕНИЯ]
+    slots:
+      - key: amendments
+        topic: other
+        variants:
+          - split: dev
+            text: "Все изменения и дополнения к Договору действительны при условии их составления в письменной форме и подписания обеими Сторонами."
+          - split: test
+            text: "Любые изменения условий Договора оформляются письменным дополнительным соглашением Сторон."
+      - key: copies
+        topic: other
+        variants:
+          - split: dev
+            text: "Договор составлен в двух экземплярах, по одному для каждой из Сторон."
+          - split: test
+            text: "Договор подписан в двух экземплярах равной юридической силы."

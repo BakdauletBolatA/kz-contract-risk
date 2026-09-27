@@ -1,0 +1,18 @@
+doc_id: works_ru_test_009
+contract_type: works
+language: ru
+party_role: customer
+origin: synthetic
+findings:
+- clause: '3.2'
+  category: unilateral_change
+  level: high
+  trap_id: price_unilateral
+- clause: '7.1'
+  category: jurisdiction
+  level: high
+  trap_id: forum_foreign
+- clause: null
+  category: force_majeure
+  level: medium
+  trap_id: fm_missing

@@ -1,0 +1,14 @@
+doc_id: works_ru_test_003
+contract_type: works
+language: ru
+party_role: customer
+origin: synthetic
+findings:
+- clause: '5.2'
+  category: penalty
+  level: low
+  trap_id: penalty_uncapped
+- clause: '7.1'
+  category: termination
+  level: medium
+  trap_id: termination_short_notice

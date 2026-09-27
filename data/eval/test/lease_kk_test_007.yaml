@@ -1,0 +1,22 @@
+doc_id: lease_kk_test_007
+contract_type: lease
+language: kk
+party_role: tenant
+origin: synthetic
+findings:
+- clause: '4.2'
+  category: liability
+  level: high
+  trap_id: damages_over_penalty
+- clause: '5.1'
+  category: termination
+  level: high
+  trap_id: termination_no_notice
+- clause: null
+  category: force_majeure
+  level: medium
+  trap_id: fm_missing
+- clause: null
+  category: liability
+  level: medium
+  trap_id: liability_one_sided

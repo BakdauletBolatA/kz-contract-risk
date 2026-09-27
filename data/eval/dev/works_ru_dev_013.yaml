@@ -1,0 +1,10 @@
+doc_id: works_ru_dev_013
+contract_type: works
+language: ru
+party_role: customer
+origin: synthetic
+findings:
+- clause: '3.3'
+  category: payment
+  level: medium
+  trap_id: full_prepayment

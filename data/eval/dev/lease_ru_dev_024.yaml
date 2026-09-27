@@ -1,0 +1,14 @@
+doc_id: lease_ru_dev_024
+contract_type: lease
+language: ru
+party_role: tenant
+origin: synthetic
+findings:
+- clause: '5.1'
+  category: penalty
+  level: low
+  trap_id: penalty_uncapped
+- clause: null
+  category: force_majeure
+  level: medium
+  trap_id: fm_missing

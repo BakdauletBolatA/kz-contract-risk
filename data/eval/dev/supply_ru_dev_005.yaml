@@ -1,0 +1,10 @@
+doc_id: supply_ru_dev_005
+contract_type: supply
+language: ru
+party_role: buyer
+origin: synthetic
+findings:
+- clause: '7.1'
+  category: jurisdiction
+  level: high
+  trap_id: forum_foreign

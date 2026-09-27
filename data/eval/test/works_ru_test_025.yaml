@@ -1,0 +1,14 @@
+doc_id: works_ru_test_025
+contract_type: works
+language: ru
+party_role: customer
+origin: synthetic
+findings:
+- clause: '4.1'
+  category: acceptance
+  level: medium
+  trap_id: silent_acceptance
+- clause: null
+  category: force_majeure
+  level: medium
+  trap_id: fm_missing

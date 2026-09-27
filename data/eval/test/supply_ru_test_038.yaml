@@ -1,0 +1,14 @@
+doc_id: supply_ru_test_038
+contract_type: supply
+language: ru
+party_role: supplier
+origin: synthetic
+findings:
+- clause: '3.2'
+  category: acceptance
+  level: high
+  trap_id: acceptance_refusal_any
+- clause: null
+  category: force_majeure
+  level: medium
+  trap_id: fm_missing

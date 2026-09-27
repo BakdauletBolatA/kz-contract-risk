@@ -1,0 +1,18 @@
+doc_id: supply_ru_dev_036
+contract_type: supply
+language: ru
+party_role: supplier
+origin: synthetic
+findings:
+- clause: '4.1'
+  category: penalty
+  level: high
+  trap_id: penalty_daily_high
+- clause: '4.2'
+  category: liability
+  level: medium
+  trap_id: damages_lost_profit
+- clause: null
+  category: liability
+  level: medium
+  trap_id: liability_one_sided

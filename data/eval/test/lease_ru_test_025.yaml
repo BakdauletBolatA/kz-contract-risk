@@ -1,0 +1,10 @@
+doc_id: lease_ru_test_025
+contract_type: lease
+language: ru
+party_role: landlord
+origin: synthetic
+findings:
+- clause: '5.3'
+  category: penalty
+  level: high
+  trap_id: penalty_daily_high

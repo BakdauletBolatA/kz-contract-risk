@@ -1,0 +1,10 @@
+doc_id: supply_ru_test_028
+contract_type: supply
+language: ru
+party_role: supplier
+origin: synthetic
+findings:
+- clause: '2.3'
+  category: payment
+  level: high
+  trap_id: payment_deferral_high

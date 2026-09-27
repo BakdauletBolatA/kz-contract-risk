@@ -1,0 +1,26 @@
+doc_id: lease_ru_test_024
+contract_type: lease
+language: ru
+party_role: tenant
+origin: synthetic
+findings:
+- clause: '3.4'
+  category: unilateral_change
+  level: low
+  trap_id: price_unilateral_capped
+- clause: '5.2'
+  category: penalty
+  level: medium
+  trap_id: fine_medium
+- clause: '5.3'
+  category: liability
+  level: high
+  trap_id: damages_over_penalty
+- clause: '6.2'
+  category: termination
+  level: medium
+  trap_id: termination_short_notice
+- clause: null
+  category: liability
+  level: medium
+  trap_id: liability_one_sided

@@ -1,0 +1,14 @@
+doc_id: supply_ru_test_025
+contract_type: supply
+language: ru
+party_role: buyer
+origin: synthetic
+findings:
+- clause: '4.3'
+  category: liability
+  level: medium
+  trap_id: exclusion_narrow
+- clause: null
+  category: force_majeure
+  level: medium
+  trap_id: fm_missing

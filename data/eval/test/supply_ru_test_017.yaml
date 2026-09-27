@@ -1,0 +1,14 @@
+doc_id: supply_ru_test_017
+contract_type: supply
+language: ru
+party_role: buyer
+origin: synthetic
+findings:
+- clause: '6.1'
+  category: auto_renewal
+  level: high
+  trap_id: renewal_price_change
+- clause: '7.1'
+  category: jurisdiction
+  level: high
+  trap_id: forum_foreign

@@ -1,0 +1,18 @@
+doc_id: works_ru_test_019
+contract_type: works
+language: ru
+party_role: contractor
+origin: synthetic
+findings:
+- clause: '3.3'
+  category: payment
+  level: high
+  trap_id: pay_when_paid
+- clause: '7.1'
+  category: termination
+  level: high
+  trap_id: termination_no_notice
+- clause: '8.1'
+  category: jurisdiction
+  level: low
+  trap_id: forum_counterparty

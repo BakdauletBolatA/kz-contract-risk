@@ -1,0 +1,300 @@
+# Шаблон синтетического договора подряда (ru). Формат — см. lease_ru.yaml.
+contract_type: works
+language: ru
+user_roles: {customer: 0.5, contractor: 0.5}
+styles: [classic, classic, titlecase, article, wrapped]
+params:
+  city: [Алматы, Астана, Атырау, Тараз, Кокшетау]
+  day: ["3", "11", "16", "24", "27"]
+  month: [января, марта, мая, июля, сентября, ноября]
+  contractor_org: [ТОО «Мастер Строй», ТОО «Ремонт Групп», ТОО «Инжиниринг Сервис», ИП «Токтаров»]
+  customer_org: [ТОО «Кафе Тулпар», ИП «Абилова», ТОО «Логистик Центр», ТОО «Медицина Плюс»]
+  person1: [Жаксыбекова Т.А., Иванова С.П., Омарова К.Б.]
+  person2: [Садыкова М.Н., Шевченко А.С., Байжанова Е.Т.]
+  works: [ремонтные работы в помещении Заказчика, монтаж системы вентиляции, устройство кровли склада, электромонтажные работы]
+titles:
+  - "ДОГОВОР ПОДРЯДА № {num}"
+  - "ДОГОВОР ПОДРЯДА НА ВЫПОЛНЕНИЕ РАБОТ № {num}"
+preambles:
+  - |-
+    г. {city} «{day}» {month} 2026 г.
+    {customer_org}, именуемое в дальнейшем «Заказчик», в лице {person2}, с одной стороны, и {contractor_org}, именуемое в дальнейшем «Подрядчик», в лице директора {person1}, действующего на основании Устава, с другой стороны, заключили настоящий Договор о нижеследующем:
+  - |-
+    г. {city}, {day} {month} 2026 года
+    {customer_org} (далее — «Заказчик») и {contractor_org} (далее — «Подрядчик») заключили настоящий Договор о следующем:
+requisites_title: [РЕКВИЗИТЫ И ПОДПИСИ СТОРОН, АДРЕСА И РЕКВИЗИТЫ СТОРОН]
+requisites:
+  - "Заказчик: {customer_org}, БИН {bin2}, г. {city}"
+  - "Подрядчик: {contractor_org}, БИН {bin1}"
+  - "Подписи Сторон: ______________ / ______________"
+
+sections:
+  - key: subject
+    titles: [ПРЕДМЕТ ДОГОВОРА]
+    slots:
+      - key: object
+        topic: other
+        variants:
+          - split: dev
+            text: "Подрядчик обязуется выполнить {works} в соответствии с Техническим заданием (Приложение № 1), а Заказчик — принять и оплатить результат работ."
+          - split: test
+            text: "Заказчик поручает, а Подрядчик принимает на себя выполнение работ: {works}, в объеме и в сроки, определенные сметой и графиком работ."
+      - key: materials
+        topic: other
+        optional: true
+        variants:
+          - split: dev
+            text: "Работы выполняются из материалов Подрядчика, стоимость которых включена в смету."
+          - split: test
+            text: "Материалы для выполнения работ предоставляет Подрядчик; их стоимость учтена в цене Договора."
+
+  - key: timing
+    titles: [СРОКИ ВЫПОЛНЕНИЯ РАБОТ]
+    slots:
+      - key: schedule
+        topic: other
+        variants:
+          - split: dev
+            text: "Срок выполнения работ — 45 (сорок пять) календарных дней с даты получения аванса."
+          - split: test
+            text: "Подрядчик приступает к работам в течение 3 дней после подписания Договора и завершает их не позднее чем через два месяца."
+      - key: early_completion
+        topic: other
+        optional: true
+        variants:
+          - split: dev
+            text: "Подрядчик вправе выполнить работы досрочно с предварительным уведомлением Заказчика."
+          - split: test
+            text: "Досрочное выполнение работ допускается и принимается Заказчиком в общем порядке."
+
+  - key: price
+    titles: [СТОИМОСТЬ РАБОТ И ПОРЯДОК ОПЛАТЫ]
+    slots:
+      - key: price
+        topic: other
+        variants:
+          - split: dev
+            text: "Стоимость работ определяется сметой и составляет 12 500 000 тенге с учетом НДС."
+          - split: test
+            text: "Общая цена Договора — 8 900 000 (восемь миллионов девятьсот тысяч) тенге, включая НДС."
+      - key: price_change
+        topic: unilateral_change
+        variants:
+          - split: dev
+            text: "Стоимость работ является твердой и изменению не подлежит, за исключением случаев изменения объема работ по соглашению Сторон."
+          - split: test
+            text: "Цена Договора может быть изменена только по письменному соглашению Сторон при изменении объема работ."
+          - split: dev
+            text: "Подрядчик вправе в одностороннем порядке увеличить стоимость работ при удорожании материалов, уведомив Заказчика."
+            risk: {category: unilateral_change, level: high, against: customer, trap: price_unilateral}
+          - split: test
+            text: "Стоимость работ может быть изменена Подрядчиком без согласования с Заказчиком."
+            risk: {category: unilateral_change, level: high, against: customer, trap: price_unilateral}
+      - key: payment
+        topic: payment
+        variants:
+          - split: dev
+            text: "Заказчик оплачивает выполненные работы в течение 15 банковских дней после подписания акта выполненных работ."
+          - split: test
+            text: "Оплата работ производится Заказчиком в течение 20 рабочих дней с даты подписания Сторонами акта приемки."
+          - split: dev
+            text: "Заказчик вносит 100% предоплату стоимости работ до их начала."
+            risk: {category: payment, level: medium, against: customer, trap: full_prepayment}
+          - split: test
+            text: "Работы начинаются после перечисления Заказчиком полной стоимости работ авансом."
+            risk: {category: payment, level: medium, against: customer, trap: full_prepayment}
+          - split: dev
+            text: "Заказчик оплачивает выполненные работы в течение 90 (девяноста) календарных дней с даты подписания акта."
+            risk: {category: payment, level: medium, against: contractor, trap: payment_deferral_medium}
+          - split: test
+            text: "Расчет за выполненные работы производится Заказчиком в течение 150 дней после подписания акта выполненных работ."
+            risk: {category: payment, level: high, against: contractor, trap: payment_deferral_high}
+          - split: dev
+            text: "Оплата выполненных работ производится Заказчиком только после получения оплаты от Генерального заказчика."
+            risk: {category: payment, level: high, against: contractor, trap: pay_when_paid}
+          - split: test
+            text: "Заказчик рассчитывается с Подрядчиком в течение 5 дней с момента поступления средств от конечного заказчика."
+            risk: {category: payment, level: high, against: contractor, trap: pay_when_paid}
+
+  - key: acceptance
+    titles: [ПРИЕМКА РАБОТ]
+    slots:
+      - key: acceptance
+        topic: acceptance
+        variants:
+          - split: dev
+            text: "Заказчик в течение 10 рабочих дней с даты получения акта выполненных работ подписывает его или направляет Подрядчику мотивированный отказ."
+          - split: test
+            text: "В течение 7 рабочих дней после получения акта Заказчик обязан принять работы либо представить обоснованные возражения."
+          - split: dev
+            text: "Если Заказчик в течение 2 (двух) рабочих дней не подписал акт и не направил мотивированный отказ, работы считаются принятыми."
+            risk: {category: acceptance, level: medium, against: customer, trap: silent_acceptance}
+          - split: test
+            text: "Работы считаются принятыми Заказчиком в полном объеме, если в течение одного дня после получения акта он не заявил письменных возражений."
+            risk: {category: acceptance, level: medium, against: customer, trap: silent_acceptance}
+          - split: dev
+            text: "Заказчик вправе отказаться от приемки работ по своему усмотрению без объяснения причин."
+            risk: {category: acceptance, level: high, against: contractor, trap: acceptance_refusal_any}
+          - split: test
+            text: "Заказчик может не подписывать акт выполненных работ без указания мотивов."
+            risk: {category: acceptance, level: high, against: contractor, trap: acceptance_refusal_any}
+      - key: warranty
+        topic: other
+        variants:
+          - split: dev
+            text: "Гарантийный срок на результат работ составляет 12 месяцев с даты подписания акта."
+          - split: test
+            text: "Подрядчик гарантирует качество работ в течение одного года после их приемки и устраняет выявленные дефекты за свой счет."
+
+  - key: liability
+    titles: [ОТВЕТСТВЕННОСТЬ СТОРОН]
+    slots:
+      - key: contractor_penalty
+        topic: penalty
+        variants:
+          - split: dev
+            text: "За нарушение сроков выполнения работ Подрядчик уплачивает Заказчику пеню в размере 0,1% от стоимости невыполненных работ за каждый день просрочки, но не более 10% от стоимости работ."
+            burdens: contractor
+          - split: test
+            text: "Подрядчик за просрочку завершения работ выплачивает неустойку в размере 0,05% от цены Договора за каждый день, но не свыше 10% цены Договора."
+            burdens: contractor
+          - split: dev
+            text: "За нарушение сроков выполнения работ Подрядчик уплачивает Заказчику пеню в размере {rate}% от стоимости работ за каждый день просрочки."
+            params: {rate: ["0,5", "1"]}
+            burdens: contractor
+            risk: {category: penalty, level: high, against: contractor, trap: penalty_daily_high}
+          - split: test
+            text: "С Подрядчика взыскивается неустойка в размере {rate}% от стоимости работ за каждый день нарушения сроков."
+            params: {rate: ["0,5", "1"]}
+            burdens: contractor
+            risk: {category: penalty, level: high, against: contractor, trap: penalty_daily_high}
+          - split: test
+            text: "За нарушение сроков выполнения этапа Подрядчик уплачивает штраф в размере 25% от стоимости этапа."
+            burdens: contractor
+            risk: {category: penalty, level: medium, against: contractor, trap: fine_medium}
+      - key: customer_penalty
+        topic: penalty
+        optional: true
+        variants:
+          - split: dev
+            text: "За просрочку оплаты Заказчик уплачивает Подрядчику пеню в размере 0,1% от суммы задолженности за каждый день просрочки, но не более 10% от суммы задолженности."
+            burdens: customer
+          - split: test
+            text: "В случае задержки оплаты Заказчик выплачивает Подрядчику пеню 0,05% от просроченной суммы за каждый день, но не более 10% от нее."
+            burdens: customer
+          - split: dev
+            text: "За просрочку оплаты Заказчик уплачивает Подрядчику пеню в размере 1% от суммы задолженности за каждый день просрочки."
+            burdens: customer
+            risk: {category: penalty, level: high, against: customer, trap: penalty_daily_high}
+          - split: test
+            text: "Заказчик уплачивает Подрядчику пеню 0,1% от неоплаченной суммы за каждый день просрочки оплаты."
+            burdens: customer
+            risk: {category: penalty, level: low, against: customer, trap: penalty_uncapped}
+      - key: damages
+        topic: liability
+        variants:
+          - split: dev
+            text: "Стороны несут ответственность за неисполнение обязательств по Договору в соответствии с законодательством Республики Казахстан."
+            burdens: both
+          - split: test
+            text: "В остальных случаях Стороны отвечают за нарушение Договора в соответствии с действующим законодательством Республики Казахстан."
+            burdens: both
+          - split: dev
+            text: "Подрядчик возмещает Заказчику все убытки, включая упущенную выгоду, причиненные ненадлежащим выполнением работ."
+            burdens: contractor
+            risk: {category: liability, level: medium, against: contractor, trap: damages_lost_profit}
+          - split: test
+            text: "Убытки, включая упущенную выгоду, взыскиваются с Подрядчика в полной сумме сверх неустойки."
+            burdens: contractor
+            risk: {category: liability, level: high, against: contractor, trap: damages_over_penalty}
+      - key: exclusion
+        topic: liability
+        optional: true
+        variants:
+          - split: dev
+            text: "Подрядчик не несет ответственности за какие-либо недостатки работ, выявленные после подписания акта."
+            burdens: none
+            risk: {category: liability, level: high, against: customer, trap: exclusion_broad}
+          - split: test
+            text: "Заказчик не несет ответственности за нарушение сроков оплаты, вызванное задержкой финансирования."
+            burdens: none
+            risk: {category: liability, level: medium, against: contractor, trap: exclusion_narrow}
+
+  - key: force_majeure
+    titles: [ФОРС-МАЖОР, ОБСТОЯТЕЛЬСТВА НЕПРЕОДОЛИМОЙ СИЛЫ]
+    force_majeure: true
+    slots:
+      - key: fm_main
+        topic: force_majeure
+        variants:
+          - split: dev
+            text: "Стороны освобождаются от ответственности за неисполнение обязательств, вызванное обстоятельствами непреодолимой силы, при условии уведомления другой Стороны в течение 3 рабочих дней."
+          - split: test
+            text: "Ни одна из Сторон не отвечает за неисполнение Договора, если оно вызвано форс-мажорными обстоятельствами, подтвержденными компетентным органом."
+          - split: dev
+            text: "Подрядчик освобождается от ответственности за неисполнение обязательств, вызванное обстоятельствами непреодолимой силы."
+            risk: {category: force_majeure, level: medium, against: customer, trap: fm_one_sided}
+          - split: test
+            text: "При форс-мажоре Заказчик освобождается от исполнения обязательств по оплате на все время действия таких обстоятельств."
+            risk: {category: force_majeure, level: medium, against: contractor, trap: fm_one_sided}
+
+  - key: termination
+    titles: [РАСТОРЖЕНИЕ ДОГОВОРА]
+    slots:
+      - key: unilateral
+        topic: termination
+        variants:
+          - split: dev
+            text: "Каждая из Сторон вправе отказаться от исполнения Договора, письменно предупредив другую Сторону не менее чем за 30 календарных дней и оплатив фактически понесенные расходы."
+          - split: test
+            text: "Договор может быть расторгнут по соглашению Сторон, а также в одностороннем порядке любой Стороной с уведомлением другой Стороны за один месяц."
+          - split: dev
+            text: "Заказчик вправе в любое время отказаться от Договора без объяснения причин, при этом фактически выполненные работы оплате не подлежат."
+            risk: {category: termination, level: high, against: contractor, trap: termination_no_notice}
+          - split: test
+            text: "Подрядчик вправе отказаться от исполнения Договора в одностороннем порядке, уведомив Заказчика за 7 дней."
+            risk: {category: termination, level: medium, against: customer, trap: termination_short_notice}
+          - split: test
+            text: "Заказчик может расторгнуть Договор в одностороннем внесудебном порядке без предварительного уведомления Подрядчика."
+            risk: {category: termination, level: high, against: contractor, trap: termination_no_notice}
+
+  - key: disputes
+    titles: [РАЗРЕШЕНИЕ СПОРОВ]
+    slots:
+      - key: forum
+        topic: jurisdiction
+        variants:
+          - split: dev
+            text: "Споры разрешаются путем переговоров, а при недостижении согласия — в суде в соответствии с законодательством Республики Казахстан."
+          - split: test
+            text: "Неурегулированные разногласия передаются на рассмотрение суда в порядке, установленном законодательством Республики Казахстан."
+          - split: dev
+            text: "Споры рассматриваются в суде по месту нахождения Подрядчика."
+            risk: {category: jurisdiction, level: low, against: customer, trap: forum_counterparty}
+          - split: test
+            text: "Все споры подлежат рассмотрению в суде по месту регистрации Заказчика."
+            risk: {category: jurisdiction, level: low, against: contractor, trap: forum_counterparty}
+          - split: dev
+            text: "Споры подлежат окончательному разрешению в Суде МФЦА."
+            risk: {category: jurisdiction, level: medium, against: both, trap: forum_aifc}
+          - split: test
+            text: "Споры разрешаются в Международном коммерческом арбитражном суде при ТПП Российской Федерации; применимое право — право Российской Федерации."
+            risk: {category: jurisdiction, level: high, against: both, trap: forum_foreign}
+
+  - key: final
+    titles: [ЗАКЛЮЧИТЕЛЬНЫЕ ПОЛОЖЕНИЯ]
+    slots:
+      - key: amendments
+        topic: other
+        variants:
+          - split: dev
+            text: "Изменения и дополнения к Договору действительны, если они совершены в письменной форме и подписаны обеими Сторонами."
+          - split: test
+            text: "Все приложения и дополнительные соглашения к Договору являются его неотъемлемой частью при условии их подписания Сторонами."
+      - key: copies
+        topic: other
+        variants:
+          - split: dev
+            text: "Договор составлен в двух экземплярах, по одному для каждой из Сторон."
+          - split: test
+            text: "Договор подписан в двух экземплярах, имеющих одинаковую юридическую силу."

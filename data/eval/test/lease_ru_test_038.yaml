@@ -1,0 +1,30 @@
+doc_id: lease_ru_test_038
+contract_type: lease
+language: ru
+party_role: tenant
+origin: synthetic
+findings:
+- clause: '5.1'
+  category: penalty
+  level: low
+  trap_id: penalty_uncapped
+- clause: '5.3'
+  category: liability
+  level: high
+  trap_id: damages_over_penalty
+- clause: '6.3'
+  category: termination
+  level: high
+  trap_id: user_cannot_exit
+- clause: '6.4'
+  category: termination
+  level: medium
+  trap_id: early_fee_medium
+- clause: '7.1'
+  category: force_majeure
+  level: medium
+  trap_id: fm_one_sided
+- clause: null
+  category: liability
+  level: medium
+  trap_id: liability_one_sided

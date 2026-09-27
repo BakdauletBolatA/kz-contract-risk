@@ -1,0 +1,26 @@
+doc_id: lease_kk_dev_007
+contract_type: lease
+language: kk
+party_role: tenant
+origin: synthetic
+findings:
+- clause: '2.2'
+  category: auto_renewal
+  level: low
+  trap_id: renewal_silent
+- clause: '3.3'
+  category: unilateral_change
+  level: high
+  trap_id: price_unilateral
+- clause: '4.4'
+  category: liability
+  level: high
+  trap_id: exclusion_broad
+- clause: '5.1'
+  category: termination
+  level: high
+  trap_id: termination_no_notice
+- clause: null
+  category: force_majeure
+  level: medium
+  trap_id: fm_missing

@@ -1,0 +1,18 @@
+doc_id: supply_ru_test_013
+contract_type: supply
+language: ru
+party_role: supplier
+origin: synthetic
+findings:
+- clause: '3.2'
+  category: acceptance
+  level: high
+  trap_id: acceptance_refusal_any
+- clause: '4.1'
+  category: penalty
+  level: medium
+  trap_id: fine_medium
+- clause: '6.2'
+  category: termination
+  level: medium
+  trap_id: termination_short_notice

@@ -1,0 +1,18 @@
+doc_id: lease_kk_test_001
+contract_type: lease
+language: kk
+party_role: tenant
+origin: synthetic
+findings:
+- clause: '5.1'
+  category: termination
+  level: high
+  trap_id: termination_no_notice
+- clause: '6.1'
+  category: jurisdiction
+  level: high
+  trap_id: forum_foreign
+- clause: null
+  category: force_majeure
+  level: medium
+  trap_id: fm_missing

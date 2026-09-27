@@ -1,0 +1,14 @@
+doc_id: works_ru_test_040
+contract_type: works
+language: ru
+party_role: contractor
+origin: synthetic
+findings:
+- clause: '5.1'
+  category: penalty
+  level: medium
+  trap_id: fine_medium
+- clause: null
+  category: force_majeure
+  level: medium
+  trap_id: fm_missing

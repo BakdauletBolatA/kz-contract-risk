@@ -1,0 +1,18 @@
+doc_id: supply_ru_test_008
+contract_type: supply
+language: ru
+party_role: buyer
+origin: synthetic
+findings:
+- clause: '3.2'
+  category: acceptance
+  level: medium
+  trap_id: short_claim_period
+- clause: '5.1'
+  category: force_majeure
+  level: medium
+  trap_id: fm_one_sided
+- clause: '6.1'
+  category: auto_renewal
+  level: high
+  trap_id: renewal_price_change

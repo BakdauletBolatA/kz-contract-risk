@@ -1,0 +1,22 @@
+doc_id: supply_ru_dev_034
+contract_type: supply
+language: ru
+party_role: buyer
+origin: synthetic
+findings:
+- clause: '3.2'
+  category: acceptance
+  level: medium
+  trap_id: short_claim_period
+- clause: '4.2'
+  category: penalty
+  level: medium
+  trap_id: penalty_daily_medium
+- clause: '5.1'
+  category: auto_renewal
+  level: low
+  trap_id: renewal_silent
+- clause: null
+  category: force_majeure
+  level: medium
+  trap_id: fm_missing

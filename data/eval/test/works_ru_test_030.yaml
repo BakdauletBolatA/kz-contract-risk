@@ -1,0 +1,10 @@
+doc_id: works_ru_test_030
+contract_type: works
+language: ru
+party_role: contractor
+origin: synthetic
+findings:
+- clause: '5.1'
+  category: penalty
+  level: high
+  trap_id: penalty_daily_high

@@ -1,0 +1,22 @@
+doc_id: lease_ru_dev_013
+contract_type: lease
+language: ru
+party_role: tenant
+origin: synthetic
+findings:
+- clause: '3.4'
+  category: unilateral_change
+  level: high
+  trap_id: terms_unilateral
+- clause: '5.2'
+  category: penalty
+  level: high
+  trap_id: fine_high
+- clause: '6.3'
+  category: termination
+  level: medium
+  trap_id: early_fee_medium
+- clause: '7.1'
+  category: force_majeure
+  level: medium
+  trap_id: fm_one_sided

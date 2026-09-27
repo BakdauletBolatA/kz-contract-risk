@@ -1,0 +1,10 @@
+doc_id: supply_ru_test_032
+contract_type: supply
+language: ru
+party_role: buyer
+origin: synthetic
+findings:
+- clause: '5.1'
+  category: force_majeure
+  level: medium
+  trap_id: fm_one_sided

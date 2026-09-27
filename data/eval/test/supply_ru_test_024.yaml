@@ -1,0 +1,18 @@
+doc_id: supply_ru_test_024
+contract_type: supply
+language: ru
+party_role: supplier
+origin: synthetic
+findings:
+- clause: '2.3'
+  category: payment
+  level: high
+  trap_id: pay_when_paid
+- clause: '4.1'
+  category: penalty
+  level: medium
+  trap_id: fine_medium
+- clause: '6.1'
+  category: auto_renewal
+  level: low
+  trap_id: renewal_silent

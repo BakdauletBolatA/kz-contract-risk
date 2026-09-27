@@ -1,0 +1,478 @@
+# Шаблон синтетического договора аренды (ru).
+#
+# Каждый вариант: split (dev/test), text, при необходимости params (случайные
+# значения), risk (ловушка: category, level, against — против какой стороны,
+# trap — id) и burdens (для слотов penalty/liability: кого обременяет пункт).
+# Уровни — строго по docs/LABELING_GUIDE.md.
+contract_type: lease
+language: ru
+user_roles: {tenant: 0.8, landlord: 0.2}
+styles: [classic, classic, titlecase, article, wrapped]
+params:
+  city: [Алматы, Астана, Шымкент, Караганда, Актобе]
+  day: ["1", "5", "12", "20", "28"]
+  month: [января, марта, мая, июля, сентября, ноября]
+  landlord_org: [ТОО «Алтын Сарай», ТОО «Номад Девелопмент», ТОО «Бизнес Орталық», АО «Жетісу Пропертиз»]
+  tenant_org: [ИП «Сейткали», ТОО «Кофе Точка», ТОО «Аптека Здоровье», ИП «Мухамедиев»]
+  person1: [Ахметова А.К., Серикова Б.Т., Жунусова В.Ю.]
+  person2: [Досанова Е.М., Абдрахманова Г.С., Литвинова Д.А.]
+  amount: ["350 000", "450 000", "600 000", "820 000"]
+  area: ["38", "45", "62", "120"]
+  address: ["ул. Абая, 150", "пр. Республики, 24", "ул. Байтурсынова, 7", "мкр. Самал-2, 58"]
+titles:
+  - "ДОГОВОР АРЕНДЫ НЕЖИЛОГО ПОМЕЩЕНИЯ № {num}"
+  - "ДОГОВОР ИМУЩЕСТВЕННОГО НАЙМА (АРЕНДЫ) № {num}"
+preambles:
+  - |-
+    г. {city} «{day}» {month} 2026 г.
+    {landlord_org}, именуемое в дальнейшем «Арендодатель», в лице директора {person1}, действующего на основании Устава, с одной стороны, и {tenant_org}, именуемое в дальнейшем «Арендатор», в лице {person2}, с другой стороны, совместно именуемые «Стороны», заключили настоящий Договор о нижеследующем:
+  - |-
+    г. {city}, {day} {month} 2026 года
+    {landlord_org} (далее — «Арендодатель») и {tenant_org} (далее — «Арендатор»), далее вместе — «Стороны», заключили настоящий Договор о следующем:
+requisites_title: [РЕКВИЗИТЫ И ПОДПИСИ СТОРОН, АДРЕСА И РЕКВИЗИТЫ СТОРОН]
+requisites:
+  - "Арендодатель: {landlord_org}, БИН {bin1}, г. {city}"
+  - "Арендатор: {tenant_org}, БИН {bin2}"
+  - "Подписи Сторон: ______________ / ______________"
+
+sections:
+  - key: subject
+    titles: [ПРЕДМЕТ ДОГОВОРА]
+    slots:
+      - key: object
+        topic: other
+        variants:
+          - split: dev
+            text: "Арендодатель передает, а Арендатор принимает во временное владение и пользование нежилое помещение общей площадью {area} кв. м, расположенное по адресу: г. {city}, {address} (далее — «Помещение»)."
+          - split: test
+            text: "По настоящему Договору Арендодатель предоставляет Арендатору за плату во временное пользование нежилое помещение площадью {area} квадратных метров по адресу: г. {city}, {address}."
+      - key: purpose
+        topic: other
+        variants:
+          - split: dev
+            text: "Помещение предоставляется для размещения офиса Арендатора."
+          - split: dev
+            text: "Помещение используется Арендатором для организации розничной торговли."
+          - split: test
+            text: "Целевое назначение Помещения — размещение предприятия общественного питания."
+          - split: test
+            text: "Арендатор использует Помещение исключительно под офис и склад."
+      - key: ownership
+        topic: other
+        optional: true
+        variants:
+          - split: dev
+            text: "Помещение принадлежит Арендодателю на праве собственности, что подтверждается выпиской из государственного реестра прав на недвижимое имущество."
+          - split: test
+            text: "Право собственности Арендодателя на Помещение зарегистрировано в установленном законодательством порядке."
+
+  - key: term
+    titles: [СРОК АРЕНДЫ, СРОК ДЕЙСТВИЯ ДОГОВОРА]
+    slots:
+      - key: duration
+        topic: other
+        variants:
+          - split: dev
+            text: "Настоящий Договор действует с даты подписания в течение 11 (одиннадцати) месяцев."
+          - split: test
+            text: "Срок аренды составляет 11 месяцев с даты подписания акта приема-передачи Помещения."
+      - key: renewal
+        topic: auto_renewal
+        variants:
+          - split: dev
+            text: "По истечении срока аренды Договор может быть продлен по письменному соглашению Сторон."
+          - split: test
+            text: "Продление срока аренды оформляется дополнительным соглашением, подписанным обеими Сторонами."
+          - split: dev
+            text: "Если ни одна из Сторон не заявит о прекращении Договора за 30 (тридцать) дней до окончания срока его действия, Договор считается продленным на тот же срок на тех же условиях."
+            risk: {category: auto_renewal, level: low, against: both, trap: renewal_silent}
+          - split: test
+            text: "При отсутствии письменного возражения любой из Сторон, направленного не позднее чем за 20 календарных дней до истечения срока аренды, действие Договора автоматически пролонгируется на следующие 11 месяцев."
+            risk: {category: auto_renewal, level: low, against: both, trap: renewal_silent}
+          - split: dev
+            text: "Договор автоматически продлевается на каждый последующий год, если Арендатор не уведомит Арендодателя об отказе от продления не менее чем за 90 (девяносто) дней до окончания срока."
+            risk: {category: auto_renewal, level: medium, against: tenant, trap: renewal_long_notice}
+          - split: test
+            text: "Срок действия Договора считается продленным на один год всякий раз, когда Арендатор не направил Арендодателю письменное уведомление об отказе от пролонгации за три месяца до даты окончания срока."
+            risk: {category: auto_renewal, level: medium, against: tenant, trap: renewal_long_notice}
+          - split: dev
+            text: "По истечении срока Договор продлевается автоматически на тот же срок, при этом размер арендной платы на новый срок устанавливается Арендодателем самостоятельно."
+            risk: {category: auto_renewal, level: high, against: tenant, trap: renewal_price_change}
+          - split: test
+            text: "Если Арендатор продолжает пользоваться Помещением после окончания срока, Договор считается возобновленным на новый срок на условиях и по ставкам, которые определит Арендодатель."
+            risk: {category: auto_renewal, level: high, against: tenant, trap: renewal_price_change}
+
+  - key: rent
+    titles: [АРЕНДНАЯ ПЛАТА И ПОРЯДОК РАСЧЕТОВ]
+    slots:
+      - key: amount
+        topic: other
+        variants:
+          - split: dev
+            text: "Арендная плата составляет {amount} тенге в месяц, включая НДС."
+          - split: test
+            text: "Размер ежемесячной арендной платы — {amount} (без учета коммунальных услуг) тенге."
+      - key: timing
+        topic: other
+        variants:
+          - split: dev
+            text: "Арендная плата вносится ежемесячно не позднее 10 (десятого) числа текущего месяца путем перечисления на банковский счет Арендодателя."
+          - split: test
+            text: "Арендатор перечисляет арендную плату авансом до 5 числа оплачиваемого месяца на расчетный счет Арендодателя."
+      - key: utilities
+        topic: other
+        optional: true
+        variants:
+          - split: dev
+            text: "Коммунальные услуги оплачиваются Арендатором отдельно по показаниям приборов учета на основании счетов Арендодателя."
+          - split: test
+            text: "Расходы на электроэнергию, водоснабжение и отопление Арендатор возмещает Арендодателю ежемесячно по фактическому потреблению."
+      - key: rent_change
+        topic: unilateral_change
+        variants:
+          - split: dev
+            text: "Размер арендной платы может быть изменен по письменному соглашению Сторон, но не чаще одного раза в год."
+          - split: test
+            text: "Изменение арендной платы допускается только путем подписания Сторонами дополнительного соглашения к Договору."
+          - split: dev
+            text: "Арендодатель вправе в одностороннем порядке изменять размер арендной платы, письменно уведомив об этом Арендатора."
+            risk: {category: unilateral_change, level: high, against: tenant, trap: price_unilateral}
+          - split: dev
+            text: "Арендодатель вправе в одностороннем порядке изменять условия настоящего Договора, уведомив Арендатора за 10 дней."
+            risk: {category: unilateral_change, level: high, against: tenant, trap: terms_unilateral}
+          - split: test
+            text: "Арендная плата может пересматриваться Арендодателем без согласования с Арендатором; новая ставка применяется с месяца, следующего за месяцем уведомления."
+            risk: {category: unilateral_change, level: high, against: tenant, trap: price_unilateral}
+          - split: dev
+            text: "Арендодатель вправе в одностороннем порядке увеличить арендную плату не более чем на 10% в год, уведомив Арендатора не менее чем за 30 дней."
+            risk: {category: unilateral_change, level: low, against: tenant, trap: price_unilateral_capped}
+          - split: test
+            text: "Не чаще одного раза в год Арендодатель может в одностороннем порядке индексировать арендную плату в пределах официального уровня инфляции, письменно известив Арендатора за один месяц."
+            risk: {category: unilateral_change, level: low, against: tenant, trap: price_unilateral_capped}
+      - key: deposit
+        topic: termination
+        optional: true
+        variants:
+          - split: dev
+            text: "Арендатор вносит обеспечительный платеж в размере месячной арендной платы, который возвращается Арендатору в течение 10 банковских дней после прекращения Договора за вычетом задолженности."
+          - split: test
+            text: "Гарантийный взнос, равный арендной плате за один месяц, засчитывается в счет платы за последний месяц аренды либо возвращается Арендатору при прекращении Договора."
+          - split: dev
+            text: "При досрочном расторжении Договора по инициативе Арендатора обеспечительный платеж возврату не подлежит."
+            risk: {category: termination, level: medium, against: tenant, trap: deposit_forfeit_user_exit}
+          - split: test
+            text: "Если Договор прекращается ранее срока по желанию Арендатора, внесенный им гарантийный взнос остается у Арендодателя."
+            risk: {category: termination, level: medium, against: tenant, trap: deposit_forfeit_user_exit}
+          - split: dev
+            text: "Обеспечительный платеж не возвращается Арендатору ни при каких обстоятельствах, в том числе при расторжении Договора по инициативе Арендодателя."
+            risk: {category: termination, level: high, against: tenant, trap: deposit_forfeit_any}
+          - split: test
+            text: "Гарантийный взнос является невозвратным и удерживается Арендодателем при любом прекращении Договора."
+            risk: {category: termination, level: high, against: tenant, trap: deposit_forfeit_any}
+
+  - key: duties
+    titles: [ПРАВА И ОБЯЗАННОСТИ СТОРОН]
+    slots:
+      - key: landlord_duties
+        topic: other
+        variants:
+          - split: dev
+            text: |-
+              Арендодатель обязан:
+              а) передать Помещение по акту приема-передачи в течение 5 рабочих дней с даты подписания Договора;
+              б) обеспечивать беспрепятственный доступ Арендатора к Помещению;
+              в) производить капитальный ремонт Помещения за свой счет.
+          - split: test
+            text: |-
+              Арендодатель обязуется:
+              1) предоставить Помещение в состоянии, пригодном для использования по назначению;
+              2) не препятствовать пользованию Помещением;
+              3) своевременно устранять аварии инженерных сетей здания.
+      - key: tenant_duties
+        topic: other
+        variants:
+          - split: dev
+            text: "Арендатор обязан использовать Помещение по назначению, своевременно вносить арендную плату и поддерживать Помещение в надлежащем санитарном состоянии."
+          - split: test
+            text: "Арендатор обязуется соблюдать правила пожарной безопасности, производить текущий ремонт Помещения и вернуть его по окончании аренды в состоянии с учетом нормального износа."
+      - key: sublease
+        topic: other
+        optional: true
+        variants:
+          - split: dev
+            text: "Арендатор вправе сдавать Помещение в субаренду только с письменного согласия Арендодателя, полученного в порядке, предусмотренном п. 9.3 настоящего Договора."
+          - split: test
+            text: "Передача Помещения в субаренду третьим лицам допускается при наличии письменного согласия Арендодателя."
+
+  - key: liability
+    titles: [ОТВЕТСТВЕННОСТЬ СТОРОН]
+    slots:
+      - key: tenant_penalty
+        topic: penalty
+        variants:
+          - split: dev
+            text: "За просрочку внесения арендной платы Арендатор уплачивает Арендодателю пеню в размере 0,1% от суммы задолженности за каждый день просрочки, но не более 10% от суммы задолженности."
+            burdens: tenant
+          - split: test
+            text: "В случае несвоевременной оплаты Арендатор выплачивает пеню из расчета 0,05% от неоплаченной суммы за каждый день просрочки, при этом общий размер пени не может превышать 10% от суммы долга."
+            burdens: tenant
+          - split: dev
+            text: "За просрочку внесения арендной платы Арендатор уплачивает Арендодателю пеню в размере 0,1% от суммы задолженности за каждый день просрочки."
+            burdens: tenant
+            risk: {category: penalty, level: low, against: tenant, trap: penalty_uncapped}
+          - split: test
+            text: "При задержке платежей с Арендатора взыскивается пеня 0,1 процента от просроченной суммы за каждый календарный день задержки."
+            burdens: tenant
+            risk: {category: penalty, level: low, against: tenant, trap: penalty_uncapped}
+          - split: dev
+            text: "За просрочку внесения арендной платы Арендатор уплачивает Арендодателю пеню в размере {rate}% от суммы задолженности за каждый день просрочки."
+            params: {rate: ["0,2", "0,3"]}
+            burdens: tenant
+            risk: {category: penalty, level: medium, against: tenant, trap: penalty_daily_medium}
+          - split: test
+            text: "Арендатор оплачивает неустойку (пеню) в размере {rate} процента от суммы долга за каждый день задержки оплаты."
+            params: {rate: ["0,2", "0,4"]}
+            burdens: tenant
+            risk: {category: penalty, level: medium, against: tenant, trap: penalty_daily_medium}
+          - split: dev
+            text: "За просрочку внесения арендной платы Арендатор уплачивает Арендодателю пеню в размере {rate}% от суммы задолженности за каждый день просрочки."
+            params: {rate: ["0,5", "1", "2"]}
+            burdens: tenant
+            risk: {category: penalty, level: high, against: tenant, trap: penalty_daily_high}
+          - split: test
+            text: "За каждый день просрочки любого платежа по Договору Арендодатель вправе взыскать с Арендатора неустойку в размере {rate}% от суммы просроченного платежа."
+            params: {rate: ["0,5", "1"]}
+            burdens: tenant
+            risk: {category: penalty, level: high, against: tenant, trap: penalty_daily_high}
+      - key: tenant_fine
+        topic: penalty
+        optional: true
+        variants:
+          - split: dev
+            text: "За нарушение правил пожарной безопасности Арендатор уплачивает штраф в размере 5% от месячной арендной платы."
+            burdens: tenant
+          - split: test
+            text: "Нарушение Арендатором правил внутреннего распорядка здания влечет уплату штрафа в размере 3 процентов от месячной арендной платы."
+            burdens: tenant
+          - split: dev
+            text: "За каждое нарушение правил пользования Помещением Арендатор уплачивает штраф в размере 20% от месячной арендной платы."
+            burdens: tenant
+            risk: {category: penalty, level: medium, against: tenant, trap: fine_medium}
+          - split: dev
+            text: "За нарушение сроков освобождения Помещения Арендатор уплачивает штраф в размере 100% месячной арендной платы."
+            burdens: tenant
+            risk: {category: penalty, level: high, against: tenant, trap: fine_high}
+          - split: test
+            text: "Нарушение Арендатором режима работы здания влечет штраф в размере 15 процентов от суммы месячной арендной платы, уплачиваемый Арендатором."
+            burdens: tenant
+            risk: {category: penalty, level: medium, against: tenant, trap: fine_medium}
+          - split: test
+            text: "В случае нарушения любого из обязательств по Договору Арендатор выплачивает Арендодателю штраф в размере 50% от годовой суммы арендной платы."
+            burdens: tenant
+            risk: {category: penalty, level: high, against: tenant, trap: fine_high}
+      - key: landlord_penalty
+        topic: penalty
+        optional: true
+        variants:
+          - split: dev
+            text: "За просрочку передачи Помещения Арендодатель уплачивает Арендатору пеню в размере 0,1% от месячной арендной платы за каждый день просрочки, но не более 10% от месячной арендной платы."
+            burdens: landlord
+          - split: test
+            text: "В случае задержки передачи Помещения Арендодатель выплачивает Арендатору неустойку 0,1 процента от суммы месячной платы за каждый день задержки, но не свыше 10 процентов."
+            burdens: landlord
+          - split: dev
+            text: "За просрочку возврата обеспечительного платежа Арендодатель уплачивает Арендатору пеню в размере 1% от суммы платежа за каждый день просрочки."
+            burdens: landlord
+            risk: {category: penalty, level: high, against: landlord, trap: penalty_daily_high}
+          - split: test
+            text: "Если Арендодатель нарушит срок передачи Помещения, он выплачивает Арендатору неустойку в размере 0,5 процента от годовой арендной платы за каждый день просрочки."
+            burdens: landlord
+            risk: {category: penalty, level: high, against: landlord, trap: penalty_daily_high}
+      - key: damages
+        topic: liability
+        variants:
+          - split: dev
+            text: "Стороны несут ответственность за неисполнение или ненадлежащее исполнение обязательств по Договору в соответствии с законодательством Республики Казахстан."
+            burdens: both
+          - split: test
+            text: "За неисполнение обязательств по настоящему Договору Стороны отвечают в порядке, установленном действующим законодательством Республики Казахстан."
+            burdens: both
+          - split: dev
+            text: "Арендатор возмещает Арендодателю все убытки, включая упущенную выгоду, причиненные неисполнением Договора."
+            burdens: tenant
+            risk: {category: liability, level: medium, against: tenant, trap: damages_lost_profit}
+          - split: test
+            text: "Арендатор обязан компенсировать Арендодателю реальный ущерб и неполученные доходы, возникшие вследствие нарушения Арендатором условий Договора."
+            burdens: tenant
+            risk: {category: liability, level: medium, against: tenant, trap: damages_lost_profit}
+          - split: dev
+            text: "Уплата неустойки не освобождает Арендатора от возмещения убытков, включая упущенную выгоду, которые взыскиваются в полной сумме сверх неустойки."
+            burdens: tenant
+            risk: {category: liability, level: high, against: tenant, trap: damages_over_penalty}
+          - split: test
+            text: "Помимо неустойки Арендатор возмещает Арендодателю в полном объеме прямые и косвенные убытки."
+            burdens: tenant
+            risk: {category: liability, level: high, against: tenant, trap: damages_over_penalty}
+      - key: exclusion
+        topic: liability
+        optional: true
+        variants:
+          - split: dev
+            text: "Арендодатель не несет ответственности за сохранность имущества Арендатора, находящегося в Помещении."
+            burdens: none
+            risk: {category: liability, level: medium, against: tenant, trap: exclusion_narrow}
+          - split: dev
+            text: "Арендодатель не несет ответственности за какие-либо убытки Арендатора, возникшие в связи с исполнением или неисполнением настоящего Договора."
+            burdens: none
+            risk: {category: liability, level: high, against: tenant, trap: exclusion_broad}
+          - split: test
+            text: "Арендодатель не отвечает за ущерб, причиненный имуществу Арендатора в результате протечек инженерных сетей здания."
+            burdens: none
+            risk: {category: liability, level: medium, against: tenant, trap: exclusion_narrow}
+          - split: test
+            text: "Ни при каких обстоятельствах Арендодатель не отвечает перед Арендатором за любой ущерб, причиненный Арендатору в связи с арендой Помещения."
+            burdens: none
+            risk: {category: liability, level: high, against: tenant, trap: exclusion_broad}
+
+  - key: termination
+    titles: [РАСТОРЖЕНИЕ ДОГОВОРА, ИЗМЕНЕНИЕ И РАСТОРЖЕНИЕ ДОГОВОРА]
+    slots:
+      - key: by_agreement
+        topic: other
+        variants:
+          - split: dev
+            text: "Договор может быть расторгнут по соглашению Сторон."
+          - split: test
+            text: "Досрочное прекращение Договора возможно по взаимному письменному согласию Сторон."
+      - key: unilateral
+        topic: termination
+        variants:
+          - split: dev
+            text: "Каждая из Сторон вправе отказаться от исполнения Договора, письменно предупредив другую Сторону не менее чем за 30 (тридцать) календарных дней."
+          - split: test
+            text: "Любая Сторона может в одностороннем порядке расторгнуть Договор, направив другой Стороне уведомление не позднее чем за один месяц до предполагаемой даты расторжения."
+          - split: dev
+            text: "Арендодатель вправе в любое время в одностороннем порядке отказаться от исполнения Договора без предварительного уведомления Арендатора."
+            risk: {category: termination, level: high, against: tenant, trap: termination_no_notice}
+          - split: test
+            text: "Арендодатель может расторгнуть Договор во внесудебном порядке без объяснения причин, известив Арендатора в день расторжения."
+            risk: {category: termination, level: high, against: tenant, trap: termination_no_notice}
+          - split: dev
+            text: "Арендодатель вправе в одностороннем порядке отказаться от исполнения Договора, уведомив Арендатора за 10 (десять) дней."
+            risk: {category: termination, level: medium, against: tenant, trap: termination_short_notice}
+          - split: test
+            text: "Арендодатель имеет право досрочно расторгнуть Договор в одностороннем порядке, направив Арендатору письменное уведомление за 14 календарных дней."
+            risk: {category: termination, level: medium, against: tenant, trap: termination_short_notice}
+          - split: dev
+            text: "Арендатор вправе в любое время отказаться от исполнения Договора без предварительного уведомления Арендодателя."
+            risk: {category: termination, level: high, against: landlord, trap: termination_no_notice}
+      - key: tenant_exit
+        topic: termination
+        optional: true
+        variants:
+          - split: dev
+            text: "Арендатор не вправе досрочно расторгнуть Договор или отказаться от его исполнения."
+            risk: {category: termination, level: high, against: tenant, trap: user_cannot_exit}
+          - split: test
+            text: "Досрочное прекращение Договора по инициативе Арендатора не допускается."
+            risk: {category: termination, level: high, against: tenant, trap: user_cannot_exit}
+      - key: early_fee
+        topic: termination
+        optional: true
+        variants:
+          - split: dev
+            text: "При досрочном расторжении Договора по инициативе Арендатора он уплачивает Арендодателю арендную плату за весь оставшийся срок аренды."
+            risk: {category: termination, level: high, against: tenant, trap: early_fee_high}
+          - split: test
+            text: "В случае одностороннего отказа Арендатора от Договора до истечения срока аренды Арендатор выплачивает компенсацию в размере арендной платы за 6 месяцев."
+            risk: {category: termination, level: high, against: tenant, trap: early_fee_high}
+          - split: dev
+            text: "При досрочном расторжении Договора по инициативе Арендатора он выплачивает Арендодателю штраф в размере одной месячной арендной платы."
+            risk: {category: termination, level: medium, against: tenant, trap: early_fee_medium}
+          - split: test
+            text: "Если Арендатор прекращает аренду досрочно, он уплачивает Арендодателю компенсацию в размере двухмесячной арендной платы."
+            risk: {category: termination, level: medium, against: tenant, trap: early_fee_medium}
+
+  - key: force_majeure
+    titles: [ФОРС-МАЖОР, ОБСТОЯТЕЛЬСТВА НЕПРЕОДОЛИМОЙ СИЛЫ]
+    force_majeure: true
+    slots:
+      - key: fm_main
+        topic: force_majeure
+        variants:
+          - split: dev
+            text: "Стороны освобождаются от ответственности за неисполнение обязательств, если оно явилось следствием обстоятельств непреодолимой силы (стихийные бедствия, военные действия, акты государственных органов), при условии уведомления другой Стороны в течение 5 рабочих дней."
+          - split: test
+            text: "Ни одна из Сторон не несет ответственности за неисполнение обязательств, вызванное форс-мажорными обстоятельствами, о наступлении которых она известила другую Сторону в течение десяти дней с подтверждением уполномоченного органа."
+          - split: dev
+            text: "Арендодатель освобождается от ответственности за неисполнение обязательств, вызванное обстоятельствами непреодолимой силы."
+            risk: {category: force_majeure, level: medium, against: tenant, trap: fm_one_sided}
+          - split: test
+            text: "При наступлении форс-мажорных обстоятельств Арендодатель освобождается от исполнения своих обязательств на время их действия."
+            risk: {category: force_majeure, level: medium, against: tenant, trap: fm_one_sided}
+      - key: fm_long
+        topic: other
+        optional: true
+        variants:
+          - split: dev
+            text: "Если обстоятельства непреодолимой силы длятся более 2 (двух) месяцев, каждая из Сторон вправе расторгнуть Договор, уведомив об этом другую Сторону."
+          - split: test
+            text: "При действии форс-мажора дольше шестидесяти дней Стороны вправе прекратить Договор без применения мер ответственности."
+
+  - key: disputes
+    titles: [РАЗРЕШЕНИЕ СПОРОВ, ПОРЯДОК РАЗРЕШЕНИЯ СПОРОВ]
+    slots:
+      - key: forum
+        topic: jurisdiction
+        variants:
+          - split: dev
+            text: "Споры разрешаются путем переговоров, а при недостижении согласия — в суде в соответствии с законодательством Республики Казахстан."
+          - split: test
+            text: "Все разногласия Стороны урегулируют путем переговоров; неурегулированные споры подлежат рассмотрению в судебном порядке по законодательству Республики Казахстан."
+          - split: dev
+            text: "Споры, не урегулированные путем переговоров, рассматриваются в суде по месту нахождения Арендодателя."
+            risk: {category: jurisdiction, level: low, against: tenant, trap: forum_counterparty}
+          - split: dev
+            text: "Споры, не урегулированные путем переговоров, рассматриваются в суде по месту нахождения Арендатора."
+            risk: {category: jurisdiction, level: low, against: landlord, trap: forum_counterparty}
+          - split: test
+            text: "Все споры по Договору подлежат рассмотрению в специализированном межрайонном экономическом суде по месту регистрации Арендодателя."
+            risk: {category: jurisdiction, level: low, against: tenant, trap: forum_counterparty}
+          - split: dev
+            text: "Все споры подлежат окончательному разрешению в Международном арбитражном центре МФЦА в соответствии с его регламентом."
+            risk: {category: jurisdiction, level: medium, against: both, trap: forum_aifc}
+          - split: test
+            text: "Споры рассматриваются Судом Международного финансового центра «Астана»."
+            risk: {category: jurisdiction, level: medium, against: both, trap: forum_aifc}
+          - split: dev
+            text: "Споры разрешаются в Лондонском международном арбитражном суде (LCIA); применимым правом является право Англии и Уэльса."
+            risk: {category: jurisdiction, level: high, against: both, trap: forum_foreign}
+          - split: test
+            text: "Любые споры передаются на рассмотрение Международного коммерческого арбитражного суда при Торгово-промышленной палате Российской Федерации, применимое право — право Российской Федерации."
+            risk: {category: jurisdiction, level: high, against: both, trap: forum_foreign}
+      - key: claims
+        topic: other
+        optional: true
+        variants:
+          - split: dev
+            text: "Соблюдение претензионного порядка обязательно; срок ответа на претензию — 10 (десять) рабочих дней с даты ее получения."
+          - split: test
+            text: "До обращения в суд Сторона направляет другой Стороне письменную претензию, которая рассматривается в течение пятнадцати календарных дней."
+
+  - key: final
+    titles: [ЗАКЛЮЧИТЕЛЬНЫЕ ПОЛОЖЕНИЯ]
+    slots:
+      - key: amendments
+        topic: other
+        variants:
+          - split: dev
+            text: "Изменения и дополнения к Договору действительны, если они совершены в письменной форме и подписаны обеими Сторонами."
+          - split: test
+            text: "Все изменения настоящего Договора оформляются дополнительными соглашениями, подписанными уполномоченными представителями Сторон."
+      - key: copies
+        topic: other
+        variants:
+          - split: dev
+            text: "Договор составлен в двух экземплярах, имеющих одинаковую юридическую силу, по одному для каждой из Сторон."
+          - split: test
+            text: "Настоящий Договор подписан в двух подлинных экземплярах на русском языке, по одному экземпляру для каждой Стороны."

@@ -1,0 +1,18 @@
+doc_id: works_ru_test_026
+contract_type: works
+language: ru
+party_role: contractor
+origin: synthetic
+findings:
+- clause: '5.1'
+  category: penalty
+  level: high
+  trap_id: penalty_daily_high
+- clause: '5.4'
+  category: liability
+  level: medium
+  trap_id: exclusion_narrow
+- clause: null
+  category: force_majeure
+  level: medium
+  trap_id: fm_missing

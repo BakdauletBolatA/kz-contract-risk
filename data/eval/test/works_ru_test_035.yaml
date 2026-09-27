@@ -1,0 +1,18 @@
+doc_id: works_ru_test_035
+contract_type: works
+language: ru
+party_role: customer
+origin: synthetic
+findings:
+- clause: '3.2'
+  category: unilateral_change
+  level: high
+  trap_id: price_unilateral
+- clause: '4.1'
+  category: acceptance
+  level: medium
+  trap_id: silent_acceptance
+- clause: null
+  category: force_majeure
+  level: medium
+  trap_id: fm_missing

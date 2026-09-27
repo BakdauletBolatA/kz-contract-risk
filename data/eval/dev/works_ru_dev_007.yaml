@@ -1,0 +1,14 @@
+doc_id: works_ru_dev_007
+contract_type: works
+language: ru
+party_role: customer
+origin: synthetic
+findings:
+- clause: '5.2'
+  category: penalty
+  level: high
+  trap_id: penalty_daily_high
+- clause: null
+  category: force_majeure
+  level: medium
+  trap_id: fm_missing

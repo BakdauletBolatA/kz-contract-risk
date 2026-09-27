@@ -1,0 +1,14 @@
+doc_id: works_ru_dev_035
+contract_type: works
+language: ru
+party_role: contractor
+origin: synthetic
+findings:
+- clause: '3.3'
+  category: payment
+  level: high
+  trap_id: pay_when_paid
+- clause: '5.1'
+  category: penalty
+  level: high
+  trap_id: penalty_daily_high

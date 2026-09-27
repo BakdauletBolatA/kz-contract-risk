@@ -1,0 +1,10 @@
+doc_id: supply_ru_dev_024
+contract_type: supply
+language: ru
+party_role: buyer
+origin: synthetic
+findings:
+- clause: '6.1'
+  category: auto_renewal
+  level: low
+  trap_id: renewal_silent

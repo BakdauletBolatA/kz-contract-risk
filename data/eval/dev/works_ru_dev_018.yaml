@@ -1,0 +1,10 @@
+doc_id: works_ru_dev_018
+contract_type: works
+language: ru
+party_role: contractor
+origin: synthetic
+findings:
+- clause: '8.1'
+  category: jurisdiction
+  level: medium
+  trap_id: forum_aifc

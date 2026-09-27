@@ -1,0 +1,14 @@
+doc_id: lease_ru_test_010
+contract_type: lease
+language: ru
+party_role: tenant
+origin: synthetic
+findings:
+- clause: '2.2'
+  category: auto_renewal
+  level: low
+  trap_id: renewal_silent
+- clause: '6.2'
+  category: termination
+  level: medium
+  trap_id: termination_short_notice

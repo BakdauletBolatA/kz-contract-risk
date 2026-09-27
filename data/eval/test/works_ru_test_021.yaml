@@ -1,0 +1,10 @@
+doc_id: works_ru_test_021
+contract_type: works
+language: ru
+party_role: customer
+origin: synthetic
+findings:
+- clause: '3.2'
+  category: unilateral_change
+  level: high
+  trap_id: price_unilateral

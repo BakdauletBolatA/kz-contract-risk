@@ -1,0 +1,14 @@
+doc_id: works_ru_test_023
+contract_type: works
+language: ru
+party_role: contractor
+origin: synthetic
+findings:
+- clause: '5.4'
+  category: liability
+  level: medium
+  trap_id: exclusion_narrow
+- clause: '6.1'
+  category: force_majeure
+  level: medium
+  trap_id: fm_one_sided

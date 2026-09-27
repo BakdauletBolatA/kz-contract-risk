@@ -1,0 +1,34 @@
+doc_id: lease_ru_test_021
+contract_type: lease
+language: ru
+party_role: tenant
+origin: synthetic
+findings:
+- clause: '2.2'
+  category: auto_renewal
+  level: low
+  trap_id: renewal_silent
+- clause: '3.4'
+  category: unilateral_change
+  level: low
+  trap_id: price_unilateral_capped
+- clause: '3.5'
+  category: termination
+  level: high
+  trap_id: deposit_forfeit_any
+- clause: '5.1'
+  category: penalty
+  level: high
+  trap_id: penalty_daily_high
+- clause: '5.2'
+  category: penalty
+  level: high
+  trap_id: fine_high
+- clause: '6.3'
+  category: termination
+  level: high
+  trap_id: early_fee_high
+- clause: null
+  category: force_majeure
+  level: medium
+  trap_id: fm_missing

@@ -1,0 +1,18 @@
+doc_id: works_ru_test_001
+contract_type: works
+language: ru
+party_role: contractor
+origin: synthetic
+findings:
+- clause: '5.3'
+  category: liability
+  level: high
+  trap_id: damages_over_penalty
+- clause: '6.1'
+  category: termination
+  level: high
+  trap_id: termination_no_notice
+- clause: null
+  category: force_majeure
+  level: medium
+  trap_id: fm_missing

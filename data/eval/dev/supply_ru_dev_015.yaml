@@ -1,0 +1,22 @@
+doc_id: supply_ru_dev_015
+contract_type: supply
+language: ru
+party_role: buyer
+origin: synthetic
+findings:
+- clause: '4.3'
+  category: liability
+  level: high
+  trap_id: exclusion_broad
+- clause: '5.2'
+  category: termination
+  level: high
+  trap_id: termination_no_notice
+- clause: '6.1'
+  category: jurisdiction
+  level: low
+  trap_id: forum_counterparty
+- clause: null
+  category: force_majeure
+  level: medium
+  trap_id: fm_missing
