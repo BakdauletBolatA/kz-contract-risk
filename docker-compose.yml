@@ -1,6 +1,6 @@
 # pgvector для эталонного корпуса.
 #
-# Порт по умолчанию 5433, а не 5432: на той же машине часто уже крутится
+# Порт по умолчанию 5439, а не 5432/5433: на той же машине часто уже крутится
 # Postgres другого проекта, и конфликт портов выглядит как «база не отвечает».
 
 services:
@@ -14,7 +14,7 @@ services:
       - pgdata:/var/lib/postgresql/data
       - ./db/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
     ports:
-      - "${KZCR_PG_PORT:-5433}:5432"
+      - "${KZCR_PG_PORT:-5439}:5432"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-kzcr} -d ${POSTGRES_DB:-kzcr}"]
       interval: 3s

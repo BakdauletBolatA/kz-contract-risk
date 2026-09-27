@@ -68,6 +68,70 @@ def _eval_table(args: argparse.Namespace) -> int:
     return 0
 
 
+def _corpus_audit(_: argparse.Namespace) -> int:
+    from contract_risk.corpus.audit import (
+        audit_balance,
+        audit_coverage,
+        audit_leakage,
+        balance_table,
+    )
+    from contract_risk.corpus.manifest import corpus_hash, load_corpus
+    from contract_risk.evaluation.dataset import SPLITS, load_split
+    from contract_risk.ingestion import parse_text
+
+    clauses = load_corpus(DATA / "corpus")
+    print(f"корпус: {len(clauses)} формулировок, версия {corpus_hash(clauses)}")
+    print(f"{'тип/категория':32} нейтр.  сторона А  сторона Б")
+    for row in balance_table(clauses):
+        print(
+            f"{row.contract_type + '/' + row.category:32} {row.neutral:6} "
+            f"{row.side_a:10} {row.side_b:10}"
+        )
+    eval_texts = [
+        (f"{d.doc_id}:{c.id}", c.text)
+        for split in SPLITS
+        for d in load_split(DATA / "eval", split)
+        for c in parse_text(d.text, d.doc_id).analysable_clauses
+    ]
+    problems = audit_balance(clauses) + audit_coverage(clauses)
+    problems += audit_leakage(clauses, eval_texts)
+    print(f"проблем: {len(problems)}")
+    for p in problems:
+        print("  " + p)
+    return 1 if problems else 0
+
+
+def _corpus_load(args: argparse.Namespace) -> int:
+    from contract_risk.config import get_settings
+    from contract_risk.corpus.manifest import load_corpus
+    from contract_risk.retrieval.embeddings import build_embedder
+    from contract_risk.retrieval.index import load_into_pgvector
+
+    settings = get_settings()
+    if not settings.database_url:
+        print("KZCR_DATABASE_URL не задан (см. .env.example)", file=sys.stderr)
+        return 2
+    embedder = build_embedder(settings.embedder)
+    n = load_into_pgvector(
+        load_corpus(DATA / "corpus"), embedder, settings.database_url, args.rebuild
+    )
+    print(f"в pgvector {n} формулировок, эмбеддер {embedder.name}")
+    return 0
+
+
+def _corpus_search(args: argparse.Namespace) -> int:
+    from contract_risk.corpus.manifest import load_corpus
+    from contract_risk.retrieval.embeddings import build_embedder
+    from contract_risk.retrieval.index import ReferenceIndex
+
+    index = ReferenceIndex.in_memory(load_corpus(DATA / "corpus"), build_embedder("hashing"))
+    for hit in index.similar(
+        args.text, contract_type=args.type, category=args.category, lang=args.lang, k=args.k
+    ):
+        print(f"{hit.score:.3f}  {hit.clause.id:24} [{hit.clause.favours}]  {hit.clause.text}")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="kzcr", description=__doc__.split("\n")[0])
     sub = parser.add_subparsers(dest="command", required=True)
@@ -86,6 +150,21 @@ def build_parser() -> argparse.ArgumentParser:
     table = ev.add_parser("table", help="таблица прогонов")
     table.add_argument("--out", default=str(RESULTS))
     table.set_defaults(func=_eval_table)
+
+    corpus = sub.add_parser("corpus", help="эталонный корпус").add_subparsers(
+        dest="action", required=True
+    )
+    corpus.add_parser("audit", help="лицензии, баланс, утечка").set_defaults(func=_corpus_audit)
+    load = corpus.add_parser("load", help="загрузить в pgvector")
+    load.add_argument("--rebuild", action="store_true")
+    load.set_defaults(func=_corpus_load)
+    search = corpus.add_parser("search", help="похожие эталоны")
+    search.add_argument("text")
+    search.add_argument("--type", default=None)
+    search.add_argument("--category", default=None)
+    search.add_argument("--lang", default=None)
+    search.add_argument("-k", type=int, default=5)
+    search.set_defaults(func=_corpus_search)
     return parser
 
 
