@@ -752,6 +752,13 @@ _CAPPED_CHANGE = re.compile(
 )
 
 
+_UNILATERAL_MARKER = re.compile(
+    r"(?:в\s+одностороннем\s+порядке|без\s+согласовани\w*(?:\s+с\s+\w+)?|без\s+согласия|самостоятельно"
+    r"|оспариванию\s+не\s+подлежит|біржақты\s+тәртіппен|келісімінсіз)",
+    re.IGNORECASE,
+)
+
+
 def unilateral_change(ctx: RuleContext) -> list[Hit]:
     action = _CHANGE_KK if ctx.lang == Language.KK else _CHANGE_RU
     obj = _CHANGE_OBJECT.search(ctx.text)
@@ -763,6 +770,10 @@ def unilateral_change(ctx: RuleContext) -> list[Hit]:
         return []
     capped = _CAPPED_CHANGE.search(ctx.text)
     level = LOW if capped and terms is None else HIGH
+    # Подсветка: само действие («индексируется», «изменять») и признак
+    # односторонности, а не только слово «цена».
+    verb = re.search(action, ctx.text, re.IGNORECASE)
+    marker = _UNILATERAL_MARKER.search(ctx.text)
     what = "условия договора" if terms else "цену"
     return [
         Hit(
@@ -770,7 +781,7 @@ def unilateral_change(ctx: RuleContext) -> list[Hit]:
             C.UNILATERAL_CHANGE,
             level,
             frozenset({counterparty(holder)}),
-            _span(terms or obj) + _span(capped),
+            _span(verb) + _span(terms or obj) + _span(marker) + _span(capped),
             f"Контрагент может менять {what} без вашего согласия",
             (
                 f"{ROLE_TITLES[holder].split(' /')[0]} вправе изменить {what} в одностороннем порядке"
