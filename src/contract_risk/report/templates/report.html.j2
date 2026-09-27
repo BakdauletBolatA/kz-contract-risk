@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Проверка договора — {{ report.title or report.doc_id }}</title>
+<style>
+  :root {
+    --ink: #1c2230; --muted: #5d6576; --line: #e3e6ec; --bg: #ffffff; --soft: #f6f7f9;
+    --high: #b42318; --high-bg: #fdecea; --medium: #9a5b00; --medium-bg: #fff4e0;
+    --low: #35507a; --low-bg: #eaf0f8; --ok: #1f7a4d; --mark: #ffe58a;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 15px/1.55 "PT Sans", "Segoe UI", Arial, "DejaVu Sans", sans-serif; }
+  main { max-width: 860px; margin: 0 auto; padding: 32px 20px 48px; }
+  h1 { font-size: 24px; margin: 0 0 4px; }
+  h2 { font-size: 18px; margin: 32px 0 12px; }
+  .meta { color: var(--muted); font-size: 14px; }
+  .disclaimer { background: var(--soft); border-left: 4px solid var(--muted); padding: 10px 14px;
+                margin: 18px 0; font-size: 14px; }
+  .summary { display: flex; gap: 10px; flex-wrap: wrap; margin: 18px 0 8px; }
+  .pill { border-radius: 10px; padding: 10px 14px; min-width: 150px; }
+  .pill b { display: block; font-size: 22px; }
+  .pill.high { background: var(--high-bg); color: var(--high); }
+  .pill.medium { background: var(--medium-bg); color: var(--medium); }
+  .pill.low { background: var(--low-bg); color: var(--low); }
+  .verdict { font-size: 17px; font-weight: 600; margin: 12px 0; }
+  .warnings { border: 1px solid var(--medium); background: var(--medium-bg); border-radius: 8px;
+              padding: 10px 14px; font-size: 14px; }
+  .warnings li { margin: 4px 0; }
+  .top li { margin: 4px 0; }
+  .card { border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; margin: 14px 0; }
+  .quote, .safer, .card h3, .diffs { break-inside: avoid; }
+  .label, h2, .card h3 { break-after: avoid; }
+  .card.high { border-left: 6px solid var(--high); }
+  .card.medium { border-left: 6px solid var(--medium); }
+  .card.low { border-left: 6px solid var(--low); }
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; border-radius: 6px;
+           padding: 2px 8px; margin-right: 6px; text-transform: uppercase; letter-spacing: .02em; }
+  .badge.high { background: var(--high-bg); color: var(--high); }
+  .badge.medium { background: var(--medium-bg); color: var(--medium); }
+  .badge.low { background: var(--low-bg); color: var(--low); }
+  .card h3 { font-size: 16px; margin: 8px 0 10px; }
+  .label { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase;
+           letter-spacing: .03em; margin: 12px 0 4px; }
+  .quote { background: var(--soft); border-radius: 8px; padding: 10px 12px; font-size: 14px; }
+  .quote.ref { background: #f1f8f4; }
+  mark { background: var(--mark); padding: 0 2px; border-radius: 3px; }
+  .safer { border: 1px dashed var(--ok); color: #16492f; border-radius: 8px; padding: 10px 12px;
+           font-size: 14px; }
+  .diffs { margin: 6px 0 0; padding-left: 18px; font-size: 14px; }
+  .foot { color: var(--muted); font-size: 12px; margin-top: 8px; }
+  .advice { color: var(--muted); font-size: 13px; }
+  .limits { font-size: 14px; color: var(--muted); }
+  @media print {
+    main { padding: 0; }
+  }
+  @page { size: A4; margin: 16mm 14mm; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Проверка договора</h1>
+  <div class="meta">
+    {{ report.title or "Без названия" }} · {{ contract_type }} · вы — <b>{{ role }}</b>
+    · {{ report.generated_at[:10] }}
+  </div>
+
+  <div class="disclaimer">{{ disclaimer }}</div>
+
+  <div class="summary">
+    <div class="pill high"><b>{{ counts.high }}</b>высокий риск</div>
+    <div class="pill medium"><b>{{ counts.medium }}</b>средний риск</div>
+    <div class="pill low"><b>{{ counts.low }}</b>низкий риск</div>
+  </div>
+  <p class="verdict">{{ verdict }}</p>
+  <p class="meta">Проверено пунктов: {{ report.clauses_analysed }}.</p>
+
+  {% if report.warnings %}
+  <div class="warnings">
+    <b>Обратите внимание</b>
+    <ul>{% for w in report.warnings %}<li>{{ w }}</li>{% endfor %}</ul>
+  </div>
+  {% endif %}
+
+  {% if top %}
+  <h2>Главное</h2>
+  <ul class="top">
+    {% for f in top %}
+    <li><a href="#{{ anchor(f) }}">{{ f.title }}</a>{% if f.clause_id %} — пункт {{ f.clause_id }}{% endif %}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  {% if clause_findings %}
+  <h2>Рискованные пункты</h2>
+  {% for f in clause_findings %}
+  <section class="card {{ f.level.value }}" id="{{ anchor(f) }}">
+    <span class="badge {{ f.level.value }}">{{ LEVEL_TITLES[f.level] }}</span>
+    <span class="meta">пункт {{ f.clause_id }} · {{ CATEGORY_TITLES[f.category] }}</span>
+    <h3>{{ f.title }}</h3>
+
+    <div class="label">Что написано в договоре</div>
+    <div class="quote">{{ highlight(report.clause_texts.get(f.clause_id, ""), f.evidence) }}</div>
+
+    <div class="label">Чем это грозит</div>
+    <div>{{ f.explanation }}</div>
+    <div class="advice">{{ LEVEL_ADVICE[f.level] }}</div>
+
+    {% set neutral = f.comparison | selectattr("favours", "equalto", "neutral") | list %}
+    {% set boundary = f.comparison | rejectattr("favours", "equalto", "neutral") | list %}
+    {% if neutral %}
+    <div class="label">Как такое условие обычно звучит</div>
+    <div class="quote ref">{{ neutral[0].reference_text }}</div>
+    {% set diffs = neutral | map(attribute="differences") | sum(start=[]) | unique | list %}
+    {% if diffs %}<ul class="diffs">{% for d in diffs %}<li>{{ d }}</li>{% endfor %}</ul>{% endif %}
+    {% endif %}
+    {% if boundary %}
+    <div class="label">Граница рынка: {{ favours_title(boundary[0].favours) }}</div>
+    <div class="quote ref">{{ boundary[0].reference_text }}</div>
+    {% endif %}
+
+    {% if f.safer_wording %}
+    <div class="label">Что предложить контрагенту</div>
+    <div class="safer">{{ f.safer_wording }}</div>
+    {% endif %}
+
+    <div class="foot">
+      Как найдено: {{ SOURCE_TITLES[f.source] }}{% if f.rule_id %} ({{ f.rule_id }}){% endif %}.
+      {% if f.legal_basis %}Где почитать: {{ f.legal_basis }}.{% endif %}
+    </div>
+  </section>
+  {% endfor %}
+  {% endif %}
+
+  {% if document_findings %}
+  <h2>О договоре в целом</h2>
+  {% for f in document_findings %}
+  <section class="card {{ f.level.value }}" id="{{ anchor(f) }}">
+    <span class="badge {{ f.level.value }}">{{ LEVEL_TITLES[f.level] }}</span>
+    <span class="meta">{{ CATEGORY_TITLES[f.category] }}</span>
+    <h3>{{ f.title }}</h3>
+    <div>{{ f.explanation }}</div>
+    {% if f.comparison %}
+    <div class="label">Как обычно пишут</div>
+    <div class="quote ref">{{ f.comparison[0].reference_text }}</div>
+    {% endif %}
+    {% if f.safer_wording %}
+    <div class="label">Что предложить добавить</div>
+    <div class="safer">{{ f.safer_wording }}</div>
+    {% endif %}
+    <div class="foot">Как найдено: {{ SOURCE_TITLES[f.source] }}.{% if f.legal_basis %} Где почитать: {{ f.legal_basis }}.{% endif %}</div>
+  </section>
+  {% endfor %}
+  {% endif %}
+
+  <h2>Чего эта проверка не делает</h2>
+  <ul class="limits">{% for item in not_checked %}<li>{{ item }}</li>{% endfor %}</ul>
+  <p class="foot">
+    kz-contract-risk {{ report.pipeline_version }} · детектор {{ report.detector }} ·
+    документ {{ report.doc_id }}. Загруженный файл не сохраняется.
+  </p>
+</main>
+</body>
+</html>
