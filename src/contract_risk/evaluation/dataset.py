@@ -100,7 +100,7 @@ def dump_labels(doc: EvalDoc) -> str:
         "party_role": doc.party_role.value,
         "origin": doc.origin,
         "findings": [
-            {k: v for k, v in f.model_dump(mode="json").items() if v is not None}
+            {k: v for k, v in f.model_dump(mode="json").items() if v is not None or k == "clause"}
             for f in doc.findings
         ],
     }
