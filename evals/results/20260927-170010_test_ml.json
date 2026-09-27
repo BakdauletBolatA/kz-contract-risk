@@ -1,0 +1,1123 @@
+{
+  "run_id": "20260927-170010_test_ml",
+  "created_at": "2026-09-27T17:00:10+00:00",
+  "detector": {
+    "name": "ml",
+    "config": {
+      "model_version": "1.1",
+      "threshold": 0.806,
+      "trained_on": "8ef6b5da40aeadc6",
+      "oof": {
+        "by_doc_f1": 0.9344,
+        "by_doc_precision": 0.95,
+        "by_doc_recall": 0.9194,
+        "by_wording_f1": 0.4037,
+        "by_wording_precision": 0.4681,
+        "by_wording_recall": 0.3548,
+        "n_clauses": 2393,
+        "n_risky": 186
+      }
+    }
+  },
+  "split": "test",
+  "dataset_hash": "65fddee9e182e84f",
+  "metrics_version": "1.0",
+  "pipeline_version": "0.1.0",
+  "git_commit": "ee1b26c",
+  "git_dirty": false,
+  "metrics": {
+    "n_docs": 135,
+    "n_clean_docs": 38,
+    "n_gold_clause_findings": 215,
+    "n_pred_clause_findings": 92,
+    "detection": {
+      "precision": 0.9347826086956522,
+      "recall": 0.4,
+      "f1": 0.5602605863192183,
+      "tp": 86,
+      "fp": 6,
+      "fn": 129
+    },
+    "strict": {
+      "precision": 0.8369565217391305,
+      "recall": 0.3581395348837209,
+      "f1": 0.501628664495114,
+      "tp": 77,
+      "fp": 15,
+      "fn": 138
+    },
+    "high_recall": 0.5545454545454546,
+    "high_support": 110,
+    "level": {
+      "n": 77,
+      "accuracy": 0.6363636363636364,
+      "underestimated": 0.19480519480519481,
+      "overestimated": 0.16883116883116883
+    },
+    "document": {
+      "precision": null,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 42
+    },
+    "clean_docs": {
+      "n": 38,
+      "false_alarms_per_doc": 0.05263157894736842,
+      "docs_with_false_alarm": 0.05263157894736842
+    },
+    "segmentation_coverage": 1.0,
+    "per_category": {
+      "penalty": {
+        "precision": 0.9166666666666666,
+        "recall": 0.3548387096774194,
+        "f1": 0.5116279069767442,
+        "tp": 11,
+        "fp": 1,
+        "fn": 20,
+        "support": 31
+      },
+      "auto_renewal": {
+        "precision": 1.0,
+        "recall": 0.3181818181818182,
+        "f1": 0.4827586206896552,
+        "tp": 7,
+        "fp": 0,
+        "fn": 15,
+        "support": 22
+      },
+      "liability": {
+        "precision": 0.8,
+        "recall": 0.5714285714285714,
+        "f1": 0.6666666666666666,
+        "tp": 20,
+        "fp": 5,
+        "fn": 15,
+        "support": 35
+      },
+      "force_majeure": {
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 13,
+        "support": 13
+      },
+      "jurisdiction": {
+        "precision": 1.0,
+        "recall": 0.5238095238095238,
+        "f1": 0.6875000000000001,
+        "tp": 11,
+        "fp": 0,
+        "fn": 10,
+        "support": 21
+      },
+      "termination": {
+        "precision": 0.75,
+        "recall": 0.5094339622641509,
+        "f1": 0.6067415730337078,
+        "tp": 27,
+        "fp": 9,
+        "fn": 26,
+        "support": 53
+      },
+      "unilateral_change": {
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 20,
+        "support": 20
+      },
+      "payment": {
+        "precision": 1.0,
+        "recall": 0.125,
+        "f1": 0.2222222222222222,
+        "tp": 1,
+        "fp": 0,
+        "fn": 7,
+        "support": 8
+      },
+      "acceptance": {
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 12,
+        "support": 12
+      }
+    }
+  },
+  "ci95": {
+    "detection_precision": [
+      0.8764,
+      0.9792
+    ],
+    "detection_recall": [
+      0.3333,
+      0.4732
+    ],
+    "detection_f1": [
+      0.4901,
+      0.6323
+    ],
+    "strict_f1": [
+      0.4354,
+      0.5752
+    ]
+  },
+  "slices": {
+    "language": {
+      "kk": {
+        "n_docs": 15,
+        "detection": {
+          "precision": 1.0,
+          "recall": 0.4,
+          "f1": 0.5714285714285715,
+          "tp": 6,
+          "fp": 0,
+          "fn": 9
+        },
+        "strict_f1": 0.5714285714285715,
+        "high_recall": 0.46153846153846156,
+        "clean_docs": {
+          "n": 4,
+          "false_alarms_per_doc": 0.0,
+          "docs_with_false_alarm": 0.0
+        }
+      },
+      "ru": {
+        "n_docs": 120,
+        "detection": {
+          "precision": 0.9302325581395349,
+          "recall": 0.4,
+          "f1": 0.5594405594405595,
+          "tp": 80,
+          "fp": 6,
+          "fn": 120
+        },
+        "strict_f1": 0.49650349650349646,
+        "high_recall": 0.5670103092783505,
+        "clean_docs": {
+          "n": 34,
+          "false_alarms_per_doc": 0.058823529411764705,
+          "docs_with_false_alarm": 0.058823529411764705
+        }
+      }
+    },
+    "contract_type": {
+      "lease": {
+        "n_docs": 55,
+        "detection": {
+          "precision": 0.975,
+          "recall": 0.325,
+          "f1": 0.4875,
+          "tp": 39,
+          "fp": 1,
+          "fn": 81
+        },
+        "strict_f1": 0.4,
+        "high_recall": 0.5,
+        "clean_docs": {
+          "n": 13,
+          "false_alarms_per_doc": 0.07692307692307693,
+          "docs_with_false_alarm": 0.07692307692307693
+        }
+      },
+      "supply": {
+        "n_docs": 40,
+        "detection": {
+          "precision": 1.0,
+          "recall": 0.3541666666666667,
+          "f1": 0.5230769230769231,
+          "tp": 17,
+          "fp": 0,
+          "fn": 31
+        },
+        "strict_f1": 0.5230769230769231,
+        "high_recall": 0.45,
+        "clean_docs": {
+          "n": 11,
+          "false_alarms_per_doc": 0.0,
+          "docs_with_false_alarm": 0.0
+        }
+      },
+      "works": {
+        "n_docs": 40,
+        "detection": {
+          "precision": 0.8571428571428571,
+          "recall": 0.6382978723404256,
+          "f1": 0.7317073170731707,
+          "tp": 30,
+          "fp": 5,
+          "fn": 17
+        },
+        "strict_f1": 0.6829268292682927,
+        "high_recall": 0.7058823529411765,
+        "clean_docs": {
+          "n": 14,
+          "false_alarms_per_doc": 0.07142857142857142,
+          "docs_with_false_alarm": 0.07142857142857142
+        }
+      }
+    },
+    "origin": {
+      "synthetic": {
+        "n_docs": 135,
+        "detection": {
+          "precision": 0.9347826086956522,
+          "recall": 0.4,
+          "f1": 0.5602605863192183,
+          "tp": 86,
+          "fp": 6,
+          "fn": 129
+        },
+        "strict_f1": 0.501628664495114,
+        "high_recall": 0.5545454545454546,
+        "clean_docs": {
+          "n": 38,
+          "false_alarms_per_doc": 0.05263157894736842,
+          "docs_with_false_alarm": 0.05263157894736842
+        }
+      }
+    }
+  },
+  "timing": {
+    "seconds": 1.596,
+    "ms_per_doc": 11.8
+  },
+  "predictions": [
+    {
+      "doc_id": "lease_kk_test_001",
+      "clause_id": "5.1",
+      "category": "termination",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8814
+    },
+    {
+      "doc_id": "lease_kk_test_005",
+      "clause_id": "5.1",
+      "category": "termination",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8814
+    },
+    {
+      "doc_id": "lease_kk_test_006",
+      "clause_id": "5.1",
+      "category": "termination",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8814
+    },
+    {
+      "doc_id": "lease_kk_test_007",
+      "clause_id": "5.1",
+      "category": "termination",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8814
+    },
+    {
+      "doc_id": "lease_kk_test_013",
+      "clause_id": "5.1",
+      "category": "termination",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8814
+    },
+    {
+      "doc_id": "lease_kk_test_015",
+      "clause_id": "5.1",
+      "category": "termination",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8814
+    },
+    {
+      "doc_id": "lease_ru_test_001",
+      "clause_id": "5.3",
+      "category": "liability",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8388
+    },
+    {
+      "doc_id": "lease_ru_test_002",
+      "clause_id": "6.2",
+      "category": "termination",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8212
+    },
+    {
+      "doc_id": "lease_ru_test_002",
+      "clause_id": "6.3",
+      "category": "termination",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.951
+    },
+    {
+      "doc_id": "lease_ru_test_005",
+      "clause_id": "5.4",
+      "category": "liability",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9146
+    },
+    {
+      "doc_id": "lease_ru_test_005",
+      "clause_id": "7.1",
+      "category": "termination",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8786
+    },
+    {
+      "doc_id": "lease_ru_test_006",
+      "clause_id": "5.1",
+      "category": "penalty",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.873
+    },
+    {
+      "doc_id": "lease_ru_test_006",
+      "clause_id": "6.3",
+      "category": "termination",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.951
+    },
+    {
+      "doc_id": "lease_ru_test_006",
+      "clause_id": "7.1",
+      "category": "termination",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8786
+    },
+    {
+      "doc_id": "lease_ru_test_007",
+      "clause_id": "6.3",
+      "category": "termination",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.951
+    },
+    {
+      "doc_id": "lease_ru_test_009",
+      "clause_id": "7.1",
+      "category": "termination",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8786
+    },
+    {
+      "doc_id": "lease_ru_test_012",
+      "clause_id": "5.1",
+      "category": "penalty",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8681
+    },
+    {
+      "doc_id": "lease_ru_test_013",
+      "clause_id": "5.4",
+      "category": "liability",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8388
+    },
+    {
+      "doc_id": "lease_ru_test_013",
+      "clause_id": "8.1",
+      "category": "jurisdiction",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8369
+    },
+    {
+      "doc_id": "lease_ru_test_014",
+      "clause_id": "6.3",
+      "category": "termination",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.951
+    },
+    {
+      "doc_id": "lease_ru_test_018",
+      "clause_id": "7.1",
+      "category": "termination",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8786
+    },
+    {
+      "doc_id": "lease_ru_test_019",
+      "clause_id": "6.3",
+      "category": "termination",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.951
+    },
+    {
+      "doc_id": "lease_ru_test_019",
+      "clause_id": "7.1",
+      "category": "termination",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8786
+    },
+    {
+      "doc_id": "lease_ru_test_021",
+      "clause_id": "5.1",
+      "category": "penalty",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8859
+    },
+    {
+      "doc_id": "lease_ru_test_022",
+      "clause_id": "6.2",
+      "category": "termination",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8212
+    },
+    {
+      "doc_id": "lease_ru_test_022",
+      "clause_id": "7.1",
+      "category": "termination",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8786
+    },
+    {
+      "doc_id": "lease_ru_test_024",
+      "clause_id": "5.3",
+      "category": "liability",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9146
+    },
+    {
+      "doc_id": "lease_ru_test_025",
+      "clause_id": "5.3",
+      "category": "penalty",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8999
+    },
+    {
+      "doc_id": "lease_ru_test_029",
+      "clause_id": "5.1",
+      "category": "penalty",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.873
+    },
+    {
+      "doc_id": "lease_ru_test_029",
+      "clause_id": "5.4",
+      "category": "liability",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9146
+    },
+    {
+      "doc_id": "lease_ru_test_029",
+      "clause_id": "6.2",
+      "category": "termination",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8212
+    },
+    {
+      "doc_id": "lease_ru_test_031",
+      "clause_id": "5.4",
+      "category": "liability",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9146
+    },
+    {
+      "doc_id": "lease_ru_test_034",
+      "clause_id": "5.4",
+      "category": "liability",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8388
+    },
+    {
+      "doc_id": "lease_ru_test_035",
+      "clause_id": "2.2",
+      "category": "auto_renewal",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9404
+    },
+    {
+      "doc_id": "lease_ru_test_036",
+      "clause_id": "6.2",
+      "category": "termination",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8212
+    },
+    {
+      "doc_id": "lease_ru_test_036",
+      "clause_id": "6.3",
+      "category": "termination",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.951
+    },
+    {
+      "doc_id": "lease_ru_test_037",
+      "clause_id": "6.3",
+      "category": "termination",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.951
+    },
+    {
+      "doc_id": "lease_ru_test_038",
+      "clause_id": "5.3",
+      "category": "liability",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9146
+    },
+    {
+      "doc_id": "lease_ru_test_038",
+      "clause_id": "6.3",
+      "category": "termination",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.951
+    },
+    {
+      "doc_id": "lease_ru_test_038",
+      "clause_id": "7.1",
+      "category": "termination",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8786
+    },
+    {
+      "doc_id": "supply_ru_test_001",
+      "clause_id": "4.3",
+      "category": "liability",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9315
+    },
+    {
+      "doc_id": "supply_ru_test_008",
+      "clause_id": "6.1",
+      "category": "auto_renewal",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8439
+    },
+    {
+      "doc_id": "supply_ru_test_010",
+      "clause_id": "6.1",
+      "category": "auto_renewal",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8439
+    },
+    {
+      "doc_id": "supply_ru_test_013",
+      "clause_id": "6.2",
+      "category": "termination",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9833
+    },
+    {
+      "doc_id": "supply_ru_test_016",
+      "clause_id": "7.1",
+      "category": "jurisdiction",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9094
+    },
+    {
+      "doc_id": "supply_ru_test_017",
+      "clause_id": "6.1",
+      "category": "auto_renewal",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8439
+    },
+    {
+      "doc_id": "supply_ru_test_017",
+      "clause_id": "7.1",
+      "category": "jurisdiction",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9094
+    },
+    {
+      "doc_id": "supply_ru_test_019",
+      "clause_id": "6.1",
+      "category": "auto_renewal",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9438
+    },
+    {
+      "doc_id": "supply_ru_test_024",
+      "clause_id": "2.3",
+      "category": "payment",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8676
+    },
+    {
+      "doc_id": "supply_ru_test_024",
+      "clause_id": "6.1",
+      "category": "auto_renewal",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9438
+    },
+    {
+      "doc_id": "supply_ru_test_027",
+      "clause_id": "6.2",
+      "category": "termination",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9833
+    },
+    {
+      "doc_id": "supply_ru_test_027",
+      "clause_id": "7.1",
+      "category": "jurisdiction",
+      "level": "low",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8491
+    },
+    {
+      "doc_id": "supply_ru_test_034",
+      "clause_id": "6.2",
+      "category": "termination",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9833
+    },
+    {
+      "doc_id": "supply_ru_test_037",
+      "clause_id": "7.1",
+      "category": "jurisdiction",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9094
+    },
+    {
+      "doc_id": "supply_ru_test_039",
+      "clause_id": "4.3",
+      "category": "liability",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9315
+    },
+    {
+      "doc_id": "supply_ru_test_039",
+      "clause_id": "6.1",
+      "category": "auto_renewal",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9438
+    },
+    {
+      "doc_id": "supply_ru_test_040",
+      "clause_id": "7.1",
+      "category": "jurisdiction",
+      "level": "low",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8491
+    },
+    {
+      "doc_id": "works_ru_test_001",
+      "clause_id": "5.3",
+      "category": "liability",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8874
+    },
+    {
+      "doc_id": "works_ru_test_001",
+      "clause_id": "6.1",
+      "category": "termination",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9156
+    },
+    {
+      "doc_id": "works_ru_test_002",
+      "clause_id": "5.3",
+      "category": "liability",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8133
+    },
+    {
+      "doc_id": "works_ru_test_003",
+      "clause_id": "5.2",
+      "category": "penalty",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8364
+    },
+    {
+      "doc_id": "works_ru_test_003",
+      "clause_id": "5.3",
+      "category": "liability",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8133
+    },
+    {
+      "doc_id": "works_ru_test_003",
+      "clause_id": "7.1",
+      "category": "termination",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9834
+    },
+    {
+      "doc_id": "works_ru_test_004",
+      "clause_id": "5.2",
+      "category": "liability",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8133
+    },
+    {
+      "doc_id": "works_ru_test_006",
+      "clause_id": "5.1",
+      "category": "penalty",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.825
+    },
+    {
+      "doc_id": "works_ru_test_006",
+      "clause_id": "6.1",
+      "category": "termination",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9156
+    },
+    {
+      "doc_id": "works_ru_test_007",
+      "clause_id": "5.3",
+      "category": "liability",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8874
+    },
+    {
+      "doc_id": "works_ru_test_007",
+      "clause_id": "7.1",
+      "category": "jurisdiction",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9474
+    },
+    {
+      "doc_id": "works_ru_test_009",
+      "clause_id": "7.1",
+      "category": "jurisdiction",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9474
+    },
+    {
+      "doc_id": "works_ru_test_012",
+      "clause_id": "7.1",
+      "category": "termination",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9156
+    },
+    {
+      "doc_id": "works_ru_test_013",
+      "clause_id": "5.3",
+      "category": "liability",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8133
+    },
+    {
+      "doc_id": "works_ru_test_016",
+      "clause_id": "7.1",
+      "category": "termination",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9156
+    },
+    {
+      "doc_id": "works_ru_test_017",
+      "clause_id": "5.3",
+      "category": "liability",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8874
+    },
+    {
+      "doc_id": "works_ru_test_017",
+      "clause_id": "8.1",
+      "category": "jurisdiction",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9474
+    },
+    {
+      "doc_id": "works_ru_test_018",
+      "clause_id": "5.3",
+      "category": "liability",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8874
+    },
+    {
+      "doc_id": "works_ru_test_018",
+      "clause_id": "7.1",
+      "category": "jurisdiction",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9474
+    },
+    {
+      "doc_id": "works_ru_test_019",
+      "clause_id": "7.1",
+      "category": "termination",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9156
+    },
+    {
+      "doc_id": "works_ru_test_022",
+      "clause_id": "5.1",
+      "category": "penalty",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.825
+    },
+    {
+      "doc_id": "works_ru_test_022",
+      "clause_id": "5.3",
+      "category": "liability",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8874
+    },
+    {
+      "doc_id": "works_ru_test_023",
+      "clause_id": "5.4",
+      "category": "liability",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9493
+    },
+    {
+      "doc_id": "works_ru_test_023",
+      "clause_id": "6.1",
+      "category": "termination",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.87
+    },
+    {
+      "doc_id": "works_ru_test_026",
+      "clause_id": "5.1",
+      "category": "penalty",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8233
+    },
+    {
+      "doc_id": "works_ru_test_026",
+      "clause_id": "5.4",
+      "category": "liability",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9493
+    },
+    {
+      "doc_id": "works_ru_test_029",
+      "clause_id": "5.1",
+      "category": "penalty",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8233
+    },
+    {
+      "doc_id": "works_ru_test_029",
+      "clause_id": "5.2",
+      "category": "liability",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8874
+    },
+    {
+      "doc_id": "works_ru_test_030",
+      "clause_id": "5.1",
+      "category": "penalty",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.825
+    },
+    {
+      "doc_id": "works_ru_test_033",
+      "clause_id": "5.2",
+      "category": "liability",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8133
+    },
+    {
+      "doc_id": "works_ru_test_036",
+      "clause_id": "5.3",
+      "category": "liability",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8874
+    },
+    {
+      "doc_id": "works_ru_test_036",
+      "clause_id": "7.1",
+      "category": "jurisdiction",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9474
+    },
+    {
+      "doc_id": "works_ru_test_039",
+      "clause_id": "5.1",
+      "category": "penalty",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8233
+    },
+    {
+      "doc_id": "works_ru_test_039",
+      "clause_id": "5.2",
+      "category": "liability",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8874
+    },
+    {
+      "doc_id": "works_ru_test_039",
+      "clause_id": "6.1",
+      "category": "termination",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.87
+    }
+  ]
+}

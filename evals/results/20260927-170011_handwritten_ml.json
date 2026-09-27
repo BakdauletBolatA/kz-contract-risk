@@ -1,0 +1,385 @@
+{
+  "run_id": "20260927-170011_handwritten_ml",
+  "created_at": "2026-09-27T17:00:11+00:00",
+  "detector": {
+    "name": "ml",
+    "config": {
+      "model_version": "1.1",
+      "threshold": 0.806,
+      "trained_on": "8ef6b5da40aeadc6",
+      "oof": {
+        "by_doc_f1": 0.9344,
+        "by_doc_precision": 0.95,
+        "by_doc_recall": 0.9194,
+        "by_wording_f1": 0.4037,
+        "by_wording_precision": 0.4681,
+        "by_wording_recall": 0.3548,
+        "n_clauses": 2393,
+        "n_risky": 186
+      }
+    }
+  },
+  "split": "handwritten",
+  "dataset_hash": "bbe8ca363373c23f",
+  "metrics_version": "1.0",
+  "pipeline_version": "0.1.0",
+  "git_commit": "ee1b26c",
+  "git_dirty": false,
+  "metrics": {
+    "n_docs": 6,
+    "n_clean_docs": 1,
+    "n_gold_clause_findings": 23,
+    "n_pred_clause_findings": 11,
+    "detection": {
+      "precision": 1.0,
+      "recall": 0.4782608695652174,
+      "f1": 0.6470588235294118,
+      "tp": 11,
+      "fp": 0,
+      "fn": 12
+    },
+    "strict": {
+      "precision": 0.9090909090909091,
+      "recall": 0.43478260869565216,
+      "f1": 0.5882352941176471,
+      "tp": 10,
+      "fp": 1,
+      "fn": 13
+    },
+    "high_recall": 0.3,
+    "high_support": 10,
+    "level": {
+      "n": 10,
+      "accuracy": 0.9,
+      "underestimated": 0.0,
+      "overestimated": 0.1
+    },
+    "document": {
+      "precision": null,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 2
+    },
+    "clean_docs": {
+      "n": 1,
+      "false_alarms_per_doc": 0.0,
+      "docs_with_false_alarm": 0.0
+    },
+    "segmentation_coverage": 1.0,
+    "per_category": {
+      "penalty": {
+        "precision": 1.0,
+        "recall": 0.4,
+        "f1": 0.5714285714285715,
+        "tp": 2,
+        "fp": 0,
+        "fn": 3,
+        "support": 5
+      },
+      "auto_renewal": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "support": 2
+      },
+      "liability": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "tp": 1,
+        "fp": 0,
+        "fn": 1,
+        "support": 2
+      },
+      "jurisdiction": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0,
+        "support": 3
+      },
+      "termination": {
+        "precision": 0.6666666666666666,
+        "recall": 0.6666666666666666,
+        "f1": 0.6666666666666666,
+        "tp": 2,
+        "fp": 1,
+        "fn": 1,
+        "support": 3
+      },
+      "unilateral_change": {
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 3,
+        "support": 3
+      },
+      "payment": {
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 3,
+        "support": 3
+      },
+      "acceptance": {
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 2,
+        "support": 2
+      }
+    }
+  },
+  "ci95": {
+    "detection_precision": [
+      1.0,
+      1.0
+    ],
+    "detection_recall": [
+      0.3636,
+      0.6
+    ],
+    "detection_f1": [
+      0.5333,
+      0.75
+    ],
+    "strict_f1": [
+      0.4615,
+      0.6875
+    ]
+  },
+  "slices": {
+    "language": {
+      "ru": {
+        "n_docs": 5,
+        "detection": {
+          "precision": 1.0,
+          "recall": 0.45,
+          "f1": 0.6206896551724138,
+          "tp": 9,
+          "fp": 0,
+          "fn": 11
+        },
+        "strict_f1": 0.6206896551724138,
+        "high_recall": 0.25,
+        "clean_docs": {
+          "n": 1,
+          "false_alarms_per_doc": 0.0,
+          "docs_with_false_alarm": 0.0
+        }
+      },
+      "kk": {
+        "n_docs": 1,
+        "detection": {
+          "precision": 1.0,
+          "recall": 0.6666666666666666,
+          "f1": 0.8,
+          "tp": 2,
+          "fp": 0,
+          "fn": 1
+        },
+        "strict_f1": 0.4,
+        "high_recall": 0.5,
+        "clean_docs": {
+          "n": 0,
+          "false_alarms_per_doc": null,
+          "docs_with_false_alarm": null
+        }
+      }
+    },
+    "contract_type": {
+      "lease": {
+        "n_docs": 2,
+        "detection": {
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6666666666666666,
+          "tp": 5,
+          "fp": 0,
+          "fn": 5
+        },
+        "strict_f1": 0.5333333333333333,
+        "high_recall": 0.2,
+        "clean_docs": {
+          "n": 0,
+          "false_alarms_per_doc": null,
+          "docs_with_false_alarm": null
+        }
+      },
+      "works": {
+        "n_docs": 2,
+        "detection": {
+          "precision": 1.0,
+          "recall": 0.6,
+          "f1": 0.7499999999999999,
+          "tp": 3,
+          "fp": 0,
+          "fn": 2
+        },
+        "strict_f1": 0.7499999999999999,
+        "high_recall": 0.3333333333333333,
+        "clean_docs": {
+          "n": 1,
+          "false_alarms_per_doc": 0.0,
+          "docs_with_false_alarm": 0.0
+        }
+      },
+      "supply": {
+        "n_docs": 2,
+        "detection": {
+          "precision": 1.0,
+          "recall": 0.375,
+          "f1": 0.5454545454545454,
+          "tp": 3,
+          "fp": 0,
+          "fn": 5
+        },
+        "strict_f1": 0.5454545454545454,
+        "high_recall": 0.5,
+        "clean_docs": {
+          "n": 0,
+          "false_alarms_per_doc": null,
+          "docs_with_false_alarm": null
+        }
+      }
+    },
+    "origin": {
+      "handwritten": {
+        "n_docs": 6,
+        "detection": {
+          "precision": 1.0,
+          "recall": 0.4782608695652174,
+          "f1": 0.6470588235294118,
+          "tp": 11,
+          "fp": 0,
+          "fn": 12
+        },
+        "strict_f1": 0.5882352941176471,
+        "high_recall": 0.3,
+        "clean_docs": {
+          "n": 1,
+          "false_alarms_per_doc": 0.0,
+          "docs_with_false_alarm": 0.0
+        }
+      }
+    }
+  },
+  "timing": {
+    "seconds": 0.07,
+    "ms_per_doc": 11.7
+  },
+  "predictions": [
+    {
+      "doc_id": "hw_lease_01",
+      "clause_id": "5.2",
+      "category": "termination",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.968
+    },
+    {
+      "doc_id": "hw_lease_01",
+      "clause_id": "5.4",
+      "category": "auto_renewal",
+      "level": "low",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9048
+    },
+    {
+      "doc_id": "hw_lease_01",
+      "clause_id": "6.1",
+      "category": "jurisdiction",
+      "level": "low",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8153
+    },
+    {
+      "doc_id": "hw_lease_kk_01",
+      "clause_id": "2.2",
+      "category": "termination",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8287
+    },
+    {
+      "doc_id": "hw_lease_kk_01",
+      "clause_id": "4.1",
+      "category": "auto_renewal",
+      "level": "low",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8535
+    },
+    {
+      "doc_id": "hw_services_01",
+      "clause_id": "4.1",
+      "category": "penalty",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9254
+    },
+    {
+      "doc_id": "hw_services_01",
+      "clause_id": "4.2",
+      "category": "liability",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8657
+    },
+    {
+      "doc_id": "hw_services_01",
+      "clause_id": "7.1",
+      "category": "jurisdiction",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.9571
+    },
+    {
+      "doc_id": "hw_supply_01",
+      "clause_id": "4.1",
+      "category": "penalty",
+      "level": "medium",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.972
+    },
+    {
+      "doc_id": "hw_supply_02",
+      "clause_id": "5.2",
+      "category": "termination",
+      "level": "high",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.971
+    },
+    {
+      "doc_id": "hw_supply_02",
+      "clause_id": "5.3",
+      "category": "jurisdiction",
+      "level": "low",
+      "source": "ml",
+      "rule_id": null,
+      "confidence": 0.8095
+    }
+  ]
+}
