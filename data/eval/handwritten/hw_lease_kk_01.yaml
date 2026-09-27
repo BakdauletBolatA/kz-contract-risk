@@ -1,0 +1,22 @@
+doc_id: hw_lease_kk_01
+contract_type: lease
+language: kk
+party_role: tenant
+origin: handwritten
+findings:
+- clause: '2.2'
+  category: unilateral_change
+  level: high
+  trap_id: price_unilateral
+- clause: '3.1'
+  category: penalty
+  level: high
+  trap_id: penalty_daily_high
+- clause: '4.1'
+  category: auto_renewal
+  level: low
+  trap_id: renewal_silent
+- clause: null
+  category: liability
+  level: medium
+  trap_id: liability_one_sided

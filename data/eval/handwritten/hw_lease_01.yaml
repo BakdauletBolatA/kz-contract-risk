@@ -1,0 +1,38 @@
+doc_id: hw_lease_01
+contract_type: lease
+language: ru
+party_role: tenant
+origin: handwritten
+findings:
+- clause: '2.3'
+  category: termination
+  level: medium
+  trap_id: deposit_forfeit_user_exit
+- clause: '2.4'
+  category: unilateral_change
+  level: high
+  trap_id: price_unilateral
+- clause: '3.3'
+  category: liability
+  level: high
+  trap_id: exclusion_broad
+- clause: '4.1'
+  category: penalty
+  level: high
+  trap_id: penalty_daily_high
+- clause: '5.2'
+  category: termination
+  level: medium
+  trap_id: termination_short_notice
+- clause: '5.4'
+  category: auto_renewal
+  level: low
+  trap_id: renewal_silent
+- clause: '6.1'
+  category: jurisdiction
+  level: low
+  trap_id: forum_counterparty
+- clause: null
+  category: force_majeure
+  level: medium
+  trap_id: fm_missing

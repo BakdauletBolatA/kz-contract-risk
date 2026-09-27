@@ -1,0 +1,22 @@
+doc_id: hw_supply_02
+contract_type: supply
+language: ru
+party_role: supplier
+origin: handwritten
+findings:
+- clause: '3.2'
+  category: payment
+  level: medium
+  trap_id: payment_deferral_medium
+- clause: '4.1'
+  category: penalty
+  level: medium
+  trap_id: penalty_daily_medium
+- clause: '5.2'
+  category: termination
+  level: high
+  trap_id: termination_no_notice
+- clause: '5.3'
+  category: jurisdiction
+  level: low
+  trap_id: forum_counterparty
