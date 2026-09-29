@@ -96,6 +96,16 @@ flowchart LR
 
 ## Быстрый старт
 
+Всё сразу в Docker — база с эталонным корпусом, API на :8000, интерфейс на :8501:
+
+```bash
+docker compose up -d --build
+```
+
+Откройте http://localhost:8501. Ключ `ANTHROPIC_API_KEY` в окружении включает LLM-слой.
+
+Локально, без Docker:
+
 ```bash
 make venv
 ```

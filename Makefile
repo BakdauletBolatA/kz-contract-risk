@@ -105,6 +105,10 @@ api: ## FastAPI на :8000
 ui: ## Streamlit на :8501 (в API ходит, если задан KZCR_API_URL)
 	$(VENV)/bin/streamlit run src/contract_risk/ui/app.py
 
+.PHONY: up
+up: ## весь стек в Docker: pgvector, API :8000, интерфейс :8501
+	docker compose up -d --build
+
 .PHONY: down
 down: ## остановить контейнеры
 	docker compose down
