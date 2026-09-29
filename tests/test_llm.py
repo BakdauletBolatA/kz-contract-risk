@@ -278,3 +278,22 @@ def test_hybrid_sends_only_rule_silent_routed_clauses_to_llm():
     assert backend.calls == 1
     assert hybrid.config()["routing"] == {"silent": 2, "routed": 1}
     assert hybrid.name == "hybrid_llm"
+
+
+@pytest.mark.parametrize(
+    ("text", "expected"),
+    [
+        ("ИП Калиев Д.С. обязуется", "ИП [ФИО] обязуется"),
+        ("в лице директора Д. С. Калиева", "в лице директора [ФИО]"),
+        ("в лице Жаксылыковой-Смит А.Н., действующей", "в лице [ФИО], действующей"),
+        ("Сейтов Асан Ерланұлы, именуемый", "[ФИО], именуемый"),
+        ("Иванова Мария Петровна подписала", "[ФИО] подписала"),
+    ],
+)
+def test_redact_names(text, expected):
+    assert redact(text)[0] == expected
+
+
+def test_redact_names_keeps_contract_terms():
+    text = "Арендатор уплачивает Арендодателю пеню по ст. 297 ГК РК, п. 5.2 Договора."
+    assert redact(text) == (text, 0)
