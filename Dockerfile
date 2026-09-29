@@ -10,9 +10,19 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
-COPY pyproject.toml README.md LICENSE ./
+
+# Сначала только зависимости: слой зависит от pyproject.toml и пересобирается,
+# когда меняются зависимости, а не код или README. Пакет-заглушка нужен,
+# чтобы pip мог разрешить зависимости проекта без исходников.
+COPY pyproject.toml ./
+RUN mkdir -p src/contract_risk && touch src/contract_risk/__init__.py README.md \
+    && pip install --no-cache-dir '.[pdf,ocr,ui]' \
+    && pip uninstall -y kz-contract-risk
+
+# Код: правки здесь пересобирают только быстрые слои ниже.
+COPY README.md LICENSE ./
 COPY src ./src
-RUN pip install --no-cache-dir -e '.[pdf,ocr,ui]'
+RUN pip install --no-cache-dir --no-deps -e .
 
 COPY data ./data
 COPY .streamlit ./.streamlit
