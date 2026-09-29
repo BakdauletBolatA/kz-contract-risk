@@ -132,15 +132,20 @@ def _corpus_search(args: argparse.Namespace) -> int:
     return 0
 
 
-def _train(_: argparse.Namespace) -> int:
+def _train(args: argparse.Namespace) -> int:
     from contract_risk.config import get_settings
     from contract_risk.evaluation.dataset import load_split
     from contract_risk.ingestion import parse_text
-    from contract_risk.ml.model import ClauseRiskModel
+    from contract_risk.ml.model import ClauseRiskModel, load_or_train
 
     settings = get_settings()
-    model = ClauseRiskModel.train(load_split(settings.data_dir / "eval", "dev"), parse_text)
-    model.save(settings.models_dir / "clause_risk.joblib")
+    if args.if_stale:
+        # Сохранённая модель годится, если совпадают dev-срез, версия признаков
+        # (MODEL_VERSION) и scikit-learn; иначе — обучение заново.
+        model = load_or_train(settings.models_dir, settings.data_dir, parse_text)
+    else:
+        model = ClauseRiskModel.train(load_split(settings.data_dir / "eval", "dev"), parse_text)
+        model.save(settings.models_dir / "clause_risk.joblib")
     print(f"out-of-fold: {model.oof}")
     print(
         f"порог ML {model.threshold}, выдача в гибриде {model.emit_threshold}, "
@@ -215,7 +220,11 @@ def build_parser() -> argparse.ArgumentParser:
     search.add_argument("-k", type=int, default=5)
     search.set_defaults(func=_corpus_search)
 
-    sub.add_parser("train", help="обучить ML на dev-срезе").set_defaults(func=_train)
+    train = sub.add_parser("train", help="обучить ML на dev-срезе")
+    train.add_argument(
+        "--if-stale", action="store_true", help="не обучать, если сохранённая модель актуальна"
+    )
+    train.set_defaults(func=_train)
 
     analyze = sub.add_parser("analyze", help="проверить договор и выдать отчёт")
     analyze.add_argument("path")

@@ -26,8 +26,13 @@ RUN pip install --no-cache-dir --no-deps -e .
 
 COPY data ./data
 COPY .streamlit ./.streamlit
-# ML обучается на dev-срезе при сборке: первый запрос не ждёт обучения.
-RUN kzcr train
+# ML обучается на dev-срезе при сборке, чтобы первый запрос не ждал обучения.
+# Модель лежит в кэше сборки и переобучается, только если устарела: изменился
+# dev-срез, версия признаков (MODEL_VERSION) или scikit-learn. Правка
+# остального кода её не трогает.
+RUN --mount=type=cache,target=/cache/models \
+    KZCR_MODELS_DIR=/cache/models kzcr train --if-stale \
+    && mkdir -p models && cp /cache/models/clause_risk.joblib models/
 
 EXPOSE 8000 8501
 CMD ["uvicorn", "contract_risk.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
