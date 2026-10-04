@@ -8,6 +8,7 @@ kzcr eval table                    таблица всех прогонов дл
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 from pathlib import Path
 
@@ -186,6 +187,63 @@ def _analyze(args: argparse.Namespace) -> int:
     return 0
 
 
+def _make_extractor(model: str, use_cache: bool, docs=None):  # noqa: ANN001, ANN202
+    from contract_risk.config import get_settings
+    from contract_risk.extraction.backends import build_backend
+    from contract_risk.extraction.eval import oracle_backend
+    from contract_risk.extraction.extractor import Extractor
+    from contract_risk.llm.cache import ResponseCache
+
+    if model == "mock":
+        return Extractor(oracle_backend(docs or []))
+    cache = ResponseCache(get_settings().cache_dir / "extraction.sqlite") if use_cache else None
+    return Extractor(build_backend(model), cache=cache)
+
+
+def _extract_eval(args: argparse.Namespace) -> int:
+    from contract_risk.extraction.eval import evaluate, load_gold, write_run
+
+    docs = load_gold(args.split)
+    if args.limit:
+        docs = docs[: args.limit]
+    extractor = _make_extractor(args.model, not args.no_cache, docs)
+    run = evaluate(extractor, docs, args.model, args.split, workers=args.workers)
+    jp, ep = write_run(run, docs, Path(args.out))
+    m = run["metrics"]
+    print(
+        f"{run['run_id']}  промпт {run['prompt_version']}  коммит {run['git_commit']}  "
+        f"из кэша: {run['cached_docs']}/{len(docs)}"
+    )
+    print(
+        f"валидно с 1-й {m['valid_first_try']:.1%} | после повтора {m['valid_after_retry']:.1%} | "
+        f"macro-точность {m['macro_field_accuracy']:.1%} {m['macro_field_accuracy_ci95']} | "
+        f"halluc {m['hallucination_rate']} | p50 {m['latency_p50_s']} с | "
+        f"$/100 {m['cost_usd_per_100_docs']}"
+    )
+    print(f"→ {jp}\n→ {ep.name}")
+    return 0
+
+
+def _extract_table(args: argparse.Namespace) -> int:
+    from contract_risk.extraction.eval import field_table, load_runs, summary_table
+
+    runs = load_runs(Path(args.out))
+    print(summary_table(runs, include_mock=args.include_mock))
+    if args.fields:
+        print(f"\nТочность по полям, срез {args.fields}:\n")
+        print(field_table(runs, args.fields))
+    return 0
+
+
+def _extract_run(args: argparse.Namespace) -> int:
+    from contract_risk.ingestion.loaders import load_path
+
+    raw = load_path(Path(args.path))
+    result = _make_extractor(args.model, not args.no_cache).extract(raw.text)
+    print(json.dumps(result.to_dict(), ensure_ascii=False, indent=2))
+    return 0 if result.ok else 1
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="kzcr", description=__doc__.split("\n")[0])
     sub = parser.add_subparsers(dest="command", required=True)
@@ -225,6 +283,30 @@ def build_parser() -> argparse.ArgumentParser:
         "--if-stale", action="store_true", help="не обучать, если сохранённая модель актуальна"
     )
     train.set_defaults(func=_train)
+
+    ex = sub.add_parser("extract", help="извлечение полей договора").add_subparsers(
+        dest="action", required=True
+    )
+    ex_eval = ex.add_parser("eval", help="оценить модель на размеченном срезе")
+    ex_eval.add_argument("--model", required=True, help="ollama:qwen2.5:7b | anthropic:<id> | mock")
+    ex_eval.add_argument("--split", default="dev", choices=["dev", "test", "hard"])
+    ex_eval.add_argument("--limit", type=int, default=0)
+    ex_eval.add_argument("--workers", type=int, default=1)
+    ex_eval.add_argument("--no-cache", action="store_true")
+    ex_eval.add_argument("--out", default=str(ROOT / "evals/extraction"))
+    ex_eval.set_defaults(func=_extract_eval)
+    ex_table = ex.add_parser("table", help="сводная таблица прогонов")
+    ex_table.add_argument("--out", default=str(ROOT / "evals/extraction"))
+    ex_table.add_argument("--include-mock", action="store_true")
+    ex_table.add_argument(
+        "--fields", choices=["dev", "test", "hard"], help="добавить таблицу по полям"
+    )
+    ex_table.set_defaults(func=_extract_table)
+    ex_run = ex.add_parser("run", help="извлечь поля из одного файла")
+    ex_run.add_argument("path")
+    ex_run.add_argument("--model", required=True)
+    ex_run.add_argument("--no-cache", action="store_true")
+    ex_run.set_defaults(func=_extract_run)
 
     analyze = sub.add_parser("analyze", help="проверить договор и выдать отчёт")
     analyze.add_argument("path")
