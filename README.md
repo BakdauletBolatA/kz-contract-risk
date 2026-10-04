@@ -96,6 +96,10 @@ curl -s localhost:8000/extract/batch -H 'content-type: application/json' \
   -d '{"texts": ["...", "..."]}'                          # асинхронно, до 100 документов
 ```
 
+В Docker проверено вручную: `docker compose up -d --build` с нуля поднимает db, api и ui, а `/extract` и
+`/extract/batch` отвечают из контейнера (ключи hosted-моделей берутся из `.env`). Без ключей в контейнере
+работают `ollama:` модели: `docker compose --profile ollama up -d`.
+
 В ответе: `extraction`, `status` (`ok_first_try` / `ok_after_retry` / `failed`),
 `attempts`, `errors`, токены и `latency_ms`. Те же токены и латентность пишутся в лог
 (текст договора в лог не попадает). Не удалось получить валидный ответ — `502`.
