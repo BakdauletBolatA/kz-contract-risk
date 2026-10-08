@@ -2,6 +2,7 @@ import json
 import re
 
 import pytest
+from extraction_data import VALID
 
 from contract_risk.extraction.backends import MockBackend
 from contract_risk.extraction.eval import (
@@ -16,7 +17,6 @@ from contract_risk.extraction.eval import (
 )
 from contract_risk.extraction.extractor import Extractor
 from contract_risk.extraction.schema import ContractExtraction
-from tests.test_extraction_extractor import VALID
 
 PRICING = {
     "anthropic:m": {"input": 1.0, "output": 5.0},

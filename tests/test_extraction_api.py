@@ -1,12 +1,12 @@
 import json
 
 import pytest
+from extraction_data import VALID
 from fastapi.testclient import TestClient
 
 from contract_risk.api.main import create_app
 from contract_risk.extraction.backends import MockBackend
 from contract_risk.extraction.extractor import Extractor
-from tests.test_extraction_extractor import VALID
 
 
 class _FakeAnalyzer:
