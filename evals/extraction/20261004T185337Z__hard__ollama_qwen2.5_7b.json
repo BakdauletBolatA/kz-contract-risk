@@ -1,0 +1,712 @@
+{
+ "run_id": "20261004T185337Z__hard__ollama_qwen2.5_7b",
+ "model": "ollama:qwen2.5:7b",
+ "split": "hard",
+ "prompt_version": "extract_v1:4c17928b",
+ "git_commit": "05cac34",
+ "workers": 1,
+ "cached_docs": 0,
+ "metrics": {
+  "n_docs": 10,
+  "valid_first_try": 0.7,
+  "valid_after_retry": 1.0,
+  "failed": 0,
+  "backend_errors": 0,
+  "macro_field_accuracy": 0.7667,
+  "macro_field_accuracy_ci95": [
+   0.6533,
+   0.8535
+  ],
+  "exact_match_docs": 0.0,
+  "hallucination_rate": 0.3095,
+  "miss_rate": 0.0341,
+  "field_accuracy": {
+   "contract_type": 1.0,
+   "contract_number": 1.0,
+   "contract_date": 0.9,
+   "city": 0.3,
+   "term_months": 0.8,
+   "auto_renewal": 0.7,
+   "price_amount": 0.9,
+   "price_period": 0.9,
+   "payment_deadline_days": 0.6,
+   "payment_penalty_rate_percent_per_day": 0.8,
+   "payment_penalty_cap_percent": 0.8,
+   "dispute_forum": 0.6,
+   "termination_notice_days": 0.7,
+   "parties.role_bin": 0.5,
+   "parties.name": 1.0
+  },
+  "field_outcomes": {
+   "contract_type": {
+    "correct": 10
+   },
+   "contract_number": {
+    "correct": 10
+   },
+   "contract_date": {
+    "correct": 9,
+    "wrong": 1
+   },
+   "city": {
+    "wrong": 7,
+    "correct": 3
+   },
+   "term_months": {
+    "hallucinated": 2,
+    "correct": 8
+   },
+   "auto_renewal": {
+    "wrong": 3,
+    "correct": 7
+   },
+   "price_amount": {
+    "hallucinated": 1,
+    "correct": 9
+   },
+   "price_period": {
+    "hallucinated": 1,
+    "correct": 9
+   },
+   "payment_deadline_days": {
+    "hallucinated": 3,
+    "correct": 6,
+    "missed": 1
+   },
+   "payment_penalty_rate_percent_per_day": {
+    "correct": 8,
+    "hallucinated": 2
+   },
+   "payment_penalty_cap_percent": {
+    "hallucinated": 2,
+    "correct": 8
+   },
+   "dispute_forum": {
+    "wrong": 2,
+    "missed": 2,
+    "correct": 6
+   },
+   "termination_notice_days": {
+    "hallucinated": 2,
+    "correct": 7,
+    "wrong": 1
+   },
+   "parties.role_bin": {
+    "wrong": 5,
+    "correct": 5
+   },
+   "parties.name": {
+    "correct": 10
+   }
+  },
+  "latency_p50_s": 15.557,
+  "latency_p95_s": 23.951,
+  "tokens_in_per_doc": 3494.2,
+  "tokens_out_per_doc": 306.1,
+  "retry_rate": 0.3,
+  "cost_usd_per_100_docs": 0.0
+ },
+ "docs": [
+  {
+   "doc_id": "hw_lease_01",
+   "status": "ok_first_try",
+   "cached": false,
+   "attempts": [
+    {
+     "ok": true,
+     "error": null,
+     "in": 3034,
+     "out": 236,
+     "s": 15.964
+    }
+   ],
+   "prediction": {
+    "contract_type": "lease",
+    "contract_number": "БЦ-17/26",
+    "contract_date": "2026-02-10",
+    "city": "г. Астана",
+    "parties": [
+     {
+      "role": "landlord",
+      "name": "ТОО «Есиль Бизнес Центр»",
+      "bin": "000000000017"
+     },
+     {
+      "role": "tenant",
+      "name": "ИП Калиев Д.С.",
+      "bin": null
+     }
+    ],
+    "term_months": 10,
+    "auto_renewal": false,
+    "price_amount": 243000.0,
+    "price_period": "monthly",
+    "payment_deadline_days": 5,
+    "payment_penalty_rate_percent_per_day": 0.5,
+    "payment_penalty_cap_percent": 10.0,
+    "dispute_forum": "kz_courts",
+    "termination_notice_days": 7
+   },
+   "outcome": {
+    "contract_type": "correct",
+    "contract_number": "correct",
+    "contract_date": "correct",
+    "city": "wrong",
+    "term_months": "hallucinated",
+    "auto_renewal": "wrong",
+    "price_amount": "hallucinated",
+    "price_period": "hallucinated",
+    "payment_deadline_days": "hallucinated",
+    "payment_penalty_rate_percent_per_day": "correct",
+    "payment_penalty_cap_percent": "hallucinated",
+    "dispute_forum": "wrong",
+    "termination_notice_days": "hallucinated",
+    "parties.role_bin": "wrong",
+    "parties.name": "correct"
+   }
+  },
+  {
+   "doc_id": "hw_lease_kk_01",
+   "status": "ok_first_try",
+   "cached": false,
+   "attempts": [
+    {
+     "ok": true,
+     "error": null,
+     "in": 2782,
+     "out": 219,
+     "s": 14.176
+    }
+   ],
+   "prediction": {
+    "contract_type": "lease",
+    "contract_number": "8",
+    "contract_date": "2026-04-20",
+    "city": "Шымкент",
+    "parties": [
+     {
+      "role": "landlord",
+      "name": "«Оңтүстік Сауда Үйі» ЖШС",
+      "bin": null
+     },
+     {
+      "role": "tenant",
+      "name": "«Әлем Тігін» ЖК",
+      "bin": null
+     }
+    ],
+    "term_months": 11,
+    "auto_renewal": false,
+    "price_amount": 280000.0,
+    "price_period": "monthly",
+    "payment_deadline_days": null,
+    "payment_penalty_rate_percent_per_day": 1.0,
+    "payment_penalty_cap_percent": null,
+    "dispute_forum": null,
+    "termination_notice_days": 15
+   },
+   "outcome": {
+    "contract_type": "correct",
+    "contract_number": "correct",
+    "contract_date": "correct",
+    "city": "correct",
+    "term_months": "correct",
+    "auto_renewal": "wrong",
+    "price_amount": "correct",
+    "price_period": "correct",
+    "payment_deadline_days": "correct",
+    "payment_penalty_rate_percent_per_day": "correct",
+    "payment_penalty_cap_percent": "correct",
+    "dispute_forum": "missed",
+    "termination_notice_days": "hallucinated",
+    "parties.role_bin": "wrong",
+    "parties.name": "correct"
+   }
+  },
+  {
+   "doc_id": "hw_supply_01",
+   "status": "ok_after_retry",
+   "cached": false,
+   "attempts": [
+    {
+     "ok": false,
+     "error": "- auto_renewal: Input should be a valid boolean",
+     "in": 2613,
+     "out": 221,
+     "s": 13.334
+    },
+    {
+     "ok": true,
+     "error": null,
+     "in": 2900,
+     "out": 221,
+     "s": 9.712
+    }
+   ],
+   "prediction": {
+    "contract_type": "supply",
+    "contract_number": "45-П",
+    "contract_date": "2026-03-03",
+    "city": "город Караганда",
+    "parties": [
+     {
+      "role": "supplier",
+      "name": "ТОО «Сары-Арка Продукт»",
+      "bin": "000000000035"
+     },
+     {
+      "role": "buyer",
+      "name": "ИП «Мадина»",
+      "bin": null
+     }
+    ],
+    "term_months": null,
+    "auto_renewal": false,
+    "price_amount": null,
+    "price_period": null,
+    "payment_deadline_days": null,
+    "payment_penalty_rate_percent_per_day": 0.3,
+    "payment_penalty_cap_percent": null,
+    "dispute_forum": "kz_courts",
+    "termination_notice_days": null
+   },
+   "outcome": {
+    "contract_type": "correct",
+    "contract_number": "correct",
+    "contract_date": "correct",
+    "city": "wrong",
+    "term_months": "correct",
+    "auto_renewal": "correct",
+    "price_amount": "correct",
+    "price_period": "correct",
+    "payment_deadline_days": "correct",
+    "payment_penalty_rate_percent_per_day": "correct",
+    "payment_penalty_cap_percent": "correct",
+    "dispute_forum": "correct",
+    "termination_notice_days": "correct",
+    "parties.role_bin": "wrong",
+    "parties.name": "correct"
+   }
+  },
+  {
+   "doc_id": "hw_supply_02",
+   "status": "ok_after_retry",
+   "cached": false,
+   "attempts": [
+    {
+     "ok": false,
+     "error": "- auto_renewal: Input should be a valid boolean",
+     "in": 2558,
+     "out": 247,
+     "s": 13.942
+    },
+    {
+     "ok": true,
+     "error": null,
+     "in": 2871,
+     "out": 247,
+     "s": 10.75
+    }
+   ],
+   "prediction": {
+    "contract_type": "supply",
+    "contract_number": "2026/118",
+    "contract_date": "2026-05-05",
+    "city": "г. Усть-Каменогорск",
+    "parties": [
+     {
+      "role": "supplier",
+      "name": "ТОО «Восток Металл»",
+      "bin": "000000000099"
+     },
+     {
+      "role": "buyer",
+      "name": "ТОО «СтройМаркет»",
+      "bin": "000000000108"
+     }
+    ],
+    "term_months": null,
+    "auto_renewal": false,
+    "price_amount": null,
+    "price_period": null,
+    "payment_deadline_days": 100,
+    "payment_penalty_rate_percent_per_day": 0.2,
+    "payment_penalty_cap_percent": null,
+    "dispute_forum": "counterparty_location_court",
+    "termination_notice_days": 1
+   },
+   "outcome": {
+    "contract_type": "correct",
+    "contract_number": "correct",
+    "contract_date": "correct",
+    "city": "wrong",
+    "term_months": "correct",
+    "auto_renewal": "correct",
+    "price_amount": "correct",
+    "price_period": "correct",
+    "payment_deadline_days": "correct",
+    "payment_penalty_rate_percent_per_day": "hallucinated",
+    "payment_penalty_cap_percent": "correct",
+    "dispute_forum": "correct",
+    "termination_notice_days": "wrong",
+    "parties.role_bin": "correct",
+    "parties.name": "correct"
+   }
+  },
+  {
+   "doc_id": "hw_works_02_clean",
+   "status": "ok_first_try",
+   "cached": false,
+   "attempts": [
+    {
+     "ok": true,
+     "error": null,
+     "in": 2832,
+     "out": 250,
+     "s": 15.554
+    }
+   ],
+   "prediction": {
+    "contract_type": "works",
+    "contract_number": "31",
+    "contract_date": "2026-06-02",
+    "city": "г. Актобе",
+    "parties": [
+     {
+      "role": "contractor",
+      "name": "ТОО «Батыс Құрылыс»",
+      "bin": "000000000126"
+     },
+     {
+      "role": "customer",
+      "name": "ТОО «Ақтөбе Логистика»",
+      "bin": "000000000117"
+     }
+    ],
+    "term_months": null,
+    "auto_renewal": false,
+    "price_amount": 6400000.0,
+    "price_period": "total",
+    "payment_deadline_days": null,
+    "payment_penalty_rate_percent_per_day": 0.1,
+    "payment_penalty_cap_percent": 10.0,
+    "dispute_forum": "kz_courts",
+    "termination_notice_days": 30
+   },
+   "outcome": {
+    "contract_type": "correct",
+    "contract_number": "correct",
+    "contract_date": "correct",
+    "city": "wrong",
+    "term_months": "correct",
+    "auto_renewal": "correct",
+    "price_amount": "correct",
+    "price_period": "correct",
+    "payment_deadline_days": "missed",
+    "payment_penalty_rate_percent_per_day": "correct",
+    "payment_penalty_cap_percent": "correct",
+    "dispute_forum": "correct",
+    "termination_notice_days": "correct",
+    "parties.role_bin": "correct",
+    "parties.name": "correct"
+   }
+  },
+  {
+   "doc_id": "st_lease_01",
+   "status": "ok_first_try",
+   "cached": false,
+   "attempts": [
+    {
+     "ok": true,
+     "error": null,
+     "in": 2655,
+     "out": 251,
+     "s": 14.819
+    }
+   ],
+   "prediction": {
+    "contract_type": "lease",
+    "contract_number": "14-ТЦ",
+    "contract_date": "2026-10-01",
+    "city": "г. Алматы",
+    "parties": [
+     {
+      "role": "landlord",
+      "name": "ТОО «Мега Плаза»",
+      "bin": "000000000135"
+     },
+     {
+      "role": "tenant",
+      "name": "ИП Жаксылыкова А.Н.",
+      "bin": null
+     }
+    ],
+    "term_months": 11,
+    "auto_renewal": false,
+    "price_amount": 540000.0,
+    "price_period": "monthly",
+    "payment_deadline_days": 5,
+    "payment_penalty_rate_percent_per_day": 0.0033333333333333335,
+    "payment_penalty_cap_percent": null,
+    "dispute_forum": "aifc_court",
+    "termination_notice_days": 5
+   },
+   "outcome": {
+    "contract_type": "correct",
+    "contract_number": "correct",
+    "contract_date": "correct",
+    "city": "wrong",
+    "term_months": "correct",
+    "auto_renewal": "wrong",
+    "price_amount": "correct",
+    "price_period": "correct",
+    "payment_deadline_days": "hallucinated",
+    "payment_penalty_rate_percent_per_day": "hallucinated",
+    "payment_penalty_cap_percent": "correct",
+    "dispute_forum": "wrong",
+    "termination_notice_days": "correct",
+    "parties.role_bin": "wrong",
+    "parties.name": "correct"
+   }
+  },
+  {
+   "doc_id": "st_lease_02_clean",
+   "status": "ok_first_try",
+   "cached": false,
+   "attempts": [
+    {
+     "ok": true,
+     "error": null,
+     "in": 2655,
+     "out": 251,
+     "s": 15.56
+    }
+   ],
+   "prediction": {
+    "contract_type": "lease",
+    "contract_number": "40",
+    "contract_date": "2026-11-02",
+    "city": "г. Павлодар",
+    "parties": [
+     {
+      "role": "landlord",
+      "name": "ТОО «Иртыш Недвижимость»",
+      "bin": "000000000235"
+     },
+     {
+      "role": "tenant",
+      "name": "ТОО «Пекарня Нан»",
+      "bin": "000000000244"
+     }
+    ],
+    "term_months": 11,
+    "auto_renewal": false,
+    "price_amount": 700000.0,
+    "price_period": "monthly",
+    "payment_deadline_days": 10,
+    "payment_penalty_rate_percent_per_day": 0.1,
+    "payment_penalty_cap_percent": 10.0,
+    "dispute_forum": "counterparty_location_court",
+    "termination_notice_days": 30
+   },
+   "outcome": {
+    "contract_type": "correct",
+    "contract_number": "correct",
+    "contract_date": "correct",
+    "city": "wrong",
+    "term_months": "correct",
+    "auto_renewal": "correct",
+    "price_amount": "correct",
+    "price_period": "correct",
+    "payment_deadline_days": "hallucinated",
+    "payment_penalty_rate_percent_per_day": "correct",
+    "payment_penalty_cap_percent": "correct",
+    "dispute_forum": "correct",
+    "termination_notice_days": "correct",
+    "parties.role_bin": "correct",
+    "parties.name": "correct"
+   }
+  },
+  {
+   "doc_id": "st_lease_kk_01",
+   "status": "ok_first_try",
+   "cached": false,
+   "attempts": [
+    {
+     "ok": true,
+     "error": null,
+     "in": 2601,
+     "out": 213,
+     "s": 13.123
+    }
+   ],
+   "prediction": {
+    "contract_type": "lease",
+    "contract_number": "3",
+    "contract_date": "2026-05-01",
+    "city": "Ақтөбе",
+    "parties": [
+     {
+      "role": "landlord",
+      "name": "«Ақтөбе Сауда» ЖШС",
+      "bin": null
+     },
+     {
+      "role": "tenant",
+      "name": "«Нұр Сұлу» ЖК",
+      "bin": null
+     }
+    ],
+    "term_months": 12,
+    "auto_renewal": true,
+    "price_amount": 300000.0,
+    "price_period": "monthly",
+    "payment_deadline_days": null,
+    "payment_penalty_rate_percent_per_day": 0.5,
+    "payment_penalty_cap_percent": null,
+    "dispute_forum": null,
+    "termination_notice_days": null
+   },
+   "outcome": {
+    "contract_type": "correct",
+    "contract_number": "correct",
+    "contract_date": "wrong",
+    "city": "correct",
+    "term_months": "hallucinated",
+    "auto_renewal": "correct",
+    "price_amount": "correct",
+    "price_period": "correct",
+    "payment_deadline_days": "correct",
+    "payment_penalty_rate_percent_per_day": "correct",
+    "payment_penalty_cap_percent": "correct",
+    "dispute_forum": "missed",
+    "termination_notice_days": "correct",
+    "parties.role_bin": "wrong",
+    "parties.name": "correct"
+   }
+  },
+  {
+   "doc_id": "st_supply_01",
+   "status": "ok_first_try",
+   "cached": false,
+   "attempts": [
+    {
+     "ok": true,
+     "error": null,
+     "in": 2417,
+     "out": 233,
+     "s": 12.534
+    }
+   ],
+   "prediction": {
+    "contract_type": "supply",
+    "contract_number": "77/С",
+    "contract_date": "2026-10-12",
+    "city": "Шымкент",
+    "parties": [
+     {
+      "role": "supplier",
+      "name": "ТОО «Юг Опт Трейд»",
+      "bin": "000000000153"
+     },
+     {
+      "role": "buyer",
+      "name": "ТОО «Магазин у дома»",
+      "bin": "000000000162"
+     }
+    ],
+    "term_months": null,
+    "auto_renewal": false,
+    "price_amount": null,
+    "price_period": null,
+    "payment_deadline_days": null,
+    "payment_penalty_rate_percent_per_day": 0.5,
+    "payment_penalty_cap_percent": 10.0,
+    "dispute_forum": "counterparty_location_court",
+    "termination_notice_days": null
+   },
+   "outcome": {
+    "contract_type": "correct",
+    "contract_number": "correct",
+    "contract_date": "correct",
+    "city": "correct",
+    "term_months": "correct",
+    "auto_renewal": "correct",
+    "price_amount": "correct",
+    "price_period": "correct",
+    "payment_deadline_days": "correct",
+    "payment_penalty_rate_percent_per_day": "correct",
+    "payment_penalty_cap_percent": "hallucinated",
+    "dispute_forum": "correct",
+    "termination_notice_days": "correct",
+    "parties.role_bin": "correct",
+    "parties.name": "correct"
+   }
+  },
+  {
+   "doc_id": "st_supply_02",
+   "status": "ok_after_retry",
+   "cached": false,
+   "attempts": [
+    {
+     "ok": false,
+     "error": "- auto_renewal: Input should be a valid boolean",
+     "in": 2361,
+     "out": 236,
+     "s": 12.071
+    },
+    {
+     "ok": true,
+     "error": null,
+     "in": 2663,
+     "out": 236,
+     "s": 10.28
+    }
+   ],
+   "prediction": {
+    "contract_type": "supply",
+    "contract_number": "9/К",
+    "contract_date": "2026-10-25",
+    "city": "г. Караганда",
+    "parties": [
+     {
+      "role": "supplier",
+      "name": "ТОО «Сарыарка Молоко»",
+      "bin": "000000000217"
+     },
+     {
+      "role": "buyer",
+      "name": "ТОО «Сеть Минимаркетов Береке»",
+      "bin": "000000000226"
+     }
+    ],
+    "term_months": null,
+    "auto_renewal": false,
+    "price_amount": null,
+    "price_period": null,
+    "payment_deadline_days": null,
+    "payment_penalty_rate_percent_per_day": null,
+    "payment_penalty_cap_percent": null,
+    "dispute_forum": "kz_courts",
+    "termination_notice_days": null
+   },
+   "outcome": {
+    "contract_type": "correct",
+    "contract_number": "correct",
+    "contract_date": "correct",
+    "city": "wrong",
+    "term_months": "correct",
+    "auto_renewal": "correct",
+    "price_amount": "correct",
+    "price_period": "correct",
+    "payment_deadline_days": "correct",
+    "payment_penalty_rate_percent_per_day": "correct",
+    "payment_penalty_cap_percent": "correct",
+    "dispute_forum": "correct",
+    "termination_notice_days": "correct",
+    "parties.role_bin": "correct",
+    "parties.name": "correct"
+   }
+  }
+ ]
+}

@@ -30,6 +30,19 @@ class Settings(BaseSettings):
     llm_enabled: bool = True
     anthropic_api_key: str | None = Field(default=None, validation_alias="ANTHROPIC_API_KEY")
 
+    ollama_host: str = "http://127.0.0.1:11434"
+    extract_model: str = "ollama:qwen2.5:7b"
+    extract_concurrency: int = 4
+
+    openai_api_key: str | None = Field(default=None, validation_alias="OPENAI_API_KEY")
+
+    grok_api_key: str | None = Field(default=None, validation_alias="GROK_API_KEY")
+    grok_base_url: str = Field(default="https://api.x.ai/v1", validation_alias="GROK_BASE_URL")
+    deepseek_api_key: str | None = Field(default=None, validation_alias="DEEPSEEK_API_KEY")
+    deepseek_base_url: str = Field(
+        default="https://api.deepseek.com", validation_alias="DEEPSEEK_BASE_URL"
+    )
+
     max_upload_mb: int = 10
     ocr_enabled: bool = False
     api_url: str | None = None
