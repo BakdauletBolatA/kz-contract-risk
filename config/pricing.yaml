@@ -1,0 +1,14 @@
+# Цены в долларах за миллион токенов. Локальные модели бесплатны по счёту,
+# но не по времени: их стоимость в отчёте — только латентность.
+# ПРОВЕРЬТЕ тарифы перед тем, как цитировать цифры стоимости: они взяты на
+# дату написания и меняются. null — тариф неизвестен, стоимость не считается.
+models:
+  "anthropic:claude-haiku-4-5-20251001": {input: 1.0, output: 5.0}
+  "anthropic:claude-sonnet-5-5": {input: null, output: null}
+  # OpenAI: тариф по памяти, страница цен недоступна (403) — не сверено.
+  "openai:gpt-4o-mini": {input: 0.15, output: 0.60}
+  # xAI: этой модели нет на docs.x.ai/docs/models (на 2026-10-04) — тариф неизвестен.
+  "grok:grok-4-fast-non-reasoning": {input: null, output: null}
+  # DeepSeek: пиковый тариф (дневной), ночной вдвое дешевле. Источник: api-docs.deepseek.com/quick_start/pricing, 2026-10-04.
+  "deepseek:deepseek-v4-flash": {input: 0.3, output: 1.2}
+  "ollama:*": {input: 0.0, output: 0.0}

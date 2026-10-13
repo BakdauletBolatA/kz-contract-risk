@@ -32,6 +32,14 @@ services:
       # Без ключа гибрид работает в режиме «правила + ML» и предупреждает об этом в отчёте.
       ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
       KZCR_OCR_ENABLED: ${KZCR_OCR_ENABLED:-true}
+      # /extract: по умолчанию локальная модель в контейнере ollama (профиль `ollama`).
+      # С нативным Ollama на хосте: KZCR_OLLAMA_HOST=http://host.docker.internal:11434
+      KZCR_OLLAMA_HOST: ${KZCR_OLLAMA_HOST:-http://ollama:11434}
+      # Ключи hosted-моделей для /extract (openai:, grok:, deepseek:); без них работают ollama: и anthropic: с ключом выше.
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      GROK_API_KEY: ${GROK_API_KEY:-}
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
+      KZCR_EXTRACT_MODEL: ${KZCR_EXTRACT_MODEL:-ollama:qwen2.5:7b}
     # Корпус загружается в pgvector при старте; без изменений корпуса — мгновенно.
     command: sh -c "kzcr corpus load && uvicorn contract_risk.api.main:app --host 0.0.0.0 --port 8000"
     ports:
@@ -41,6 +49,16 @@ services:
       interval: 5s
       timeout: 5s
       retries: 30
+
+  # docker compose --profile ollama up -d --build
+  # Модель весит гигабайты и в образ не входит: docker compose exec ollama ollama pull qwen2.5:7b
+  ollama:
+    image: ollama/ollama:latest
+    profiles: ["ollama"]
+    volumes:
+      - ollama:/root/.ollama
+    ports:
+      - "${KZCR_OLLAMA_PORT:-11434}:11434"
 
   ui:
     build: .
@@ -55,3 +73,4 @@ services:
 
 volumes:
   pgdata:
+  ollama:

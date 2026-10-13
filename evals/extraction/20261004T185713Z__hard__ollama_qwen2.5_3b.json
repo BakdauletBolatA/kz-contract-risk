@@ -1,0 +1,628 @@
+{
+ "run_id": "20261004T185713Z__hard__ollama_qwen2.5_3b",
+ "model": "ollama:qwen2.5:3b",
+ "split": "hard",
+ "prompt_version": "extract_v1:4c17928b",
+ "git_commit": "05cac34",
+ "workers": 1,
+ "cached_docs": 0,
+ "metrics": {
+  "n_docs": 10,
+  "valid_first_try": 0.2,
+  "valid_after_retry": 0.5,
+  "failed": 5,
+  "backend_errors": 0,
+  "macro_field_accuracy": 0.38,
+  "macro_field_accuracy_ci95": [
+   0.1467,
+   0.64
+  ],
+  "exact_match_docs": 0.0,
+  "hallucination_rate": 0.3095,
+  "miss_rate": 0.0227,
+  "field_accuracy": {
+   "contract_type": 0.5,
+   "contract_number": 0.4,
+   "contract_date": 0.4,
+   "city": 0.5,
+   "term_months": 0.2,
+   "auto_renewal": 0.4,
+   "price_amount": 0.4,
+   "price_period": 0.4,
+   "payment_deadline_days": 0.1,
+   "payment_penalty_rate_percent_per_day": 0.2,
+   "payment_penalty_cap_percent": 0.4,
+   "dispute_forum": 0.5,
+   "termination_notice_days": 0.3,
+   "parties.role_bin": 0.5,
+   "parties.name": 0.5
+  },
+  "field_outcomes": {
+   "contract_type": {
+    "correct": 5,
+    "failed": 5
+   },
+   "contract_number": {
+    "correct": 4,
+    "failed": 5,
+    "wrong": 1
+   },
+   "contract_date": {
+    "correct": 4,
+    "failed": 5,
+    "wrong": 1
+   },
+   "city": {
+    "correct": 5,
+    "failed": 5
+   },
+   "term_months": {
+    "hallucinated": 3,
+    "failed": 5,
+    "correct": 2
+   },
+   "auto_renewal": {
+    "wrong": 1,
+    "failed": 5,
+    "correct": 4
+   },
+   "price_amount": {
+    "hallucinated": 1,
+    "failed": 5,
+    "correct": 4
+   },
+   "price_period": {
+    "hallucinated": 1,
+    "failed": 5,
+    "correct": 4
+   },
+   "payment_deadline_days": {
+    "hallucinated": 4,
+    "failed": 5,
+    "correct": 1
+   },
+   "payment_penalty_rate_percent_per_day": {
+    "correct": 2,
+    "failed": 5,
+    "hallucinated": 2,
+    "missed": 1
+   },
+   "payment_penalty_cap_percent": {
+    "correct": 4,
+    "failed": 5,
+    "missed": 1
+   },
+   "dispute_forum": {
+    "correct": 5,
+    "failed": 5
+   },
+   "termination_notice_days": {
+    "hallucinated": 2,
+    "failed": 5,
+    "correct": 3
+   },
+   "parties.role_bin": {
+    "correct": 5,
+    "failed": 5
+   },
+   "parties.name": {
+    "correct": 5,
+    "failed": 5
+   }
+  },
+  "latency_p50_s": 12.018,
+  "latency_p95_s": 49.5,
+  "tokens_in_per_doc": 5175.9,
+  "tokens_out_per_doc": 782.7,
+  "retry_rate": 0.8,
+  "cost_usd_per_100_docs": 0.0
+ },
+ "docs": [
+  {
+   "doc_id": "hw_lease_01",
+   "status": "ok_first_try",
+   "cached": false,
+   "attempts": [
+    {
+     "ok": true,
+     "error": null,
+     "in": 3034,
+     "out": 243,
+     "s": 19.42
+    }
+   ],
+   "prediction": {
+    "contract_type": "lease",
+    "contract_number": "БЦ-17/26",
+    "contract_date": "2026-02-10",
+    "city": "Астана",
+    "parties": [
+     {
+      "role": "landlord",
+      "name": "ТОО \"Есиль Бизнес Центр\"",
+      "bin": "000000000017"
+     },
+     {
+      "role": "tenant",
+      "name": "ИП Калиев Д.С.",
+      "bin": "000000000026"
+     }
+    ],
+    "term_months": 12,
+    "auto_renewal": false,
+    "price_amount": 240000.0,
+    "price_period": "monthly",
+    "payment_deadline_days": 5,
+    "payment_penalty_rate_percent_per_day": 0.5,
+    "payment_penalty_cap_percent": null,
+    "dispute_forum": "counterparty_location_court",
+    "termination_notice_days": 7
+   },
+   "outcome": {
+    "contract_type": "correct",
+    "contract_number": "correct",
+    "contract_date": "correct",
+    "city": "correct",
+    "term_months": "hallucinated",
+    "auto_renewal": "wrong",
+    "price_amount": "hallucinated",
+    "price_period": "hallucinated",
+    "payment_deadline_days": "hallucinated",
+    "payment_penalty_rate_percent_per_day": "correct",
+    "payment_penalty_cap_percent": "correct",
+    "dispute_forum": "correct",
+    "termination_notice_days": "hallucinated",
+    "parties.role_bin": "correct",
+    "parties.name": "correct"
+   }
+  },
+  {
+   "doc_id": "hw_lease_kk_01",
+   "status": "failed",
+   "cached": false,
+   "attempts": [
+    {
+     "ok": false,
+     "error": "- contract_type: Field required\n- contract_number: Field required\n- contract_date: Field required\n- city: Field required\n- parties: Field required\n- term_months: Field required\n- auto_renewal: Field required\n- price_amount: Field required\n- price_period: Field required\n- payment_deadline_days: Field required\n- payment_penalty_rate_percent_per_day: Field required\n- payment_penalty_cap_percent: Field required",
+     "in": 2782,
+     "out": 1114,
+     "s": 24.947
+    },
+    {
+     "ok": false,
+     "error": "- contract_type: Field required\n- contract_number: Field required\n- contract_date: Field required\n- city: Field required\n- parties: Field required\n- term_months: Field required\n- auto_renewal: Field required\n- price_amount: Field required\n- price_period: Field required\n- payment_deadline_days: Field required\n- payment_penalty_rate_percent_per_day: Field required\n- payment_penalty_cap_percent: Field required",
+     "in": 4041,
+     "out": 1114,
+     "s": 24.668
+    }
+   ],
+   "prediction": null,
+   "outcome": {
+    "contract_type": "failed",
+    "contract_number": "failed",
+    "contract_date": "failed",
+    "city": "failed",
+    "term_months": "failed",
+    "auto_renewal": "failed",
+    "price_amount": "failed",
+    "price_period": "failed",
+    "payment_deadline_days": "failed",
+    "payment_penalty_rate_percent_per_day": "failed",
+    "payment_penalty_cap_percent": "failed",
+    "dispute_forum": "failed",
+    "termination_notice_days": "failed",
+    "parties.role_bin": "failed",
+    "parties.name": "failed"
+   }
+  },
+  {
+   "doc_id": "hw_supply_01",
+   "status": "failed",
+   "cached": false,
+   "attempts": [
+    {
+     "ok": false,
+     "error": "- auto_renewal: Input should be a valid boolean\n- price_amount: Input should be greater than 0",
+     "in": 2613,
+     "out": 237,
+     "s": 6.527
+    },
+    {
+     "ok": false,
+     "error": "- auto_renewal: Input should be a valid boolean",
+     "in": 2928,
+     "out": 240,
+     "s": 5.138
+    }
+   ],
+   "prediction": null,
+   "outcome": {
+    "contract_type": "failed",
+    "contract_number": "failed",
+    "contract_date": "failed",
+    "city": "failed",
+    "term_months": "failed",
+    "auto_renewal": "failed",
+    "price_amount": "failed",
+    "price_period": "failed",
+    "payment_deadline_days": "failed",
+    "payment_penalty_rate_percent_per_day": "failed",
+    "payment_penalty_cap_percent": "failed",
+    "dispute_forum": "failed",
+    "termination_notice_days": "failed",
+    "parties.role_bin": "failed",
+    "parties.name": "failed"
+   }
+  },
+  {
+   "doc_id": "hw_supply_02",
+   "status": "ok_after_retry",
+   "cached": false,
+   "attempts": [
+    {
+     "ok": false,
+     "error": "- auto_renewal: Input should be a valid boolean\n- price_period: Value error, price_period задан, а price_amount — нет",
+     "in": 2558,
+     "out": 246,
+     "s": 6.544
+    },
+    {
+     "ok": true,
+     "error": null,
+     "in": 2888,
+     "out": 245,
+     "s": 5.211
+    }
+   ],
+   "prediction": {
+    "contract_type": "supply",
+    "contract_number": "2026/118",
+    "contract_date": "2026-05-05",
+    "city": "Усть-Каменогорск",
+    "parties": [
+     {
+      "role": "supplier",
+      "name": "ТОО \"Восток Металл\"",
+      "bin": "000000000099"
+     },
+     {
+      "role": "buyer",
+      "name": "ТОО \"СтройМаркет\"",
+      "bin": "000000000108"
+     }
+    ],
+    "term_months": 12,
+    "auto_renewal": false,
+    "price_amount": null,
+    "price_period": null,
+    "payment_deadline_days": 100,
+    "payment_penalty_rate_percent_per_day": 0.2,
+    "payment_penalty_cap_percent": null,
+    "dispute_forum": "counterparty_location_court",
+    "termination_notice_days": 0
+   },
+   "outcome": {
+    "contract_type": "correct",
+    "contract_number": "correct",
+    "contract_date": "correct",
+    "city": "correct",
+    "term_months": "hallucinated",
+    "auto_renewal": "correct",
+    "price_amount": "correct",
+    "price_period": "correct",
+    "payment_deadline_days": "correct",
+    "payment_penalty_rate_percent_per_day": "hallucinated",
+    "payment_penalty_cap_percent": "correct",
+    "dispute_forum": "correct",
+    "termination_notice_days": "correct",
+    "parties.role_bin": "correct",
+    "parties.name": "correct"
+   }
+  },
+  {
+   "doc_id": "hw_works_02_clean",
+   "status": "failed",
+   "cached": false,
+   "attempts": [
+    {
+     "ok": false,
+     "error": "- contract_type: Field required\n- contract_number: Field required\n- contract_date: Field required\n- city: Field required\n- parties: Field required\n- term_months: Field required\n- auto_renewal: Field required\n- price_amount: Field required\n- price_period: Field required\n- payment_deadline_days: Field required\n- payment_penalty_rate_percent_per_day: Field required\n- payment_penalty_cap_percent: Field required",
+     "in": 2832,
+     "out": 1091,
+     "s": 24.736
+    },
+    {
+     "ok": false,
+     "error": "- contract_type: Field required\n- contract_number: Field required\n- contract_date: Field required\n- city: Field required\n- parties: Field required\n- term_months: Field required\n- auto_renewal: Field required\n- price_amount: Field required\n- price_period: Field required\n- payment_deadline_days: Field required\n- payment_penalty_rate_percent_per_day: Field required\n- payment_penalty_cap_percent: Field required",
+     "in": 4068,
+     "out": 1091,
+     "s": 24.623
+    }
+   ],
+   "prediction": null,
+   "outcome": {
+    "contract_type": "failed",
+    "contract_number": "failed",
+    "contract_date": "failed",
+    "city": "failed",
+    "term_months": "failed",
+    "auto_renewal": "failed",
+    "price_amount": "failed",
+    "price_period": "failed",
+    "payment_deadline_days": "failed",
+    "payment_penalty_rate_percent_per_day": "failed",
+    "payment_penalty_cap_percent": "failed",
+    "dispute_forum": "failed",
+    "termination_notice_days": "failed",
+    "parties.role_bin": "failed",
+    "parties.name": "failed"
+   }
+  },
+  {
+   "doc_id": "st_lease_01",
+   "status": "ok_first_try",
+   "cached": false,
+   "attempts": [
+    {
+     "ok": true,
+     "error": null,
+     "in": 2655,
+     "out": 244,
+     "s": 6.806
+    }
+   ],
+   "prediction": {
+    "contract_type": "lease",
+    "contract_number": "14-ТЦ",
+    "contract_date": "2026-10-01",
+    "city": "Алматы",
+    "parties": [
+     {
+      "role": "landlord",
+      "name": "ТОО \"Мега Плаза\"",
+      "bin": "000000000135"
+     },
+     {
+      "role": "tenant",
+      "name": "ИП Жаксылыкова А.Н.",
+      "bin": "000000000144"
+     }
+    ],
+    "term_months": 11,
+    "auto_renewal": true,
+    "price_amount": 540000.0,
+    "price_period": "monthly",
+    "payment_deadline_days": 5,
+    "payment_penalty_rate_percent_per_day": 0.33,
+    "payment_penalty_cap_percent": null,
+    "dispute_forum": "kz_courts",
+    "termination_notice_days": 5
+   },
+   "outcome": {
+    "contract_type": "correct",
+    "contract_number": "correct",
+    "contract_date": "correct",
+    "city": "correct",
+    "term_months": "correct",
+    "auto_renewal": "correct",
+    "price_amount": "correct",
+    "price_period": "correct",
+    "payment_deadline_days": "hallucinated",
+    "payment_penalty_rate_percent_per_day": "hallucinated",
+    "payment_penalty_cap_percent": "correct",
+    "dispute_forum": "correct",
+    "termination_notice_days": "correct",
+    "parties.role_bin": "correct",
+    "parties.name": "correct"
+   }
+  },
+  {
+   "doc_id": "st_lease_02_clean",
+   "status": "ok_after_retry",
+   "cached": false,
+   "attempts": [
+    {
+     "ok": false,
+     "error": "- auto_renewal: Input should be a valid boolean",
+     "in": 2655,
+     "out": 245,
+     "s": 6.97
+    },
+    {
+     "ok": true,
+     "error": null,
+     "in": 2966,
+     "out": 245,
+     "s": 5.312
+    }
+   ],
+   "prediction": {
+    "contract_type": "lease",
+    "contract_number": "40",
+    "contract_date": "2026-11-02",
+    "city": "Павлодар",
+    "parties": [
+     {
+      "role": "landlord",
+      "name": "ТОО \"Иртыш Недвижимость\"",
+      "bin": "000000000235"
+     },
+     {
+      "role": "tenant",
+      "name": "ТОО \"Пекарня Нан\"",
+      "bin": "000000000244"
+     }
+    ],
+    "term_months": 11,
+    "auto_renewal": false,
+    "price_amount": 700000.0,
+    "price_period": "monthly",
+    "payment_deadline_days": 10,
+    "payment_penalty_rate_percent_per_day": 0.1,
+    "payment_penalty_cap_percent": null,
+    "dispute_forum": "counterparty_location_court",
+    "termination_notice_days": 30
+   },
+   "outcome": {
+    "contract_type": "correct",
+    "contract_number": "correct",
+    "contract_date": "correct",
+    "city": "correct",
+    "term_months": "correct",
+    "auto_renewal": "correct",
+    "price_amount": "correct",
+    "price_period": "correct",
+    "payment_deadline_days": "hallucinated",
+    "payment_penalty_rate_percent_per_day": "correct",
+    "payment_penalty_cap_percent": "missed",
+    "dispute_forum": "correct",
+    "termination_notice_days": "correct",
+    "parties.role_bin": "correct",
+    "parties.name": "correct"
+   }
+  },
+  {
+   "doc_id": "st_lease_kk_01",
+   "status": "ok_after_retry",
+   "cached": false,
+   "attempts": [
+    {
+     "ok": false,
+     "error": "- payment_penalty_rate_percent_per_day: Field required\n- payment_penalty_cap_percent: Field required\n- payment_penalty_rate_percent_per_day: null, : Extra inputs are not permitted",
+     "in": 2601,
+     "out": 259,
+     "s": 6.975
+    },
+    {
+     "ok": true,
+     "error": null,
+     "in": 2950,
+     "out": 257,
+     "s": 5.489
+    }
+   ],
+   "prediction": {
+    "contract_type": "lease",
+    "contract_number": "ЖАЛҒА АЛУ ШАРТЫ № 3",
+    "contract_date": "2026-05-02",
+    "city": "Ақтөбе",
+    "parties": [
+     {
+      "role": "landlord",
+      "name": "«Ақтөбе Сауда» ЖШС",
+      "bin": "000000000199"
+     },
+     {
+      "role": "tenant",
+      "name": "«Нұр Сұлу» ЖК",
+      "bin": "000000000208"
+     }
+    ],
+    "term_months": 12,
+    "auto_renewal": true,
+    "price_amount": 300000.0,
+    "price_period": "monthly",
+    "payment_deadline_days": 30,
+    "payment_penalty_rate_percent_per_day": null,
+    "payment_penalty_cap_percent": null,
+    "dispute_forum": "kz_courts",
+    "termination_notice_days": 0
+   },
+   "outcome": {
+    "contract_type": "correct",
+    "contract_number": "wrong",
+    "contract_date": "wrong",
+    "city": "correct",
+    "term_months": "hallucinated",
+    "auto_renewal": "correct",
+    "price_amount": "correct",
+    "price_period": "correct",
+    "payment_deadline_days": "hallucinated",
+    "payment_penalty_rate_percent_per_day": "missed",
+    "payment_penalty_cap_percent": "correct",
+    "dispute_forum": "correct",
+    "termination_notice_days": "hallucinated",
+    "parties.role_bin": "correct",
+    "parties.name": "correct"
+   }
+  },
+  {
+   "doc_id": "st_supply_01",
+   "status": "failed",
+   "cached": false,
+   "attempts": [
+    {
+     "ok": false,
+     "error": "- auto_renewal: Input should be a valid boolean\n- price_period: Value error, price_period задан, а price_amount — нет",
+     "in": 2417,
+     "out": 238,
+     "s": 6.037
+    },
+    {
+     "ok": false,
+     "error": "- price_amount: Input should be greater than 0\n- price_period: Value error, price_period задан, а price_amount — нет",
+     "in": 2739,
+     "out": 239,
+     "s": 5.11
+    }
+   ],
+   "prediction": null,
+   "outcome": {
+    "contract_type": "failed",
+    "contract_number": "failed",
+    "contract_date": "failed",
+    "city": "failed",
+    "term_months": "failed",
+    "auto_renewal": "failed",
+    "price_amount": "failed",
+    "price_period": "failed",
+    "payment_deadline_days": "failed",
+    "payment_penalty_rate_percent_per_day": "failed",
+    "payment_penalty_cap_percent": "failed",
+    "dispute_forum": "failed",
+    "termination_notice_days": "failed",
+    "parties.role_bin": "failed",
+    "parties.name": "failed"
+   }
+  },
+  {
+   "doc_id": "st_supply_02",
+   "status": "failed",
+   "cached": false,
+   "attempts": [
+    {
+     "ok": false,
+     "error": "- price_period: Value error, price_period задан, а price_amount — нет",
+     "in": 2361,
+     "out": 239,
+     "s": 5.838
+    },
+    {
+     "ok": false,
+     "error": "- price_amount: Input should be greater than 0\n- price_period: Value error, price_period задан, а price_amount — нет",
+     "in": 2671,
+     "out": 240,
+     "s": 5.101
+    }
+   ],
+   "prediction": null,
+   "outcome": {
+    "contract_type": "failed",
+    "contract_number": "failed",
+    "contract_date": "failed",
+    "city": "failed",
+    "term_months": "failed",
+    "auto_renewal": "failed",
+    "price_amount": "failed",
+    "price_period": "failed",
+    "payment_deadline_days": "failed",
+    "payment_penalty_rate_percent_per_day": "failed",
+    "payment_penalty_cap_percent": "failed",
+    "dispute_forum": "failed",
+    "termination_notice_days": "failed",
+    "parties.role_bin": "failed",
+    "parties.name": "failed"
+   }
+  }
+ ]
+}

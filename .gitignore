@@ -32,3 +32,10 @@ htmlcov/
 
 # --- локальные настройки инструментов ---
 .claude/
+
+# Секреты: любые .env-файлы, кроме образца (защита от опечаток вроде «.envsk-…»)
+.env?*
+!.env.example
+
+# Генерируется scripts/make_review_sheet.py
+docs/gold_review.html

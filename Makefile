@@ -87,6 +87,18 @@ eval-all: ## все офлайн-детекторы на dev и test — стр�
 		done; \
 	done
 
+.PHONY: extract-gold
+extract-gold: ## пересобрать эталон извлечения из черновика и ручных правок
+	$(PY) scripts/build_gold.py
+
+.PHONY: extract-eval
+extract-eval: ## оценка извлечения: make extract-eval MODEL=ollama:qwen2.5:7b SPLIT=dev
+	$(KZCR) extract eval --model $(MODEL) --split $(or $(SPLIT),dev)
+
+.PHONY: extract-table
+extract-table: ## сводная таблица прогонов извлечения (для README)
+	$(KZCR) extract table --fields test | tee evals/extraction/SUMMARY.md
+
 .PHONY: train
 train: ## обучить ML-классификаторы на dev-срезе
 	$(KZCR) train
